@@ -1,0 +1,134 @@
+package gameobjects;
+
+import libraries.Vector2;
+
+public class Monsters {
+	private double speed;
+	private int hitPoint;
+	private int damage;
+	private Vector2 position;
+	private Vector2 size;
+	private String imagePath;
+	private Vector2 direction;
+	
+	public Monsters(double speed, int hitPoint, int damage, Vector2 position, Vector2 size, String imagePath,
+			Vector2 direction) {
+		this.speed = speed;
+		this.hitPoint = hitPoint;
+		this.damage = damage;
+		this.position = position;
+		this.size = size;
+		this.imagePath = imagePath;
+		this.direction = direction;
+	}
+	
+	public void updateGameObject()
+	{
+		move();
+	}
+
+	private void move()
+	{
+		Vector2 normalizedDirection = getNormalizedDirection();
+		Vector2 positionAfterMoving = getPosition().addVector(normalizedDirection);
+		if (isAWall(positionAfterMoving)) {
+			setPosition(positionAfterMoving);
+		}
+		direction = new Vector2();
+	}
+	
+	// keep the hero in the room
+	private boolean isAWall(Vector2 checkposition) {
+		if (checkposition.getX()>(0.1) && checkposition.getX()<(0.9) &&
+			checkposition.getY()>(0.1) && checkposition.getY()<(0.9)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	/*
+	 * Moving from key inputs. Direction vector is later normalised.
+	 */
+	public void goUpNext()
+	{
+		getDirection().addY(1);
+	}
+
+	public void goDownNext()
+	{
+		getDirection().addY(-1);
+	}
+
+	public void goLeftNext()
+	{
+		getDirection().addX(-1);
+	}
+
+	public void goRightNext()
+	{
+		getDirection().addX(1);
+	}
+
+	public Vector2 getNormalizedDirection()
+	{
+		Vector2 normalizedVector = new Vector2(direction);
+		normalizedVector.euclidianNormalize(speed);
+		return normalizedVector;
+	}
+
+	
+	/*
+	 * Getters and Setters
+	 */
+	public Vector2 getPosition()
+	{
+		return position;
+	}
+
+	public void setPosition(Vector2 position)
+	{
+		this.position = position;
+	}
+
+	public Vector2 getSize()
+	{
+		return size;
+	}
+
+	public void setSize(Vector2 size)
+	{
+		this.size = size;
+	}
+
+	public String getImagePath()
+	{
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath)
+	{
+		this.imagePath = imagePath;
+	}
+
+	public double getSpeed()
+	{
+		return speed;
+	}
+
+	public void setSpeed(double speed)
+	{
+		this.speed = speed;
+	}
+
+	public Vector2 getDirection()
+	{
+		return direction;
+	}
+
+	public void setDirection(Vector2 direction)
+	{
+		this.direction = direction;
+	}
+	
+}
