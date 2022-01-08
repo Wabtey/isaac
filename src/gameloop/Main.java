@@ -1,7 +1,7 @@
 package gameloop;
 
 import gameWorld.GameWorld;
-import gameobjects.Hero;
+import gameobjects.moving_entity.Hero;
 import libraries.StdDraw;
 import libraries.Timer;
 import resources.DisplaySettings;
@@ -14,7 +14,7 @@ public class Main
 	public static void main(String[] args)
 	{
 		// Hero, world and display initialisation.
-		Hero isaac = new Hero(RoomInfos.POSITION_CENTER_OF_ROOM, HeroInfos.ISAAC_SIZE, HeroInfos.ISAAC_SPEED, ImagePaths.ISAAC);
+		Hero isaac = new Hero(RoomInfos.POSITION_CENTER_OF_ROOM, HeroInfos.ISAAC_SIZE, HeroInfos.ISAAC_SPEED,6,1,ImagePaths.ISAAC);
 		GameWorld world = new GameWorld(isaac);				
 		initializeDisplay();
 
