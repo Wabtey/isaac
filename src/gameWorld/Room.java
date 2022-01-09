@@ -1,12 +1,16 @@
 package gameWorld;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+
 import gameobjects.Door;
 import gameobjects.moving_entity.Hero;
 import gameobjects.moving_entity.Projectile;
+import gameobjects.moving_entity.monsters.Monsters;
 import gameobjects.obstacles.Obstacle;
 import libraries.StdDraw;
 import libraries.Vector2;
+import resources.CreaturesInfos;
 import resources.DisplaySettings;
 import resources.ImagePaths;
 import resources.RoomInfos;
@@ -17,6 +21,7 @@ public class Room
 	private ArrayList<Door> doors ;
 	private ArrayList<Obstacle> obstacles;
 	private ArrayList<Projectile> projectile;
+	private LinkedList<Monsters> monsters;
 	
 	public Room(Hero hero)
 	{
@@ -24,6 +29,15 @@ public class Room
 		this.doors = new ArrayList<Door>(4);
 		this.obstacles = new ArrayList<Obstacle>(4);
 		this.projectile = new ArrayList<Projectile>(10);//valeur random
+		
+		//TODO DELETE - this is a pre-creation to test the game (delete when dungeon are ready)
+		this.getDoors().add(new Door(new Vector2(0.5,0.9), new Boss(hero)));
+		this.getDoors().add(new Door(new Vector2(0.9,0.5), new Shop(hero)));
+		this.monsters = new LinkedList<Monsters>();
+		this.monsters.add(new Monsters(new Vector2(0.5,0.5),CreaturesInfos.ISAAC_SIZE,0.01, hero.getPosition(), 1, 2, 0,ImagePaths.SPIDER, hero.getPosition()));
+		//--DELETE------------------------
+		
+		
 		//carefull about scaling
 		obstacles.add(new Obstacle(new Vector2(0.5,0), RoomInfos.WALL_DOWN[1], RoomInfos.WALL_DOWN[0])); 			//BAS
 		obstacles.add(new Obstacle(new Vector2(0.5,1), RoomInfos.WALL_UP[1], RoomInfos.WALL_UP[0])); 				//HAUT
@@ -39,15 +53,81 @@ public class Room
 	{
 		makeHeroPlay();
 		updateProjectile();
+		makeMonstersPlay();
+		checkCollision();
 	}
+	
+//--COMBAT CODE-------------------------------------------------
+	private void makeMonstersPlay() {			
+		for (Monsters monster : monsters) {
+			Vector2 lastPosition = monster.getPosition();
+			monster.updateGameObject(); //DO NOT MOVE you monster
+			if (inAnObstacle(monster.getPosition()))
+				monster.setPosition(lastPosition);
+		}
+	}
+	
+	private void checkCollision(){//implementer tout type de collision (cac et projectile)
+		checkRangeCollision();
+		checkCloseCollision();
+	}
+	
+	private void checkCloseCollision() {
+		if (collisionWithMonster(getHero().getPosition(), getHero().getSize())!=null) {
+			Monsters contactMonster = collisionWithMonster(getHero().getPosition(), getHero().getSize());
+			contactMonster.addFreezeTime(20);
+			getHero().getHitted(contactMonster.getDamage());
+			getHero().addInvincibilityFrames(CreaturesInfos.ISAAC_INVINCIBILITY);
+			System.out.println("hp : " + getHero().getHitPoint());
+		}
+	}
+	
+	
+	private void checkRangeCollision() {
+		ArrayList<Monsters> monster_delete = new ArrayList<Monsters>();
+		ArrayList<Projectile> projectile_delete = new ArrayList<Projectile>();
+		ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
+		projectiles.addAll(getHero().getProjectile());
+		if (!projectiles.isEmpty()) {
+			for (Projectile projectile:projectiles) {
+				if (collisionWithMonster(projectile.getProjPosition(), projectile.getProjSize())!=null) {
+				monster_delete.add(collisionWithMonster(projectile.getProjPosition(), projectile.getProjSize()));
+				projectile_delete.add(projectile);
+				}
+			
+			}
+		}
+		monsters.removeAll(monster_delete);
+		getHero().removeProjectile(projectile_delete);
+	}
+	
+	private Monsters collisionWithMonster(Vector2 coordonnees, Vector2 size) {
+		double posX0 = coordonnees.getX() - (size.getX() / 2);
+		double posX1 = coordonnees.getX() + (size.getX() / 2);
+		double posY0 = coordonnees.getY() - (size.getY() / 2);
+		double posY1 = coordonnees.getY() + (size.getY() / 2);
+		Monsters guilty = null;
+		for (Monsters monster : monsters) {
+			double monX0 = monster.getPosition().getX() - (monster.getSize().getX() / 2);
+			double monX1 = monster.getPosition().getX() + (monster.getSize().getX() / 2);
+			double monY0 = monster.getPosition().getY() - (monster.getSize().getY() / 2);
+			double monY1 = monster.getPosition().getY() + (monster.getSize().getY() / 2);
+			if (posX0>monX1 || posX1<=monX0 || posY0>=monY1 || posY1<=monY0)
+				return null;//pas de collision
+			guilty = monster;
+		}
+		return guilty;
+	}
+
+//--OBSTACLES--------------------------------------------------
 
 	public boolean inAnObstacle(Vector2 coordonnees) {
 		return checkObstacle(coordonnees);
 	}
 	
 	
-//	if (checkposition.getX()>(RoomInfos.ROOM_WIDTH[0]) && checkposition.getX()<(RoomInfos.ROOM_WIDTH[1]) &&
-//			checkposition.getY()>(RoomInfos.ROOM_HEIGHT[0]) && checkposition.getY()<(RoomInfos.ROOM_HEIGHT[1])) {
+	//if (checkposition.getX()>(RoomInfos.ROOM_WIDTH[0]) && checkposition.getX()<(RoomInfos.ROOM_WIDTH[1]) &&
+	//	  checkposition.getY()>(RoomInfos.ROOM_HEIGHT[0]) && checkposition.getY()<(RoomInfos.ROOM_HEIGHT[1])) {
 	private boolean checkObstacle(Vector2 coordonnees) {
 		double posX = coordonnees.getX();
 		double posY = coordonnees.getY();
@@ -104,7 +184,8 @@ public class Room
 			hero.setPosition(lastPosition);
 	}
 		
-	
+
+//--INTERFACE-GRAPHIQUE------------------------------------------------------
 	/*
 	 * Drawing
 	 */
@@ -118,6 +199,18 @@ public class Room
 				scaling, scaling);
 		StdDraw.picture(position.getX(), position.getY(), ImagePaths.WALL,
 				scaling, scaling);
+		
+		//--HITBOX DREW---------------------
+//		double posX0 = this.getHero().getPosition().getX() - (this.getHero().getSize().getX() / 2);//TODO a supp
+//		double posX1 = this.getHero().getPosition().getX() + (this.getHero().getSize().getX() / 2);
+//		double posY0 = this.getHero().getPosition().getY() - (this.getHero().getSize().getY() / 2);
+//		double posY1 = this.getHero().getPosition().getY() + (this.getHero().getSize().getY() / 2);
+//		StdDraw.setPenColor(StdDraw.BLUE);
+//		StdDraw.filledCircle(posX1, posY0, 0.01);
+//		StdDraw.filledCircle(posX1, posY1, 0.01);
+//		StdDraw.filledCircle(posX0, posY0, 0.01);
+//		StdDraw.filledCircle(posX0, posY1, 0.01);
+//		StdDraw.filledCircle(0.5, 0.5, 0.02);
 		
 //		for (int i = 0; i < RoomInfos.NB_TILES; i++) {
 //			for (int j = 0; j < RoomInfos.NB_TILES; j++) {
