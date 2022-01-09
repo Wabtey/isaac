@@ -8,15 +8,20 @@ import resources.RoomInfos;
 
 public class GameWorld
 {
-	private Room[] rooms;
+	private GameWorld Nord;
+	private GameWorld South;
+	private GameWorld East;
+	private GameWorld Weast;
 	private Room currentRoom;
 	private Hero hero;
+	private int NumberOfRooms;
 
 	// A world needs a hero
 	public GameWorld(Hero hero)
 	{
 		this.hero = hero;
 		this.currentRoom = new Spawn(hero);
+		this.Nord = this.East = this.Weast = this.South = null;
 	}
 	
 
@@ -102,5 +107,54 @@ public class GameWorld
 	
 	public void setCurrentRoom(Room room) {
 		this.currentRoom = room;
+	}
+
+
+	public GameWorld getNord() {
+		return Nord;
+	}
+
+
+	public void setNord(GameWorld nord) {
+		Nord = nord;
+	}
+
+
+	public GameWorld getSouth() {
+		return South;
+	}
+
+
+	public void setSouth(GameWorld south) {
+		South = south;
+	}
+
+
+	public GameWorld getEast() {
+		return East;
+	}
+
+
+	public void setEast(GameWorld east) {
+		East = east;
+	}
+
+
+	public GameWorld getWeast() {
+		return Weast;
+	}
+
+
+	public void setWeast(GameWorld weast) {
+		Weast = weast;
+	}
+	
+	public int getNumberOfRooms() {
+		return NumberOfRooms;
+	}
+	
+	public void decreaseRoomsNumber() {
+		if (NumberOfRooms>0)
+			NumberOfRooms --;
 	}
 }

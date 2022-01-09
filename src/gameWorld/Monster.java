@@ -14,10 +14,10 @@ import resources.HeroInfos;
 public class Monster extends Room {
 	private LinkedList<Monsters> monsters;
 
-	public Monster(Hero hero, Room previousRoom) {
-		super(hero,previousRoom);
-		this.getDoors().add(new Door(new Vector2(0.5,0.9), new Boss(hero)));
-		this.getDoors().add(new Door(new Vector2(0.9,0.5), new Shop(hero)));
+	public Monster(Hero hero) {
+		super(hero);
+		this.getDoors().add(new Door(new Vector2(0.5,0.9)));
+		this.getDoors().add(new Door(new Vector2(0.9,0.5)));
 		this.monsters = new LinkedList<Monsters>();
 		this.monsters.add(new Monsters(new Vector2(0.5,0.5),HeroInfos.ISAAC_SIZE,0.01, hero.getPosition(), 1, 2, "images/Spider.png", hero.getPosition()));
 	}

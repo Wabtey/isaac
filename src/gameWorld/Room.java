@@ -14,7 +14,6 @@ import resources.RoomInfos;
 public class Room
 {
 	private Hero hero;
-	private Room previousRoom;
 	private ArrayList<Door> doors ;
 	private ArrayList<Obstacle> obstacles;
 	private ArrayList<Projectile> projectile;
@@ -22,21 +21,6 @@ public class Room
 	public Room(Hero hero)
 	{
 		this.hero = hero;
-		this.previousRoom = null;
-		this.doors = new ArrayList<Door>(4);
-		this.obstacles = new ArrayList<Obstacle>(4);
-		this.projectile = new ArrayList<Projectile>(10);//valeur random
-		//carefull about scaling
-		obstacles.add(new Obstacle(new Vector2(0.5,0), RoomInfos.WALL_DOWN[1], RoomInfos.WALL_DOWN[0])); 			//BAS
-		obstacles.add(new Obstacle(new Vector2(0.5,1), RoomInfos.WALL_UP[1], RoomInfos.WALL_UP[0])); 				//HAUT
-		obstacles.add(new Obstacle(new Vector2(0,0.5), RoomInfos.WALL_LEFTnRIGHT[1], RoomInfos.WALL_LEFTnRIGHT[0]));//GAUCHE
-		obstacles.add(new Obstacle(new Vector2(1,0.5), RoomInfos.WALL_LEFTnRIGHT[1], RoomInfos.WALL_LEFTnRIGHT[0]));//DROIT
-	}
-	
-	public Room(Hero hero, Room previousRoom)
-	{
-		this.hero = hero;
-		this.previousRoom = previousRoom;
 		this.doors = new ArrayList<Door>(4);
 		this.obstacles = new ArrayList<Obstacle>(4);
 		this.projectile = new ArrayList<Projectile>(10);//valeur random

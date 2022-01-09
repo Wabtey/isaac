@@ -10,7 +10,7 @@ public class Spawn extends Room {
 
 	public Spawn(Hero hero) {
 		super(hero);
-		getDoors().add(new Door(DoorInfos.SUD, new RoomMonster(hero)));
+		getDoors().add(new Door(DoorInfos.NORTH, new RoomMonster(hero)));
 		
 	}
 	

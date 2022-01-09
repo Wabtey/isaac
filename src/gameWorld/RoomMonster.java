@@ -14,8 +14,8 @@ import resources.HeroInfos;
 public class RoomMonster extends Room {
 	private LinkedList<Monsters> monsters;
 
-	public RoomMonster(Hero hero, Room previousRoom) {
-		super(hero,previousRoom);
+	public RoomMonster(Hero hero) {
+		super(hero);
 		this.getDoors().add(new Door(new Vector2(0.5,0.9), new Boss(hero)));
 		this.getDoors().add(new Door(new Vector2(0.9,0.5), new Shop(hero)));
 		this.monsters = new LinkedList<Monsters>();
