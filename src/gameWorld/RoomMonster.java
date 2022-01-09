@@ -9,7 +9,7 @@ import gameobjects.moving_entity.Projectile;
 import gameobjects.moving_entity.monsters.Monsters;
 import libraries.StdDraw;
 import libraries.Vector2;
-import resources.HeroInfos;
+import resources.CreaturesInfos;
 
 public class RoomMonster extends Room {
 	private LinkedList<Monsters> monsters;
@@ -19,7 +19,7 @@ public class RoomMonster extends Room {
 		this.getDoors().add(new Door(new Vector2(0.5,0.9), new Boss(hero)));
 		this.getDoors().add(new Door(new Vector2(0.9,0.5), new Shop(hero)));
 		this.monsters = new LinkedList<Monsters>();
-		this.monsters.add(new Monsters(new Vector2(0.5,0.5),HeroInfos.ISAAC_SIZE,0.01, hero.getPosition(), 1, 2, "images/Spider.png", hero.getPosition()));
+		this.monsters.add(new Monsters(new Vector2(0.5,0.5),CreaturesInfos.ISAAC_SIZE,0.01, hero.getPosition(), 1, 2, 0,"images/Spider.png", hero.getPosition()));
 	}
 	
 	public void updateRoom() {
@@ -47,7 +47,7 @@ public class RoomMonster extends Room {
 			Monsters contactMonster = collisionWithMonster(getHero().getPosition(), getHero().getSize());
 			contactMonster.addFreezeTime(20);
 			getHero().getHitted(contactMonster.getDamage());
-			getHero().addInvincibilityFrames(HeroInfos.ISAAC_INVINCIBILITY);
+			getHero().addInvincibilityFrames(CreaturesInfos.ISAAC_INVINCIBILITY);
 			System.out.println("hp : " + getHero().getHitPoint());
 		}
 	}
