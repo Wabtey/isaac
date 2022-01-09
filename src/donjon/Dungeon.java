@@ -11,8 +11,9 @@ public class Dungeon {
 	public Dungeon(ArrayList<List<Integer>> worldMap) {
 		this.gameWorlds = new ArrayList<List<GameWorld>>(worldMap.size());
 		for (int i=0; i<=worldMap.size(); i++) {
-			for (int j=0; j<=worldMap.size(); j++) {
-				
+			for (int j = 0; j <= worldMap.size(); j++) {
+				if (worldMap.get(i).get(j)==1);
+				gameWorlds.
 			}
 		}
 	}
