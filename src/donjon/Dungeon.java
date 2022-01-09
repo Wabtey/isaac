@@ -14,6 +14,7 @@ public class Dungeon {
 			for (int j = 0; j <= worldMap.size(); j++) {
 				if (worldMap.get(i).get(j)==1);
 				//ceci est un commentaire de code modifier
+				//ceci est un deuxieme commentaire de code a modifier
 			}
 		}
 	}
