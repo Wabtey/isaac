@@ -31,8 +31,8 @@ public class Room
 		this.projectile = new ArrayList<Projectile>(10);//valeur random
 		
 		//TODO DELETE - this is a pre-creation to test the game (delete when dungeon are ready)
-		this.getDoors().add(new Door(new Vector2(0.5,0.9), new Boss(hero)));
-		this.getDoors().add(new Door(new Vector2(0.9,0.5), new Shop(hero)));
+//		this.getDoors().add(new Door(new Vector2(0.5,0.9), new Boss(hero)));
+//		this.getDoors().add(new Door(new Vector2(0.9,0.5), new Shop(hero)));
 		this.monsters = new LinkedList<Monsters>();
 		this.monsters.add(new Monsters(new Vector2(0.5,0.5),CreaturesInfos.ISAAC_SIZE,0.01, hero.getPosition(), 1, 2, 0,ImagePaths.SPIDER, hero.getPosition()));
 		//--DELETE------------------------

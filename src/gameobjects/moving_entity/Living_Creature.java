@@ -1,7 +1,10 @@
 package gameobjects.moving_entity;
 
 
+import java.util.ArrayList;
+
 import libraries.Vector2;
+import resources.CreaturesInfos;
 
 public abstract class Living_Creature {
 	private Vector2 position;
@@ -16,6 +19,8 @@ public abstract class Living_Creature {
 	private Vector2 orientation;
 	private int invincibility; //freezing time of monsters and hero invincibility time are differents
 	
+	private ArrayList<Projectile> tears;
+	
 	public Living_Creature(Vector2 position, Vector2 size, double speed, int hitPoint
 			,int damage, double tearRate, String imagePath) {
 		this.position = position;
@@ -29,9 +34,11 @@ public abstract class Living_Creature {
 		this.reloadTime = 0;
 		this.orientation = new Vector2(0.1,0);
 		this.invincibility = 0;
+		//TODO Change this magic number to something coherent
+		this.tears = new ArrayList<Projectile> (10);
 	}
 	
-
+//
 	
 	protected void move()
 	{
@@ -40,6 +47,41 @@ public abstract class Living_Creature {
 		setPosition(positionAfterMoving);
 		this.setDirection(new Vector2());
 	}
+	
+	public void updateGameObject()
+	{
+		for (Projectile tear:tears) {
+			tear.move();
+		}
+		isReloading();
+	}
+
+//--COMBAT CODE-------------------------------------------------
+	
+	public void shoot() {
+		if(getReloadTime()==0) {
+			tears.add(new Projectile(getPosition(),getOrientation(),new Vector2(getSize().getX()/2,getSize().getY()/2),getDamage(), getSpeed(),getImagePath()));
+			reload(CreaturesInfos.convertTearRateToTicks(getTearRate()));
+		}
+	}
+	
+	public void removeProjectile(ArrayList<Projectile> toRemove) {
+		deleteProjectile(toRemove);
+	}
+	
+	private void deleteProjectile(ArrayList<Projectile> toRemove) {
+		if(tears.containsAll(toRemove))
+			tears.removeAll(toRemove);
+	}
+	
+	public void updateProjectile(ArrayList<Projectile> projectileUpdated) {
+		tears = projectileUpdated;
+	}
+	
+	public ArrayList<Projectile> getProjectile() {
+		return tears;
+	}
+		
 	
 //--HITTED---------------------------------------------------------------
 	
@@ -68,7 +110,7 @@ public abstract class Living_Creature {
 	}
 	
 	public void isReloading() {
-		if (reloadTime>0) 
+		if (reloadTime>0) //Attention au sortie (si on retire plus de ticks, on pert du tearRate
 		this.reloadTime--;
 	}
 	

@@ -18,7 +18,8 @@ public class CreaturesInfos
 	 */
 	public static int convertTearRateToTicks(double tearRate)
 	{
-		return (int)tearRate*DisplaySettings.FPS;
+		double ticks = tearRate*DisplaySettings.FPS;
+		return (int)ticks;
 	}
 	
 }
