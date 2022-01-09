@@ -1,5 +1,6 @@
 package gameobjects.moving_entity;
 
+
 import libraries.Vector2;
 
 public abstract class Living_Creature {
@@ -40,6 +41,38 @@ public abstract class Living_Creature {
 		this.setDirection(new Vector2());
 	}
 	
+//--HITTED---------------------------------------------------------------
+	
+	public void getHitted(int damage) {
+		if (invincibility==0) {
+			if (damage>=hitPoint)
+				hitPoint = 0;
+			else 
+				hitPoint -= damage;
+		}
+	}
+	
+	public void addInvincibilityFrames(int InvincibilityFrames) {
+		if (invincibility==0)
+			invincibility += (InvincibilityFrames);
+	}
+	
+	public void decreaseInvincibilityFrames() {
+		invincibility -= 1;
+	}
+	
+//--RELOAD---------------------------------------------------------------
+	
+	public void reload(int timeToReload) {//on peut prendre la meme valeur pour tous mais je nous laisse la liberter d'en mettre des != en fonction des personages
+		this.reloadTime += timeToReload;
+	}
+	
+	public void isReloading() {
+		if (reloadTime>0) 
+		this.reloadTime--;
+	}
+	
+//--CONTROLS-------------------------------------------------------------
 
 	/*
 	 * Moving from key inputs. Direction vector is later normalised.
@@ -74,6 +107,8 @@ public abstract class Living_Creature {
 		normalizedVector.euclidianNormalize(speed);
 		return normalizedVector;
 	}
+	
+//--GETTERS/SETTERS-------------------------------------------------------
 
 	public Vector2 getPosition() {
 		return position;
@@ -122,6 +157,16 @@ public abstract class Living_Creature {
 	public void setDamage(int damage) {
 		this.damage = damage;
 	}
+	
+	public double getTearRate() {
+		return tearRate;
+	}
+
+
+	public void setTearRate(double tearRate) {
+		this.tearRate = tearRate;
+	}
+
 
 	public String getImagePath() {
 		return imagePath;
@@ -131,39 +176,12 @@ public abstract class Living_Creature {
 		this.imagePath = imagePath;
 	}
 	
-	public void reload(int timeToReload) {//on peut prendre la meme valeur pour tous mais je nous laisse la liberter d'en mettre des != en fonction des personages
-		this.reloadTime += timeToReload;
-	}
-	
-	public void isReloading() {
-		if (reloadTime>0) 
-		this.reloadTime--;
-	}
-	
 	public int getReloadTime() {
 		return reloadTime;
 	}
 	
 	public Vector2 getOrientation() {
 		return orientation;
-	}
-	
-	public void getHitted(int damage) {
-		if (invincibility==0) {
-			if (damage>=hitPoint)
-				hitPoint = 0;
-			else 
-				hitPoint -= damage;
-		}
-	}
-	
-	public void addInvincibilityFrames(int InvincibilityFrames) {
-		if (invincibility==0)
-			invincibility += (InvincibilityFrames);
-	}
-	
-	public void decreaseInvincibilityFrames() {
-		invincibility -= 1;
 	}
 	
 	public int getInvincibilityFrames() {
