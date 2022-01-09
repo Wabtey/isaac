@@ -9,19 +9,21 @@ public abstract class Living_Creature {
 	private Vector2 direction;
 	private int hitPoint;
 	private int damage;
+	private double tearRate;
 	private String imagePath;
 	private int reloadTime;
 	private Vector2 orientation;
 	private int invincibility; //freezing time of monsters and hero invincibility time are differents
 	
 	public Living_Creature(Vector2 position, Vector2 size, double speed, int hitPoint
-			,int damage, String imagePath) {
+			,int damage, double tearRate, String imagePath) {
 		this.position = position;
 		this.size = size;
 		this.speed = speed;
 		this.direction = new Vector2();
 		this.hitPoint = 120;
 		this.damage = damage;
+		this.tearRate = tearRate;
 		this.imagePath = imagePath;
 		this.reloadTime = 0;
 		this.orientation = new Vector2(0.1,0);
