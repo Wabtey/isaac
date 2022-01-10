@@ -10,9 +10,9 @@ public class Monsters extends Living_Creature {
 	private int freeze; //freezing time and hero invincibility time are different
 	
 	public Monsters(Vector2 position, Vector2 size, double speed, Vector2 direction,
-			int hitPoint, int damage, double tearRate, String imagePath, Vector2 destination) 
+			int hitPoint, int damage, double tearRate, double shootSpeed, String imagePath, Vector2 destination) 
 	{
-		super(position, size, speed, hitPoint, damage, tearRate, imagePath);
+		super(position, size, speed, hitPoint, damage, tearRate, shootSpeed, imagePath);
 		this.destination = destination;
 		this.freeze = 0;
 		
@@ -20,6 +20,7 @@ public class Monsters extends Living_Creature {
 	
 	public void updateGameObject()
 	{
+		super.updateGameObject();
 		if (freeze == 0) 
 		moveTo(destination);
 		else freeze --;

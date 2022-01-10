@@ -2,9 +2,7 @@ package gameobjects.moving_entity;
 
 
 import java.util.ArrayList;
-
 import libraries.Vector2;
-import resources.CreaturesInfos;
 
 public abstract class Living_Creature {
 	private Vector2 position;
@@ -14,15 +12,18 @@ public abstract class Living_Creature {
 	private int hitPoint;
 	private int damage;
 	private double tearRate;
+	private double shootSpeed;
 	private String imagePath;
 	private int reloadTime;
 	private Vector2 orientation;
 	private int invincibility; //freezing time of monsters and hero invincibility time are differents
 	
+	//Be sure to safezy the projectiles owner from his own projectiles
 	private ArrayList<Projectile> tears;
 	
+	//Maybe create some less big constructor
 	public Living_Creature(Vector2 position, Vector2 size, double speed, int hitPoint
-			,int damage, double tearRate, String imagePath) {
+			,int damage, double tearRate, double shootSpeed, String imagePath) {
 		this.position = position;
 		this.size = size;
 		this.speed = speed;
@@ -30,6 +31,7 @@ public abstract class Living_Creature {
 		this.hitPoint = 120;
 		this.damage = damage;
 		this.tearRate = tearRate;
+		this.shootSpeed = shootSpeed;
 		this.imagePath = imagePath;
 		this.reloadTime = 0;
 		this.orientation = new Vector2(0.1,0);
@@ -37,8 +39,16 @@ public abstract class Living_Creature {
 		//TODO Change this magic number to something coherent
 		this.tears = new ArrayList<Projectile> (10);
 	}
-	
-//
+	/**
+	 * Make the living entity process one step
+	 */
+	public void updateGameObject()
+	{
+		for (Projectile tear:tears) {
+			tear.move();
+		}
+		isReloading();
+	}
 	
 	protected void move()
 	{
@@ -48,20 +58,15 @@ public abstract class Living_Creature {
 		this.setDirection(new Vector2());
 	}
 	
-	public void updateGameObject()
-	{
-		for (Projectile tear:tears) {
-			tear.move();
-		}
-		isReloading();
-	}
 
 //--COMBAT CODE-------------------------------------------------
 	
 	public void shoot() {
 		if(getReloadTime()==0) {
-			tears.add(new Projectile(getPosition(),getOrientation(),new Vector2(getSize().getX()/2,getSize().getY()/2),getDamage(), getSpeed(),getImagePath()));
-			reload(CreaturesInfos.convertTearRateToTicks(getTearRate()));
+			tears.add(new Projectile(getPosition(),getOrientation(),new Vector2(getSize().getX()/2,getSize().getY()/2),getDamage(), getShootSpeed(), getImagePath()));
+			double ticksToWait = 40/getTearRate();
+			reload((int)ticksToWait);
+			//CreaturesInfos.convertTearRateToTicks(getTearRate())
 		}
 	}
 	
@@ -210,6 +215,12 @@ public abstract class Living_Creature {
 	}
 
 
+	public double getShootSpeed() {
+		return shootSpeed;
+	}
+	public void setShootSpeed(double shootSpeed) {
+		this.shootSpeed = shootSpeed;
+	}
 	public String getImagePath() {
 		return imagePath;
 	}

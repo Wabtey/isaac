@@ -7,9 +7,9 @@ public class Hero extends Living_Creature
 {
 
 	
-	public Hero(Vector2 position, Vector2 size, double speed, int hitPoint, int damage, double tearRate, String imagePath) 
+	public Hero(Vector2 position, Vector2 size, double speed, int hitPoint, int damage, double tearRate, double shootSpeed, String imagePath) 
 	{
-		super(position, size, speed, hitPoint, damage, tearRate, imagePath);
+		super(position, size, speed, hitPoint, damage, tearRate, shootSpeed, imagePath);
 
 	}
 	
@@ -27,7 +27,7 @@ public class Hero extends Living_Creature
 	public void drawGameObject()
 	{
 		StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(), getSize().getY(),
-				0);
+						0);
 	}
 
 
