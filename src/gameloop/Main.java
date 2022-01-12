@@ -15,12 +15,7 @@ public class Main
 	{
 		// Hero, world and display initialization.
 		//NOT THE GOODS STATS (go to CreatureINFOS
-		Hero isaac = new Hero(RoomInfos.POSITION_CENTER_OF_ROOM,
-							  CreaturesInfos.ISAAC_SIZE,
-							  4,
-							  CreaturesInfos.ISAAC_SPEED,
-							  4, 4, 0, 6, 1, 0.02,
-							  ImagePaths.ISAAC);
+		Hero isaac = CreaturesInfos.ISAAC;
 		GameWorld world = new GameWorld(isaac);				
 		initializeDisplay();
 

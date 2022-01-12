@@ -7,6 +7,7 @@ import gameobjects.Door;
 import gameobjects.moving_entity.Hero;
 import gameobjects.moving_entity.Projectile;
 import gameobjects.moving_entity.monsters.Monsters;
+import gameobjects.moving_entity.monsters.Spider;
 import gameobjects.obstacles.Obstacle;
 import libraries.StdDraw;
 import libraries.Vector2;
@@ -36,11 +37,8 @@ public class Room
 		//-----DELETE------------------------
 		
 		this.monsters = new LinkedList<Monsters>();
-		
 		//The destination must be random (spider pattenr move)
-		this.monsters.add(new Monsters(new Vector2(0.5,0.5),CreaturesInfos.SPIDER_SIZE,0.01, hero.getPosition(), 1, 2, 0, 0, ImagePaths.SPIDER, hero.getPosition()));
-		
-		
+				this.monsters.add(new Spider(new Vector2(0.3,0.3), hero.getPosition()));
 		
 		//carefull about scaling
 		obstacles.add(new Obstacle(new Vector2(0.5,0), RoomInfos.WALL_DOWN[1], RoomInfos.WALL_DOWN[0])); 			//BAS
@@ -81,8 +79,9 @@ public class Room
 			Monsters contactMonster = collisionWithMonster(getHero().getPosition(), getHero().getSize());
 			contactMonster.addFreezeTime(20);
 			getHero().getHitted(contactMonster.getDamage());
-			getHero().addInvincibilityFrames(CreaturesInfos.ISAAC_INVINCIBILITY);
-			System.out.println("hp : " + getHero().getHitPoint());
+			getHero().addInvincibilityFrames(CreaturesInfos.HERO_INVINCIBILITY);
+			//TODO vérification à supp
+			System.out.println("hp : " + getHero().getredHeart());
 		}
 	}
 	
@@ -190,6 +189,7 @@ public class Room
 		
 
 //--INTERFACE-GRAPHIQUE------------------------------------------------------
+	
 	/*
 	 * Drawing
 	 */
@@ -203,6 +203,15 @@ public class Room
 				scaling, scaling);
 		StdDraw.picture(position.getX(), position.getY(), ImagePaths.WALL,
 				scaling, scaling);
+		
+		hero.drawGameObject();
+		ArrayList<Projectile> tears = hero.getProjectile();
+		for(Projectile tear:tears) {
+			tear.drawGameObject();
+		}
+		for(Monsters monster:monsters) {
+			monster.drawGameObject();
+		}
 		
 		//--HITBOX DREW---------------------
 //		double posX0 = this.getHero().getPosition().getX() - (this.getHero().getSize().getX() / 2);//TODO a supp
@@ -237,26 +246,9 @@ public class Room
 //						RoomInfos.HALF_TILE_SIZE.getY() * 2);
 //			}
 //		}
-		hero.drawGameObject();
-		ArrayList<Projectile> tears = hero.getProjectile();
-		for(Projectile tear:tears) {
-			tear.drawGameObject();
-		}
+		
 	}
 	
-	/*public void IsAWall() {
-		double hx = (double)Math.round(hero.getPosition().getX()*10)/10;
-		double hy = (double)Math.round(hero.getPosition().getY()*10)/10;	
-		for (Door door : doors) {
-			double dx = (double)Math.round(door.getCoordonnees().getX()*10)/10;
-			double dy = (double)Math.round(door.getCoordonnees().getY()*10)/10;
-			if (hx == dx && hy == dy) {
-				GameWorld.setCurrentRoom(door.getNextRoom());
-				hero.setPosition(new Vector2(0.5,0.1));
-			}
-		}
-	}*/
-
 	/**
 	 * Convert a tile index to a 0-1 position.
 	 * 
@@ -264,6 +256,7 @@ public class Room
 	 * @param indexY
 	 * @return
 	 */
+	@Deprecated
 	private static Vector2 positionFromTileIndex(int indexX, int indexY)
 	{
 		return new Vector2(indexX * RoomInfos.TILE_WIDTH + RoomInfos.HALF_TILE_SIZE.getX(),

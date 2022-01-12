@@ -27,7 +27,7 @@ public abstract class Living_Creature {
 	private ArrayList<Projectile> tears;
 	
 	//Maybe create some less big constructor
-	public Living_Creature(Vector2 position, Vector2 size, int redHeart,
+	public Living_Creature(Vector2 position, Vector2 size, double redHeart,
 						   double speed, double tearRate, double damage, double range, double shootSpeed,
 						   String imagePath)
 	{
@@ -148,7 +148,7 @@ public abstract class Living_Creature {
 	
 //--HITTED---------------------------------------------------------------
 	
-	public void getHitted(int damage) {
+	public void getHitted(double damage) {
 		if (invincibility==0) {
 			if (damage>=redHeart)
 				redHeart = 0;

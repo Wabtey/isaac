@@ -14,13 +14,13 @@ public class Hero extends Living_Creature
 
 	
 	public Hero(Vector2 position, Vector2 size,
-			    int redHeart, double blueHeart, int heartContainer, 
+			    double redHeart, double blueHeart, 
 			    double speed, double damage, double tearRate, double range, double shootSpeed,
 			    String imagePath) 
 	{
 		//using the first constructor (for hero)
 		super(position, size, redHeart, speed, tearRate, damage, range, shootSpeed, imagePath);
-		this.heartContainer = redHeart;
+		this.heartContainer = (int)redHeart;
 		this.blueHeart = blueHeart;
 
 	}
