@@ -8,13 +8,14 @@ import libraries.Vector2;
 public abstract class Living_Creature {
 	private Vector2 position;
 	private Vector2 size;
-	private double speed;
 	private Vector2 direction;
-	private int hitPoint;
-	private int HeartContainer;
-	private int BleuHeart;
-	private int damage;
+
+	private double redHeart;
+
+	private double speed;
 	private double tearRate;
+	private double damage;
+	private double range;
 	private double shootSpeed;
 	private String imagePath;
 	private int reloadTime;
@@ -26,24 +27,33 @@ public abstract class Living_Creature {
 	private ArrayList<Projectile> tears;
 	
 	//Maybe create some less big constructor
-	public Living_Creature(Vector2 position, Vector2 size, double speed, int hitPoint
-			,int damage, double tearRate, double shootSpeed, String imagePath) {
+	public Living_Creature(Vector2 position, Vector2 size, int redHeart,
+						   double speed, double tearRate, double damage, double range, double shootSpeed,
+						   String imagePath)
+	{
 		this.position = position;
-		this.size = size;
-		this.speed = speed;
 		this.direction = new Vector2();
-		this.hitPoint = 120;
-		this.damage = damage;
-		this.tearRate = tearRate;
-		this.shootSpeed = shootSpeed;
-		this.imagePath = imagePath;
-		this.reloadTime = 0;
 		this.orientation = new Vector2(0.1,0);
-		this.shootOrientation = new Vector2();
+		this.size = size;
+		
+		this.redHeart = redHeart;
+		this.speed = speed;
+		this.tearRate = tearRate;
+		this.damage = damage;
+		this.range = range;
+		this.shootSpeed = shootSpeed;
+		
+		this.imagePath = imagePath;
+		
+		this.reloadTime = 0;
 		this.invincibility = 0;
-		//TODO Change this magic number to something coherent
+		
+			//TODO Change this magic number to something coherent
 		this.tears = new ArrayList<Projectile> (10);
+		this.shootOrientation = new Vector2();
+
 	}
+	
 	/**
 	 * Make the living entity process one step
 	 */
@@ -140,10 +150,10 @@ public abstract class Living_Creature {
 	
 	public void getHitted(int damage) {
 		if (invincibility==0) {
-			if (damage>=hitPoint)
-				hitPoint = 0;
+			if (damage>=redHeart)
+				redHeart = 0;
 			else 
-				hitPoint -= damage;
+				redHeart -= damage;
 		}
 	}
 	
@@ -221,13 +231,6 @@ public abstract class Living_Creature {
 		this.size = size;
 	}
 
-	public double getSpeed() {
-		return speed;
-	}
-
-	public void setSpeed(double speed) {
-		this.speed = speed;
-	}
 
 	public Vector2 getDirection() {
 		return direction;
@@ -236,21 +239,27 @@ public abstract class Living_Creature {
 	public void setDirection(Vector2 direction) {
 		this.direction = direction;
 	}
+	
+	public Vector2 getOrientation() {
+		return orientation;
+	}
+	
+//--STATS--------------------------------
 
-	public int getHitPoint() {
-		return hitPoint;
+	public double getredHeart() {
+		return redHeart;
 	}
 
-	public void setHitPoint(int hitPoint) {
-		this.hitPoint = hitPoint;
+	public void setredHeart(double redHeart) {
+		this.redHeart = redHeart;
+	}
+	
+	public double getSpeed() {
+		return speed;
 	}
 
-	public int getDamage() {
-		return damage;
-	}
-
-	public void setDamage(int damage) {
-		this.damage = damage;
+	public void setSpeed(double speed) {
+		this.speed = speed;
 	}
 	
 	public double getTearRate() {
@@ -261,14 +270,31 @@ public abstract class Living_Creature {
 	public void setTearRate(double tearRate) {
 		this.tearRate = tearRate;
 	}
+	
+	public double getDamage() {
+		return damage;
+	}
 
+	public void setDamage(double damage) {
+		this.damage = damage;
+	}
+
+	public double getRange() {
+		return range;
+	}
+
+	public void setRange(double range) {
+		this.range = range;
+	}
 
 	public double getShootSpeed() {
 		return shootSpeed;
 	}
+	
 	public void setShootSpeed(double shootSpeed) {
 		this.shootSpeed = shootSpeed;
 	}
+	
 	public String getImagePath() {
 		return imagePath;
 	}
@@ -279,10 +305,6 @@ public abstract class Living_Creature {
 	
 	public int getReloadTime() {
 		return reloadTime;
-	}
-	
-	public Vector2 getOrientation() {
-		return orientation;
 	}
 	
 	public int getInvincibilityFrames() {

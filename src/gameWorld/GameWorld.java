@@ -39,7 +39,7 @@ public class GameWorld
 			System.out.println("game over");
 			return true;
 		}
-		else if(hero.getHitPoint()==0) {
+		else if(hero.getredHeart()==0) {
 			System.out.println("Vous �tes mort.");
 			return true;
 		}

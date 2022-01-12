@@ -8,10 +8,10 @@ public class Projectile {
 	private Vector2 proj_direction;
 	private Vector2 proj_size;
 	private double proj_speed;
-	private int proj_degat;
+	private double proj_degat;
 	private String proj_imagePath;
 	
-	public Projectile(Vector2 proj_position ,Vector2 proj_direction ,Vector2 proj_size, int proj_degat, double proj_speed,
+	public Projectile(Vector2 proj_position ,Vector2 proj_direction ,Vector2 proj_size, double proj_degat, double proj_speed,
 			String proj_imagePath) {
 		this.proj_position = proj_position;
 		this.proj_size = proj_size;
@@ -71,7 +71,7 @@ public class Projectile {
 		return proj_speed;
 	}
 
-	public int getProjDegat() {
+	public double getProjDegat() {
 		return proj_degat;
 	}
 	
