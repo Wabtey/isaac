@@ -2,6 +2,8 @@ package gameobjects.moving_entity;
 
 
 import java.util.ArrayList;
+
+import libraries.Keybinding.SpecialKeys;
 import libraries.Vector2;
 
 public abstract class Living_Creature {
@@ -16,6 +18,7 @@ public abstract class Living_Creature {
 	private String imagePath;
 	private int reloadTime;
 	private Vector2 orientation;
+	private Vector2 shootOrientation;
 	private int invincibility; //freezing time of monsters and hero invincibility time are differents
 	
 	//Be sure to safezy the projectiles owner from his own projectiles
@@ -35,6 +38,7 @@ public abstract class Living_Creature {
 		this.imagePath = imagePath;
 		this.reloadTime = 0;
 		this.orientation = new Vector2(0.1,0);
+		this.shootOrientation = new Vector2();
 		this.invincibility = 0;
 		//TODO Change this magic number to something coherent
 		this.tears = new ArrayList<Projectile> (10);
@@ -67,8 +71,51 @@ public abstract class Living_Creature {
 			double ticksToWait = 40/getTearRate();
 			reload((int)ticksToWait);
 			//CreaturesInfos.convertTearRateToTicks(getTearRate())
+			System.out.println("X :"+getOrientation().getX());
+			System.out.println("Y :"+getOrientation().getY());
 		}
 	}
+	
+	public void shootUP(SpecialKeys orientation)
+	{
+		//TODO Concider diagonals
+		if(getReloadTime()==0) {
+			if(orientation == SpecialKeys.UP)
+				shootOrientation = new Vector2(0.0, 0.1); 
+			if(orientation == SpecialKeys.DOWN)
+				shootOrientation = new Vector2(0.0, -0.1);
+			if(orientation == SpecialKeys.LEFT)
+				shootOrientation = new Vector2(-0.1, 0.0);
+			if(orientation == SpecialKeys.RIGHT)
+				shootOrientation = new Vector2(0.1, 0.0);
+			
+			tears.add(new Projectile(getPosition(),shootOrientation,new Vector2(getSize().getX()/2,getSize().getY()/2),getDamage(), getShootSpeed(), getImagePath()));
+			double ticksToWait = 40/getTearRate();
+			reload((int)ticksToWait);
+			//CreaturesInfos.convertTearRateToTicks(getTearRate())
+		}
+	}
+	
+	//ITEM TEAR EFFECT : antigravitationnal tears
+//	public void shootUP(SpecialKeys orientation)
+//	{
+//		if(getReloadTime()==0) {
+//			if(orientation == SpecialKeys.UP)
+//				shootOrientation = new Vector2(0.1, 0); 
+//			if(orientation == SpecialKeys.DOWN)
+//				shootOrientation = new Vector2(-0.1, 0);
+//			if(orientation == SpecialKeys.LEFT)
+//				shootOrientation = new Vector2(0, -0.1);
+//			if(orientation == SpecialKeys.UP)
+//				shootOrientation = new Vector2(0, 0.1);
+//			
+//			tears.add(new Projectile(getPosition(),shootOrientation,new Vector2(getSize().getX()/2,getSize().getY()/2),getDamage(), getShootSpeed(), getImagePath()));
+//			double ticksToWait = 40/getTearRate();
+//			reload((int)ticksToWait);
+//			//CreaturesInfos.convertTearRateToTicks(getTearRate())
+//		}
+//	}
+	
 	
 	public void removeProjectile(ArrayList<Projectile> toRemove) {
 		deleteProjectile(toRemove);
