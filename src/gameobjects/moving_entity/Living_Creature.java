@@ -2,7 +2,6 @@ package gameobjects.moving_entity;
 
 
 import java.util.ArrayList;
-
 import libraries.Keybinding.SpecialKeys;
 import libraries.Vector2;
 
@@ -12,6 +11,8 @@ public abstract class Living_Creature {
 	private double speed;
 	private Vector2 direction;
 	private int hitPoint;
+	private int HeartContainer;
+	private int BleuHeart;
 	private int damage;
 	private double tearRate;
 	private double shootSpeed;
