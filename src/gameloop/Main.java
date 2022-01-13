@@ -1,5 +1,6 @@
 package gameloop;
 
+import Dungeon.Dungeon;
 import gameWorld.GameWorld;
 import gameobjects.moving_entity.Hero;
 import libraries.StdDraw;
@@ -16,7 +17,9 @@ public class Main
 		// Hero, world and display initialization.
 		//NOT THE GOODS STATS (go to CreatureINFOS
 		Hero isaac = CreaturesInfos.ISAAC;
-		GameWorld world = new GameWorld(isaac);				
+		GameWorld world = new GameWorld(isaac);	
+		Dungeon monde = new Dungeon(isaac, 5);
+		monde.initalise();
 		initializeDisplay();
 
 		// Main loop of the game
