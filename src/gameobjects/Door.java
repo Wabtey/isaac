@@ -1,6 +1,6 @@
 package gameobjects;
 
-import gameWorld.Caves.Room;
+import gameWorld.Room;
 import libraries.Vector2;
 
 public class Door {

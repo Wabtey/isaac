@@ -4,7 +4,7 @@ public class Keybinding
 {
 	public static enum SpecialKeys
 	{
-		RETURN, LEFT, UP, RIGHT, DOWN, MAJ, ESCAPE;
+		RETURN, LEFT, UP, RIGHT, DOWN, MAJ, ESCAPE, SHOOT;
 	}
 
 	/**
@@ -31,6 +31,8 @@ public class Keybinding
 			return 16;
 		case ESCAPE:
 			return 27;
+		case SHOOT:
+			return 84;
 		}
 		return -1;
 	}
