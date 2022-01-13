@@ -6,13 +6,11 @@ import libraries.StdDraw;
 import libraries.Vector2;
 import resources.Controls;
 import resources.RoomInfos;
+import test.Cardinal_Points;
 
 public class GameWorld
 {
-	private GameWorld Nord;
-	private GameWorld South;
-	private GameWorld East;
-	private GameWorld Weast;
+	private Cardinal_Points neighbors;
 	private Room currentRoom;
 	private Hero hero;
 	private int NumberOfRooms;
@@ -22,7 +20,13 @@ public class GameWorld
 	{
 		this.hero = hero;
 		this.currentRoom = new Spawn(hero);
-		this.Nord = this.East = this.Weast = this.South = null;
+		this.neighbors= null;
+	}
+	
+	public GameWorld(Hero hero, Cardinal_Points neihgbors) {
+		this.hero = hero;
+		this.currentRoom = new Spawn(hero);
+		this.neighbors = neihgbors;
 	}
 	
 
@@ -40,7 +44,7 @@ public class GameWorld
 			return true;
 		}
 		else if(hero.getredHeart()==0) {
-			System.out.println("Vous �tes mort.");
+			System.out.println("Vous etes mort.");
 			return true;
 		}
 		else {
@@ -53,10 +57,11 @@ public class GameWorld
 		currentRoom.updateRoom();
 		checkDoor();
 	}
-	//TODO a reparer (pourquoi j'ai fais ca?)
+	
+	
 	private void checkDoor() {
 		if (currentRoom.inDoor()!=null) {
-			currentRoom = currentRoom.inDoor().getNextRoom();
+			//currentRoom = currentRoom.inDoor().getNextRoom();
 			hero.setPosition(new Vector2(RoomInfos.POSITION_CENTER_OF_ROOM.getX(),RoomInfos.WALL_DOWN[0]));
 		}
 	}
@@ -118,43 +123,8 @@ public class GameWorld
 	}
 
 
-	public GameWorld getNord() {
-		return Nord;
-	}
-
-
-	public void setNord(GameWorld nord) {
-		Nord = nord;
-	}
-
-
-	public GameWorld getSouth() {
-		return South;
-	}
-
-
-	public void setSouth(GameWorld south) {
-		South = south;
-	}
-
-
-	public GameWorld getEast() {
-		return East;
-	}
-
-
-	public void setEast(GameWorld east) {
-		East = east;
-	}
-
-
-	public GameWorld getWeast() {
-		return Weast;
-	}
-
-
-	public void setWeast(GameWorld weast) {
-		Weast = weast;
+	public Cardinal_Points getNeighbors() {
+		return neighbors;
 	}
 	
 	public int getNumberOfRooms() {
@@ -165,4 +135,9 @@ public class GameWorld
 		if (NumberOfRooms>0)
 			NumberOfRooms --;
 	}
+	
+	public void setNeighbors(Cardinal_Points neighbors) {
+		this.neighbors = neighbors;
+	}
+	
 }

@@ -47,7 +47,6 @@ public class Monsters extends Living_Creature {
 			rpx = (double)Math.round(x*10)/10;
 			rpy = (double) Math.round(y*10)/10;
 		}
-		System.out.println(new Vector2(rpx,rpy));
 		return new Vector2(rpx, rpy);
 	}
 		
@@ -56,7 +55,6 @@ public class Monsters extends Living_Creature {
 		double posy = (double) Math.round(this.getPosition().getY() * 10) / 10;
 		double cibx = (double) Math.round(cible.getX() * 10) / 10;
 		double ciby = (double) Math.round(cible.getY() * 10) / 10;
-		System.out.println("=>" + posx + "|" + posy + "|" + cibx + "|" + ciby + "|");
 		if (posx == cibx && posy == ciby) {
 			this.destination = chooseRandomPoint();
 			return;

@@ -1,3 +1,6 @@
+/test/
+/Dungeon/
+/gameWorld/
 /Blood_of_the_Martyr.png
 /Bomb.png
 /Cricket's_Head.png
@@ -24,10 +27,8 @@
 /Stigmata.png
 /black_square.png
 /closed_door.png
-/donjon/
 /floor.jpg
 /floorSecrete.png
-/gameWorld/
 /gameloop/
 /gameobjects/
 /hp_up.png
@@ -37,7 +38,5 @@
 /resources/
 /secreteRoomFloor.png
 /tear.png
-/test/
 /wallSecrete.png
 /win.jpg
-/Dungeon/

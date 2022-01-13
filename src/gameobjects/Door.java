@@ -1,13 +1,14 @@
 package gameobjects;
 
+import gameWorld.GameWorld;
 import gameWorld.Room;
 import libraries.Vector2;
 
 public class Door {
 	private Vector2 coordonnees;
-	private Room nextRoom;
+	private GameWorld nextRoom;
 	
-	public Door(Vector2 coordonees, Room nextRoom) {
+	public Door(Vector2 coordonees, GameWorld nextRoom) {
 		this.coordonnees = coordonees;
 		this.nextRoom = nextRoom;
 	}
@@ -16,7 +17,7 @@ public class Door {
 		return coordonnees;
 	}
 
-	public Room getNextRoom() {
+	public GameWorld getNextRoom() {
 		return nextRoom;
 	}
 	
