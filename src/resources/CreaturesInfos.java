@@ -1,6 +1,7 @@
 package resources;
 
 import gameobjects.moving_entity.Hero;
+import gameobjects.moving_entity.monsters.Spider;
 import libraries.Vector2;
 
 
@@ -32,6 +33,8 @@ public class CreaturesInfos
 	public static final double SPIDER_DAMAGE = 0.5;
 	public static final double SPIDER_RANGE = 0;
 	public static final double SPIDER_SHOOTSPEED = 0;
+	
+	//public static Monsters SPIDER = new Spider(new Vector2(0.3,0.3), hero.getPosition());
 	
 	/**
 	 * Convert the tearRate stat of a creature into a number of ticks.

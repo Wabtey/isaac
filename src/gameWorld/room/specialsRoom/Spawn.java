@@ -1,5 +1,6 @@
-package gameWorld;
+package gameWorld.room.specialsRoom;
 
+import gameWorld.room.roomPattern.Room;
 import gameobjects.Door;
 import gameobjects.moving_entity.Hero;
 import libraries.StdDraw;

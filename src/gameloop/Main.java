@@ -7,7 +7,6 @@ import libraries.StdDraw;
 import libraries.Timer;
 import resources.DisplaySettings;
 import resources.CreaturesInfos;
-import resources.ImagePaths;
 import resources.RoomInfos;
 
 public class Main
