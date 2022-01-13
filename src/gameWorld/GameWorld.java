@@ -1,6 +1,7 @@
 package gameWorld;
 
 import gameobjects.moving_entity.Hero;
+import libraries.Keybinding.SpecialKeys;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.Controls;
@@ -38,7 +39,7 @@ public class GameWorld
 			System.out.println("game over");
 			return true;
 		}
-		else if(hero.getHitPoint()==0) {
+		else if(hero.getredHeart()==0) {
 			System.out.println("Vous �tes mort.");
 			return true;
 		}
@@ -85,24 +86,31 @@ public class GameWorld
 	private void processKeysForMovement()
 	{
 		if (StdDraw.isKeyPressed(Controls.goUp))
-		{
 			hero.goUpNext();
-		}
+		
 		if (StdDraw.isKeyPressed(Controls.goDown))
-		{
 			hero.goDownNext();
-		}
+		
 		if (StdDraw.isKeyPressed(Controls.goRight))
-		{
 			hero.goRightNext();
-		}
+		
 		if (StdDraw.isKeyPressed(Controls.goLeft))
-		{
 			hero.goLeftNext();
-		}
-		if (StdDraw.isKeyPressed(Controls.shoot)) {
+		
+		if (StdDraw.isKeyPressed(Controls.shoot))
 			hero.shoot();
-		}
+		
+		if (StdDraw.isKeyPressed(Controls.up))
+			hero.shootUP(SpecialKeys.UP); //param can be Controls.up or a simple String
+		
+		if (StdDraw.isKeyPressed(Controls.down))
+			hero.shootUP(SpecialKeys.DOWN);
+		
+		if (StdDraw.isKeyPressed(Controls.left))
+			hero.shootUP(SpecialKeys.LEFT);
+		
+		if (StdDraw.isKeyPressed(Controls.right))
+			hero.shootUP(SpecialKeys.RIGHT);
 	}
 	
 	public void setCurrentRoom(Room room) {

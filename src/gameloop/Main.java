@@ -5,7 +5,7 @@ import gameobjects.moving_entity.Hero;
 import libraries.StdDraw;
 import libraries.Timer;
 import resources.DisplaySettings;
-import resources.HeroInfos;
+import resources.CreaturesInfos;
 import resources.ImagePaths;
 import resources.RoomInfos;
 
@@ -13,8 +13,9 @@ public class Main
 {
 	public static void main(String[] args)
 	{
-		// Hero, world and display initialisation.
-		Hero isaac = new Hero(RoomInfos.POSITION_CENTER_OF_ROOM, HeroInfos.ISAAC_SIZE, HeroInfos.ISAAC_SPEED,6,1,ImagePaths.ISAAC);
+		// Hero, world and display initialization.
+		//NOT THE GOODS STATS (go to CreatureINFOS
+		Hero isaac = CreaturesInfos.ISAAC;
 		GameWorld world = new GameWorld(isaac);				
 		initializeDisplay();
 

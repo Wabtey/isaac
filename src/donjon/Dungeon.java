@@ -13,7 +13,8 @@ public class Dungeon {
 		for (int i=0; i<=worldMap.size(); i++) {
 			for (int j = 0; j <= worldMap.size(); j++) {
 				if (worldMap.get(i).get(j)==1);
-				gameWorlds.
+				//ceci est un commentaire de code modifier
+				//ceci est un deuxieme commentaire de code a modifier
 			}
 		}
 	}
