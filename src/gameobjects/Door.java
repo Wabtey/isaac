@@ -1,7 +1,7 @@
 package gameobjects;
 
 import gameWorld.GameWorld;
-import gameWorld.room.Room;
+import libraries.StdDraw;
 import libraries.Vector2;
 
 public class Door {
@@ -12,7 +12,11 @@ public class Door {
 		this.coordonnees = coordonees;
 		this.nextRoom = nextRoom;
 	}
-
+	
+	public void drawGameObject() {
+		StdDraw.picture(getCoordonnees().getX(), getCoordonnees().getY(), "images/opened_door.png",
+				0.1, 0.1, 0);
+	}
 	public Vector2 getCoordonnees() {
 		return coordonnees;
 	}
