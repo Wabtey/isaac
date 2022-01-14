@@ -1,7 +1,11 @@
 package gameWorld;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import gameWorld.room.Room;
 import gameWorld.room.specialsRoom.Spawn;
+import gameobjects.Door;
 import gameobjects.moving_entity.Hero;
 import libraries.Keybinding.SpecialKeys;
 import libraries.StdDraw;
@@ -14,23 +18,30 @@ public class GameWorld
 {
 	private Cardinal_Points neighbors;
 	private Room currentRoom;
-	private Hero hero;
+	private List<Door> doors;
+	private Hero hero; 
 	private int NumberOfRooms;
 
 	// A world needs a hero
 	public GameWorld(Hero hero)
 	{
 		this.hero = hero;
-		this.currentRoom = new Spawn(hero);
+		this.currentRoom = null;
 		this.neighbors= null;
+		this.doors = null;
 	}
 	
-	public GameWorld(Hero hero, Cardinal_Points neihgbors) {
-		this.hero = hero;
-		this.currentRoom = new Spawn(hero);
-		this.neighbors = neihgbors;
-	}
-	
+	public void initalise() {
+		createDoors();
+		createRoom();
+		for (int i = 0; i<=doors.size()-1 ;i++) {
+			System.out.println(doors.get(i).getCoordonnees() + " : " + doors.get(i).getNextRoom());
+		}
+		System.out.println("coter room:");
+		for (int i = 0; i<=currentRoom.getDoors().size()-1 ;i++) {
+			System.out.println(currentRoom.getDoors().get(i).getCoordonnees() + " : " + currentRoom.getDoors().get(i).getNextRoom());
+		}
+		}
 
 	public void processUserInput()
 	{
@@ -39,56 +50,48 @@ public class GameWorld
 
 	public boolean gameOver()
 	{
-		double hx = (double)Math.round(hero.getPosition().getX()*10)/10;
-		double hy = (double)Math.round(hero.getPosition().getY()*10)/10;
-		if (currentRoom.getClass().getName() == "gameWorld.Boss" && hx==0.5 && hy==0.9) {
-			System.out.println("game over");
-			return true;
-		}
-		else if(hero.getRedHeart()==0) {
-			System.out.println("Vous etes mort.");
-			return true;
-		}
-		else {
-			return false;
-		}
+		return false;
 	}
 
 	public void updateGameObjects()
 	{
 		currentRoom.updateRoom();
-		checkDoor();
 	}
 	
 	
-	private void checkDoor() {
+	public GameWorld checkDoor() {
 		if (currentRoom.inDoor()!=null) {
-			//currentRoom = currentRoom.inDoor().getNextRoom();
 			hero.setPosition(new Vector2(RoomInfos.POSITION_CENTER_OF_ROOM.getX(),RoomInfos.WALL_DOWN[0]));
+			return currentRoom.inDoor().getNextRoom();
 		}
+		return null;
+	}
+	
+	private void createDoors() {
+		List <Door> doors = new LinkedList<Door>(); 
+		if(neighbors.getNorth()!=null) {
+			doors.add(new Door(new Vector2(0.5,0.8),neighbors.getNorth()));
+		}
+		if(neighbors.getSouth()!=null) {
+			doors.add(new Door(new Vector2(0.5,0.3),neighbors.getSouth()));
+		}
+		if(neighbors.getEast()!=null) {
+			doors.add(new Door(new Vector2(0.8,0.5),neighbors.getEast()));
+		}
+		if(neighbors.getWeast()!=null) {
+			doors.add(new Door(new Vector2(0.2,0.5),neighbors.getWeast()));
+		}
+		this.doors = doors;
+	}
+	
+	private void createRoom() {
+		this.currentRoom = new Room(hero,doors);
 	}
 
 	public void drawGameObjects()
 	{
 		currentRoom.drawRoom();
 	}
-	
-	/*public void IsAWall() {
-		double hx = (double)Math.round(hero.getPosition().getX()*10)/10;
-		double hy = (double)Math.round(hero.getPosition().getY()*10)/10;	
-		for (Door door : currentRoom.getDoors()) {
-			double dx = (double)Math.round(door.getCoordonnees().getX()*10)/10;
-			double dy = (double)Math.round(door.getCoordonnees().getY()*10)/10;
-			if (hx == dx && hy == dy) {
-				this.currentRoom = door.getNextRoom();
-				hero.setPosition(new Vector2(0.5,0.1));
-			}
-		}
-	}*/
-
-	/*
-	 * Keys processing
-	 */
 
 	private void processKeysForMovement()
 	{

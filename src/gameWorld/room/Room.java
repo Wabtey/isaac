@@ -2,6 +2,7 @@ package gameWorld.room;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 import gameobjects.Door;
 import gameobjects.moving_entity.Hero;
@@ -24,7 +25,7 @@ public class Room
 	private ArrayList<Projectile> projectile;
 	private LinkedList<Monsters> monsters;
 	
-	public Room(Hero hero)
+	public Room(Hero hero, List<Door> doors)
 	{
 		this.hero = hero;
 		this.doors = new ArrayList<Door>(4);
@@ -45,6 +46,11 @@ public class Room
 		obstacles.add(new Obstacle(new Vector2(0.5,1), RoomInfos.WALL_UP[1], RoomInfos.WALL_UP[0])); 				//HAUT
 		obstacles.add(new Obstacle(new Vector2(0,0.5), RoomInfos.WALL_LEFTnRIGHT[1], RoomInfos.WALL_LEFTnRIGHT[0]));//GAUCHE
 		obstacles.add(new Obstacle(new Vector2(1,0.5), RoomInfos.WALL_LEFTnRIGHT[1], RoomInfos.WALL_LEFTnRIGHT[0]));//DROIT
+		for (Door door:doors) {
+			if (door!=null) {
+				this.doors.add(door);
+			}
+		}
 	}
 	
 	
@@ -210,6 +216,9 @@ public class Room
 		for(Monsters monster:monsters) {
 			monster.drawGameObject();
 		}
+		for(Door door: doors) {
+			door.drawGameObject();
+		}
 		
 		//--HITBOX DREW---------------------
 //		double posX0 = this.getHero().getPosition().getX() - (this.getHero().getSize().getX() / 2);//TODO a supp
@@ -269,8 +278,10 @@ public class Room
 		return hero;
 	}
 
-	protected ArrayList<Door> getDoors() {
+	public ArrayList<Door> getDoors() {
 		return doors;
 	}
+	
+	
 	
 }

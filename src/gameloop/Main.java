@@ -24,11 +24,12 @@ public class Main
 		// Main loop of the game
 		while (!world.gameOver())
 		{
-			processNextStep(world);
+			monde.refreshDungeon();
+			//world.processOneStep();
 		}
 	}
 
-	private static void processNextStep(GameWorld world)
+	/*private static void processNextStep(GameWorld world)
 	{
 		Timer.beginTimer();
 		StdDraw.clear();
@@ -37,7 +38,7 @@ public class Main
 		world.drawGameObjects();
 		StdDraw.show();
 		Timer.waitToMaintainConstantFPS();
-	}
+	}*/
 
 	private static void initializeDisplay()
 	{

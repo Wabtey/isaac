@@ -20,5 +20,10 @@ public class Door {
 	public GameWorld getNextRoom() {
 		return nextRoom;
 	}
+
+	public void drawGameObject() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
