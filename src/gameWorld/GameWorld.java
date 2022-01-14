@@ -12,7 +12,7 @@ public class GameWorld
 {
 	private Cardinal_Points neighbors;
 	private Room currentRoom;
-	private Hero hero;
+	private Hero hero; 
 	private int NumberOfRooms;
 
 	// A world needs a hero
