@@ -47,8 +47,9 @@ public class Dungeon {
 
 	public void refreshDungeon() {
 		processNextStep(currentGameWorld);
-		if (currentGameWorld.checkDoor() != null)
-			this.currentGameWorld = currentGameWorld.checkDoor();
+		GameWorld temp = currentGameWorld.checkDoor();
+		if (temp != null)
+			this.currentGameWorld = temp;
 	}
 
 	private static void processNextStep(GameWorld currentGameWorld) {

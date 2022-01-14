@@ -60,9 +60,10 @@ public class GameWorld
 	
 	
 	public GameWorld checkDoor() {
-		if (currentRoom.inDoor()!=null) {
-			hero.setPosition(new Vector2(RoomInfos.POSITION_CENTER_OF_ROOM.getX(),RoomInfos.WALL_DOWN[0]));
-			return currentRoom.inDoor().getNextRoom();
+		Door temp =currentRoom.inDoor() ;
+		if (temp!=null) {
+			hero.setPosition(new Vector2(RoomInfos.POSITION_CENTER_OF_ROOM.getX(),RoomInfos.POSITION_CENTER_OF_ROOM.getY()));
+			return temp.getNextRoom();
 		}
 		return null;
 	}
