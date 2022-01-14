@@ -115,7 +115,7 @@ public class Dungeon {
 					temp.addAll(gameWorlds.get(i));
 					temp.set(j, null);
 					gameWorlds.set(i, temp);
-				}
+				}	
 			}
 		}
 	}

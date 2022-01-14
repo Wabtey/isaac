@@ -37,8 +37,8 @@ public class Monsters extends Living_Creature {
 	
 	// donne des coordon�e au hasard 
 	private Vector2 chooseRandomPoint() {
-		double x = (Math.random()+0.1)*(0.7);
-		double y = (Math.random()+0.1)*(0.7);	
+		double x = (Math.random()+0.2)*(0.7);
+		double y = (Math.random()+0.2)*(0.7);	
 		double rpx = (double)Math.round(x*10)/10;
 		double rpy = (double) Math.round(y*10)/10;
 		while (rpx==0||rpy==0||rpx==1|rpy==1 ||(rpx==0.5&&rpy==0.9)) {
