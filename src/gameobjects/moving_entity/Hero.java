@@ -30,9 +30,6 @@ public class Hero extends Living_Creature
 			decreaseInvincibilityFrames(); ;
 	}
 	
-
-
-
 	
 	public void drawGameObject()
 	{

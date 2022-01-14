@@ -206,7 +206,7 @@ public abstract class Living_Creature {
 		orientation = new Vector2(0.1,0);
 	}
 
-	public Vector2 getNormalizedDirection()
+	private Vector2 getNormalizedDirection()
 	{
 		Vector2 normalizedVector = new Vector2(direction);
 		normalizedVector.euclidianNormalize(speed);
