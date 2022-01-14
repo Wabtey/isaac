@@ -1,11 +1,15 @@
 package gameobjects.moving_entity;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
 
 public class Hero extends Living_Creature
 {
+	private ArrayList<Integer> heartContainers; //LinkedList
 	private int heartContainer;
 	private double blueHeart;
 	private double luck;
@@ -18,11 +22,9 @@ public class Hero extends Living_Creature
 			    double speed, double damage, double tearRate, double range, double shootSpeed,
 			    String imagePath) 
 	{
-		//using the first constructor (for hero)
 		super(position, size, redHeart, speed, tearRate, damage, range, shootSpeed, imagePath);
-		this.heartContainer = (int)redHeart;
+		this.heartContainers = new ArrayList<Integer>();
 		this.blueHeart = blueHeart;
-
 	}
 	
 	public void updateGameObject() {
@@ -49,6 +51,17 @@ public class Hero extends Living_Creature
 	public void drawHUD() {
 		//Health Meter
 		//EMPTY HEART
+		
+		for(int i= 0; i<heartContainers.size(); i++) {
+			
+			double pos;
+			if(i==0)
+				pos = 0.1;
+			else
+				pos = 0.1*(2*i);
+			
+			StdDraw.picture(pos, 0.9, ImagePaths.EMPTY_HEART_HUD, 0.05, 0.05, 0);
+		}
 		StdDraw.picture(0.1, 0.9, ImagePaths.EMPTY_HEART_HUD, 0.05, 0.05, 0);
 	}
 
