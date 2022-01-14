@@ -1,6 +1,6 @@
 package gameWorld;
 
-import gameWorld.room.roomPattern.Room;
+import gameWorld.room.Room;
 import gameWorld.room.specialsRoom.Spawn;
 import gameobjects.moving_entity.Hero;
 import libraries.Keybinding.SpecialKeys;

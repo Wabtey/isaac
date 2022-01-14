@@ -1,7 +1,7 @@
 package gameobjects;
 
 import gameWorld.GameWorld;
-import gameWorld.room.roomPattern.Room;
+import gameWorld.room.Room;
 import libraries.Vector2;
 
 public class Door {

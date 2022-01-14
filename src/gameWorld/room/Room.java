@@ -1,4 +1,4 @@
-package gameWorld.room.roomPattern;
+package gameWorld.room;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
