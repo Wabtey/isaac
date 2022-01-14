@@ -45,7 +45,7 @@ public class GameWorld
 			System.out.println("game over");
 			return true;
 		}
-		else if(hero.getredHeart()==0) {
+		else if(hero.getRedHeart()==0) {
 			System.out.println("Vous etes mort.");
 			return true;
 		}

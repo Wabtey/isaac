@@ -246,11 +246,11 @@ public abstract class Living_Creature {
 	
 //--STATS--------------------------------
 
-	public double getredHeart() {
+	public double getRedHeart() {
 		return redHeart;
 	}
 
-	public void setredHeart(double redHeart) {
+	public void setRedHeart(double redHeart) {
 		this.redHeart = redHeart;
 	}
 	

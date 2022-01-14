@@ -1,20 +1,16 @@
 package gameobjects.moving_entity;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
 
 public class Hero extends Living_Creature
 {
-	private ArrayList<Integer> heartContainers; //LinkedList
 	private int heartContainer;
 	private double blueHeart;
 	private double luck;
-	private double devilDeal;
-	private double angelRoom;
+	private double devilDeal;	//chance to spawn a extra room after defeting the boss
+	private double angelRoom;	//between 0.00 and 100.00
 
 	
 	public Hero(Vector2 position, Vector2 size,
@@ -23,7 +19,7 @@ public class Hero extends Living_Creature
 			    String imagePath) 
 	{
 		super(position, size, redHeart, speed, tearRate, damage, range, shootSpeed, imagePath);
-		this.heartContainers = new ArrayList<Integer>();
+		this.heartContainer = (int)redHeart;
 		this.blueHeart = blueHeart;
 	}
 	
@@ -50,19 +46,34 @@ public class Hero extends Living_Creature
 	//TODO if select is pressed show the map bigger
 	public void drawHUD() {
 		//Health Meter
-		//EMPTY HEART
-		
-		for(int i= 0; i<heartContainers.size(); i++) {
+	
+		//Red Heart
+		for(int i= 0; i<getheartContainer(); i++) {
 			
 			double pos;
 			if(i==0)
 				pos = 0.1;
 			else
-				pos = 0.1*(2*i);
+				pos = 0.1+0.05*(i);
 			
 			StdDraw.picture(pos, 0.9, ImagePaths.EMPTY_HEART_HUD, 0.05, 0.05, 0);
+			if(getRedHeart()-i>0)
+				if(getRedHeart()-i==0.5)
+					StdDraw.picture(pos, 0.9, ImagePaths.HALF_HEART_HUD, 0.05, 0.05, 0);
+				else
+					StdDraw.picture(pos, 0.9, ImagePaths.HEART_HUD, 0.05, 0.05, 0);
+				
 		}
-		StdDraw.picture(0.1, 0.9, ImagePaths.EMPTY_HEART_HUD, 0.05, 0.05, 0);
+		
+		//Blue/Black Heart
+		for(int i=0; i<getblueHeart(); i++) {
+			double posR = 0.1+0.05*(getheartContainer());
+			double posB;
+			posB = posR+0.05*(i);
+			//StdDraw.picture(posB, 0.9, ImagePaths.BLUE_HEART, 0.05, 0.05, 0);
+			
+		}
+		
 	}
 
 //--GETTER/SETTER-----------------------------------------

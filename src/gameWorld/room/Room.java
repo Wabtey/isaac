@@ -80,8 +80,6 @@ public class Room
 			contactMonster.addFreezeTime(20);
 			getHero().getHitted(contactMonster.getDamage());
 			getHero().addInvincibilityFrames(CreaturesInfos.HERO_INVINCIBILITY);
-			//TODO vérification à supp
-			System.out.println("hp : " + getHero().getredHeart());
 		}
 	}
 	
