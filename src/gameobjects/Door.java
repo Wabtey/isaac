@@ -2,7 +2,9 @@ package gameobjects;
 
 import gameWorld.GameWorld;
 import gameWorld.room.Room;
+import libraries.StdDraw;
 import libraries.Vector2;
+import resources.ImagePaths;
 
 public class Door {
 	private Vector2 coordonnees;
@@ -22,7 +24,8 @@ public class Door {
 	}
 
 	public void drawGameObject() {
-		// TODO Auto-generated method stub
+		StdDraw.picture(getCoordonnees().getX(), getCoordonnees().getY(), ImagePaths.OPENED_DOOR,
+				0.1, 0.1, 0);
 		
 	}
 	
