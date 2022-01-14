@@ -63,9 +63,18 @@ public class Monsters extends Living_Creature {
 			System.out.println("=>"+ posx + "|" + posy + "|"+ cibx + "|"+ciby + "|");
 			if (posx==cibx && posy==ciby) {
 				this.destination = chooseRandomPoint();
+				this.freeze = 40; //TODO valeur magique again
 				return;
 			}
-			
+			else if (posx<cibx && posy<ciby) { //pour bouger en diagonale
+				goRightNext();goUpNext();
+			}else if (posx<cibx && posy>ciby) {
+				goRightNext();goDownNext();
+			}else if(posx>cibx && posy<ciby) {
+				goLeftNext();goUpNext();
+			}else if (posx>cibx && posy>ciby) {
+				goLeftNext();goDownNext();
+			}
 			if (posx<cibx) {
 				goRightNext();
 			}else if (posx>cibx) {
