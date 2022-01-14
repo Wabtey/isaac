@@ -10,7 +10,6 @@ public class Shop extends Room {
 
 	public Shop(Hero hero, List<Door> doors) {
 		super(hero, doors);
-		// TODO Auto-generated constructor stub
 	}
 
 }

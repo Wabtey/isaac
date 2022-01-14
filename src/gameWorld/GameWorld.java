@@ -59,7 +59,7 @@ public class GameWorld
 	}
 	
 	
-	public GameWorld checkDoor() {
+	public GameWorld checkDoorGW() {
 		Door temp =currentRoom.inDoor() ;
 		if (temp!=null) {
 			hero.setPosition(new Vector2(RoomInfos.POSITION_CENTER_OF_ROOM.getX(),RoomInfos.POSITION_CENTER_OF_ROOM.getY()));
