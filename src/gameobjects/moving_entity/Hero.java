@@ -62,13 +62,12 @@ public class Hero extends Living_Creature
 	private void drawHUD()
 	{
 		drawHealhMeter();	
-		drawStatsFlex();
-		
-		
+		drawStatsFlex();	
 	}
 	
 	private void drawHealhMeter()
 	{
+		double heigth = 0.9;
 		// Red Heart
 		for (int i = 0; i < getheartContainer(); i++) {
 
@@ -78,12 +77,12 @@ public class Hero extends Living_Creature
 			else
 				pos = 0.1 + 0.05 * (i);
 
-			StdDraw.picture(pos, 0.9, ImagePaths.EMPTY_HEART_HUD, 0.05, 0.05, 0);
+			StdDraw.picture(pos, heigth, ImagePaths.EMPTY_HEART_HUD, 0.05, 0.05, 0);
 			if (getRedHeart() - i > 0)
 				if (getRedHeart() - i == 0.5)
-					StdDraw.picture(pos, 0.9, ImagePaths.HALF_HEART_HUD, 0.05, 0.05, 0);
+					StdDraw.picture(pos, heigth, ImagePaths.HALF_HEART_HUD, 0.05, 0.05, 0);
 				else
-					StdDraw.picture(pos, 0.9, ImagePaths.HEART_HUD, 0.05, 0.05, 0);
+					StdDraw.picture(pos, heigth, ImagePaths.HEART_HUD, 0.05, 0.05, 0);
 
 		}
 
@@ -93,12 +92,12 @@ public class Hero extends Living_Creature
 			double posB = posR + 0.05 * (i);
 			if (getRedHeart() - i > 0) {
 				if (getblueHeart() - i == 0.5) {
-					StdDraw.picture(posB, 0.9, ImagePaths.HALF_BLUE_HEART_HUD, 0.05, 0.05, 0);
-					StdDraw.picture(posB, 0.9, ImagePaths.HALF_BLUE_HEART_HUD, 0.05, 0.05, 0); // fake solution for
+					StdDraw.picture(posB, heigth, ImagePaths.HALF_BLUE_HEART_HUD, 0.05, 0.05, 0);
+					StdDraw.picture(posB, heigth, ImagePaths.HALF_BLUE_HEART_HUD, 0.05, 0.05, 0); // fake solution for
 																								// shadows
 				} else {
-					StdDraw.picture(posB, 0.9, ImagePaths.BLUE_HEART_HUD, 0.05, 0.05, 0);
-					StdDraw.picture(posB, 0.9, ImagePaths.BLUE_HEART_HUD, 0.05, 0.05, 0); // fake solution for shadows
+					StdDraw.picture(posB, heigth, ImagePaths.BLUE_HEART_HUD, 0.05, 0.05, 0);
+					StdDraw.picture(posB, heigth, ImagePaths.BLUE_HEART_HUD, 0.05, 0.05, 0); // fake solution for shadows
 				}
 			}
 

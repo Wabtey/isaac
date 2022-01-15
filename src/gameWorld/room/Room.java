@@ -36,7 +36,7 @@ public class Room
 		this.monsters = new LinkedList<Monsters>();
 		// The destination must be random (spider pattenr move)
 		this.monsters.add(new Spider(new Vector2(0.3, 0.3), hero.getPosition())); // CreaturesInfos.SPIDER
-		this.monsters.add(new Fly(new Vector2(0.3, 0.3), hero.getPosition()));
+		//this.monsters.add(new Fly(new Vector2(0.3, 0.3), hero.getPosition()));
 		this.monsters.add(new Spider(new Vector2(0.6, 0.6), hero.getPosition()));
 
 		// carefull about scaling
@@ -60,10 +60,39 @@ public class Room
 		makeHeroPlay();
 		updateProjectile();
 		makeMonstersPlay();
-		checkCollision();
+		checkCollision(); //TODO Only the first Mnster on the list can deal dmg to hero
+	}
+
+//--HERO--------------------------------------------------------
+	
+	protected void makeHeroPlay()
+	{
+		Vector2 lastPosition = hero.getPosition();
+		hero.updateGameObject();
+		if (inAnObstacle(hero.getPosition()))
+			hero.setPosition(lastPosition);
 	}
 	
+//--PROJECTILES-------------------------------------------------
+	
+	/**
+	 * Update the Room with the projectile in the Hero class, check if the projectile
+	 * need to be deleted and then send the new list to Hero class
+	 */
+	protected void updateProjectile() {
+		ArrayList<Projectile> projectile_delete = new ArrayList<Projectile>();
+		projectile = hero.getProjectile();
+		for (Projectile p : projectile) {
+			if (inAnObstacle(p.getProjPosition())) {
+				projectile_delete.add(p);
+			}
+		}
+		hero.removeProjectile(projectile_delete);
+	}
+
+	
 //--COMBAT CODE-------------------------------------------------
+	
 	private void makeMonstersPlay() {			
 		for (Monsters monster : monsters) {
 			Vector2 lastPosition = monster.getPosition();
@@ -73,7 +102,8 @@ public class Room
 		}
 	}
 	
-	private void checkCollision(){//implementer tout type de collision (cac et projectile)
+	//TODO implementer tout type de collision (cac et projectile)
+	private void checkCollision(){
 		checkRangeCollision();
 		checkCloseCollision();
 	}
@@ -106,6 +136,11 @@ public class Room
 		getHero().removeProjectile(projectile_delete);
 	}
 	
+	/**
+	 * @param Hero's coordonates
+	 * @param Hero's size
+	 * @return Monster which is in collision with the Hero
+	 */
 	private Monsters collisionWithMonster(Vector2 coordonnees, Vector2 size) {
 		double posX0 = coordonnees.getX() - (size.getX() / 2);
 		double posX1 = coordonnees.getX() + (size.getX() / 2);
@@ -149,6 +184,12 @@ public class Room
 		return false;
 	}
 	
+//--EXIT-----------------------------------------
+	
+	/**
+	 * Permit to change room
+	 * @return Door touching Hero
+	 */
 	public Door inDoor() {
 		return checkDoor();
 	}
@@ -164,31 +205,6 @@ public class Room
 		}
 		return null;
 	}
-
-	
-	/**
-	 * Update the Room with the projectile in the Hero class, check if the projectile
-	 * need to be deleted and then send the new list to Hero class
-	 */
-	protected void updateProjectile() {
-		ArrayList<Projectile> projectile_delete = new ArrayList<Projectile>();
-		projectile = hero.getProjectile();
-		for (Projectile p : projectile) {
-			if (inAnObstacle(p.getProjPosition())) {
-				projectile_delete.add(p);
-			}
-		}
-		hero.removeProjectile(projectile_delete);
-	}
-
-	protected void makeHeroPlay()
-	{
-		Vector2 lastPosition = hero.getPosition();
-		hero.updateGameObject();
-		if (inAnObstacle(hero.getPosition()))
-			hero.setPosition(lastPosition);
-	}
-		
 
 //--INTERFACE-GRAPHIQUE------------------------------------------------------
 	
@@ -242,6 +258,8 @@ public class Room
 		return new Vector2(indexX * RoomInfos.TILE_WIDTH + RoomInfos.HALF_TILE_SIZE.getX(),
 				indexY * RoomInfos.TILE_HEIGHT + RoomInfos.HALF_TILE_SIZE.getY());
 	}
+	
+//--GETTERS/SETTERS-----------------------------------
 	
 	public ArrayList<Obstacle> getObstacles(){
 		return this.obstacles;

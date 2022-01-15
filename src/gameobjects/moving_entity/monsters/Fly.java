@@ -15,6 +15,7 @@ public class Fly extends Monsters {
 	{
 		super.updateGameObject(hero);
 		moveTo(hero.getPosition());
+<<<<<<< HEAD
 	}
 
 	@Override
@@ -56,5 +57,7 @@ public class Fly extends Monsters {
 		Vector2 normalizedVector = new Vector2(getDirection());
 		normalizedVector.euclidianNormalize(getSpeed());
 		return normalizedVector;
+=======
+>>>>>>> branch 'master' of https://github.com/WaBtey/isaac.git
 	}
 }
