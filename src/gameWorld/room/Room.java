@@ -9,6 +9,7 @@ import gameobjects.moving_entity.Hero;
 import gameobjects.moving_entity.Projectile;
 import gameobjects.moving_entity.monsters.Fly;
 import gameobjects.moving_entity.monsters.Monsters;
+import gameobjects.moving_entity.monsters.Moter;
 import gameobjects.moving_entity.monsters.Spider;
 import gameobjects.obstacles.Obstacle;
 import libraries.StdDraw;
@@ -34,10 +35,11 @@ public class Room
 		this.projectile = new ArrayList<Projectile>(10);//valeur random
 		
 		this.monsters = new LinkedList<Monsters>();
-		// The destination must be random (spider pattenr move)
+
 		this.monsters.add(new Spider(new Vector2(0.3, 0.3), hero.getPosition())); // CreaturesInfos.SPIDER
 		this.monsters.add(new Fly(new Vector2(0.3, 0.3), hero.getPosition()));
-		this.monsters.add(new Spider(new Vector2(0.6, 0.6), hero.getPosition()));
+		//this.monsters.add(new Spider(new Vector2(0.6, 0.6), hero.getPosition()));
+		this.monsters.add(new Moter(new Vector2(0.6, 0.6), hero.getPosition()));
 
 		// carefull about scaling
 		obstacles.add(new Obstacle(new Vector2(0.5, 0), RoomInfos.WALL_DOWN[1], RoomInfos.WALL_DOWN[0])); // BAS
@@ -239,10 +241,11 @@ public class Room
 		}
 		for(Monsters monster:monsters) {
 			monster.drawGameObject();
+			//monster.drawImage(animation.getSprite(), x, y, null);
 		}
 		for(Door door: doors) {
 			door.drawGameObject();
-			}
+		}
 		
 //		//--HITBOX DREW---------------------
 //		double posX0 = this.getHero().getPosition().getX() - (this.getHero().getSize().getX() / 2); //TODO a supp

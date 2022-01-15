@@ -11,7 +11,7 @@ public class ImagePaths
 	public static final String ROCK = "images/Rock.png";
 	public static final String SPIKES = "images/Spikes.png";
 	
-	public static final String FOUND_HUD = "images/FoundHUB_x10.png";
+	public static final String FOUND_HUD = "images/SpriteSheet/finals/FoundHUB_x10.png";
 
 	public static final String HEART_HUD = "images/HUD_heart_red_full.png";
 	public static final String HALF_HEART_HUD = "images/HUD_heart_red_half.png";
@@ -31,8 +31,27 @@ public class ImagePaths
 	public static final String DIME = "images/Dime.png";
 
 	public static final String SPIDER = "images/Spider.png";
-	public static final String GAPER = "images/Gaper.png";
+	public static final String SPIDER_OFF = "images/SpriteSheet/finals/Spider/Spider_off.png";
+	public static final String SPIDER_0 ="images/SpriteSheet/finals/Spider/Spider0.png";	
+	public static final String SPIDER_1 ="images/SpriteSheet/finals/Spider/Spider1.png";	
+	public static final String SPIDER_2 ="images/SpriteSheet/finals/Spider/Spider2.png";	
+	public static final String SPIDER_3 ="images/SpriteSheet/finals/Spider/Spider3.png";	
+	public static final String SPIDER_4 ="images/SpriteSheet/finals/Spider/Spider4.png";	
+	public static final String SPIDER_5 ="images/SpriteSheet/finals/Spider/Spider5.png";	
+
 	public static final String FLY = "images/Fly.png";
+	public static final String FLY_0 ="images/SpriteSheet/finals/AttackFly/Fly0.png";	
+	public static final String FLY_1 ="images/SpriteSheet/finals/AttackFly/Fly1.png";	
+	public static final String FLY_2 ="images/SpriteSheet/finals/AttackFly/Fly2.png";	
+	public static final String FLY_3 ="images/SpriteSheet/finals/AttackFly/Fly3.png";	
+	
+	public static final String MOTER ="images/SpriteSheet/finals/Moter.png";
+	public static final String MOTER_0 ="images/SpriteSheet/finals/Moter/Moter0.png";	
+	public static final String MOTER_1 ="images/SpriteSheet/finals/Moter/Moter1.png";	
+	public static final String MOTER_2 ="images/SpriteSheet/finals/Moter/Moter2.png";	
+	public static final String MOTER_3 ="images/SpriteSheet/finals/Moter/Moter3.png";	
+	
+	public static final String GAPER = "images/Gaper.png";
 
 	public static final String CLOSED_DOOR = "images/closed_door.png";
 	public static final String OPENED_DOOR = "images/opened_door.png";
