@@ -169,7 +169,6 @@ public class WorldMap {
 	private boolean checkNeighborhood(Vector2 frame, Vector2 officialNeighbor) {
 		Integer X = (int) frame.getX();
 		Integer Y = (int) frame.getY();
-		Integer neighbor = tab.get((int)officialNeighbor.getX()).get((int)officialNeighbor.getY());
 		Integer haut = null;
 		Integer bas = null;
 		Integer droite = null; 

@@ -13,6 +13,7 @@ import libraries.Keybinding.SpecialKeys;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.Controls;
+import resources.DoorInfos;
 import resources.RoomInfos;
 import test.Cardinal_Points;
 
@@ -58,7 +59,7 @@ public class GameWorld
 	public GameWorld checkDoorGW() {
 		Door temp =currentRoom.inDoor() ;
 		if (temp!=null) {
-			hero.setPosition(new Vector2(RoomInfos.POSITION_CENTER_OF_ROOM.getX(),RoomInfos.POSITION_CENTER_OF_ROOM.getY()));
+			hero.setPosition(repositionHero(temp.getCoordonnees()));
 			return temp.getNextRoom();
 		}
 		return null;
@@ -67,16 +68,16 @@ public class GameWorld
 	private void createDoors() {
 		List <Door> doors = new LinkedList<Door>(); 
 		if(neighbors.getNorth()!=null) {
-			doors.add(new Door(new Vector2(0.5,0.8),neighbors.getNorth()));
+			doors.add(new Door(DoorInfos.NORTH,neighbors.getNorth()));
 		}
 		if(neighbors.getSouth()!=null) {
-			doors.add(new Door(new Vector2(0.5,0.3),neighbors.getSouth()));
+			doors.add(new Door(DoorInfos.SUD,neighbors.getSouth()));
 		}
 		if(neighbors.getEast()!=null) {
-			doors.add(new Door(new Vector2(0.8,0.5),neighbors.getEast()));
+			doors.add(new Door(DoorInfos.EAST,neighbors.getEast()));
 		}
 		if(neighbors.getWeast()!=null) {
-			doors.add(new Door(new Vector2(0.2,0.5),neighbors.getWeast()));
+			doors.add(new Door(DoorInfos.WEAST,neighbors.getWeast()));
 		}
 		this.doors = doors;
 	}
@@ -131,6 +132,30 @@ public class GameWorld
 			hero.shootUP(SpecialKeys.RIGHT);
 	}
 	
+	public Vector2 repositionHero(Vector2 door) {
+		Vector2 temp = new Vector2(RoomInfos.POSITION_CENTER_OF_ROOM);
+		if (door.equals(DoorInfos.NORTH)) {
+			temp.setX(DoorInfos.SUD.getX());
+			temp.setY(DoorInfos.SUD.getY());
+			temp.addY(0.1);
+		}
+		if (door.equals(DoorInfos.SUD)) {
+			temp.setX(DoorInfos.NORTH.getX());
+			temp.setY(DoorInfos.NORTH.getY());
+			temp.addY(-0.1);
+		}
+		if (door.equals(DoorInfos.EAST)) {
+			temp.setX(DoorInfos.WEAST.getX());
+			temp.setY(DoorInfos.WEAST.getY());
+			temp.addX(+0.1);
+		}
+		if (door.equals(DoorInfos.WEAST)) {
+			temp.setX(DoorInfos.EAST.getX());
+			temp.setY(DoorInfos.EAST.getY());
+			temp.addX(-0.1);
+		}
+		return temp;
+	}
 	public void setCurrentRoom(Room room) {
 		this.currentRoom = room;
 	}
