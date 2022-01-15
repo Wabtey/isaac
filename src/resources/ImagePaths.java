@@ -10,13 +10,21 @@ public class ImagePaths
 	public static final String POOP = "images/Poop.png";
 	public static final String ROCK = "images/Rock.png";
 	public static final String SPIKES = "images/Spikes.png";
+	
+	public static final String FOUND_HUD = "images/FoundHUB_x10.png";
 
-	public static final String KEY = "images/Key.png";
 	public static final String HEART_HUD = "images/HUD_heart_red_full.png";
 	public static final String HALF_HEART_HUD = "images/HUD_heart_red_half.png";
 	public static final String EMPTY_HEART_HUD = "images/HUD_heart_red_empty.png";
 	public static final String HEART_PICKABLE = "images/Red_Heart.png";
 	public static final String HALF_HEART_PICKABLE = "images/Half_Red_Heart.png";
+	
+	public static final String BLUE_HEART_HUD = "images/HUD_heart_blue_full.png";
+	public static final String HALF_BLUE_HEART_HUD = "images/HUD_heart_blue_half.png";
+	public static final String BLUE_HEART_PICKABLE = "images/Blue_Heart.png";
+	public static final String HALF_BLUE_HEART_PICKABLE = "images/Half_Blue_Heart.png";
+	
+	public static final String KEY = "images/Key.png";
 	public static final String BOMB = "images/Bomb.png";
 	public static final String COIN = "images/Penny.png";
 	public static final String NICKEL = "images/Nickel.png";

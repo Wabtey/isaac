@@ -87,6 +87,8 @@ public class GameWorld
 		currentRoom.drawRoom();
 	}
 
+	//TODO if select is pressed show the map bigger
+	
 	private void processKeysForMovement()
 	{
 		if (StdDraw.isKeyPressed(Controls.goUp))

@@ -18,19 +18,21 @@ import resources.DisplaySettings;
 import resources.ImagePaths;
 import resources.RoomInfos;
 
-public class Room {
+public class Room
+{
 	private Hero hero;
-	private ArrayList<Door> doors;
+	private ArrayList<Door> doors ;
 	private ArrayList<Obstacle> obstacles;
 	private ArrayList<Projectile> projectile;
 	private LinkedList<Monsters> monsters;
-
-	public Room(Hero hero, List<Door> doors) {
+	
+	public Room(Hero hero, List<Door> doors)
+	{
 		this.hero = hero;
 		this.doors = new ArrayList<Door>(4);
 		this.obstacles = new ArrayList<Obstacle>(4);
-		this.projectile = new ArrayList<Projectile>(10);// valeur random
-
+		this.projectile = new ArrayList<Projectile>(10);//valeur random
+		
 		this.monsters = new LinkedList<Monsters>();
 		// The destination must be random (spider pattenr move)
 		this.monsters.add(new Spider(new Vector2(0.3, 0.3), hero.getPosition())); // CreaturesInfos.SPIDER
@@ -47,19 +49,21 @@ public class Room {
 			}
 		}
 	}
-
+	
+	
 	/*
 	 * Make every entity that compose a room process one step
 	 */
-	public void updateRoom() {
+	public void updateRoom()
+	{
 		makeHeroPlay();
 		updateProjectile();
 		makeMonstersPlay();
 		checkCollision();
 	}
-
+	
 //--COMBAT CODE-------------------------------------------------
-	private void makeMonstersPlay() {
+	private void makeMonstersPlay() {			
 		for (Monsters monster : monsters) {
 			Vector2 lastPosition = monster.getPosition();
 			monster.updateGameObject(hero); // DO NOT MOVE you monster
@@ -67,12 +71,12 @@ public class Room {
 				monster.setPosition(lastPosition);
 		}
 	}
-
-	private void checkCollision() {// implementer tout type de collision (cac et projectile)
+	
+	private void checkCollision(){//implementer tout type de collision (cac et projectile)
 		checkRangeCollision();
 		checkCloseCollision();
 	}
-
+	
 	private void checkCloseCollision() {
 		if (collisionWithMonster(getHero().getPosition(), getHero().getSize()) != null) {
 			Monsters contactMonster = collisionWithMonster(getHero().getPosition(), getHero().getSize());
@@ -81,7 +85,8 @@ public class Room {
 			getHero().addInvincibilityFrames(CreaturesInfos.HERO_INVINCIBILITY);
 		}
 	}
-
+	
+	
 	private void checkRangeCollision() {
 		ArrayList<Monsters> monster_delete = new ArrayList<Monsters>();
 		ArrayList<Projectile> projectile_delete = new ArrayList<Projectile>();
@@ -93,13 +98,13 @@ public class Room {
 					monster_delete.add(collisionWithMonster(projectile.getProjPosition(), projectile.getProjSize()));
 					projectile_delete.add(projectile);
 				}
-
+			
 			}
 		}
 		monsters.removeAll(monster_delete);
 		getHero().removeProjectile(projectile_delete);
 	}
-
+	
 	private Monsters collisionWithMonster(Vector2 coordonnees, Vector2 size) {
 		double posX0 = coordonnees.getX() - (size.getX() / 2);
 		double posX1 = coordonnees.getX() + (size.getX() / 2);
@@ -142,11 +147,11 @@ public class Room {
 		}
 		return false;
 	}
-
+	
 	public Door inDoor() {
 		return checkDoor();
 	}
-
+	
 	private Door checkDoor() {
 		double posX = Math.round(hero.getPosition().getX() * 100);
 		double posY = Math.round(hero.getPosition().getY() * 100);
@@ -159,9 +164,10 @@ public class Room {
 		return null;
 	}
 
+	
 	/**
-	 * Update the Room with the projectile in the Hero class, check if the
-	 * projectile need to be deleted and then send the new list to Hero class
+	 * Update the Room with the projectile in the Hero class, check if the projectile
+	 * need to be deleted and then send the new list to Hero class
 	 */
 	protected void updateProjectile() {
 		ArrayList<Projectile> projectile_delete = new ArrayList<Projectile>();
@@ -175,15 +181,17 @@ public class Room {
 		hero.removeProjectile(projectile_delete);
 	}
 
-	protected void makeHeroPlay() {
+	protected void makeHeroPlay()
+	{
 		Vector2 lastPosition = hero.getPosition();
 		hero.updateGameObject();
 		if (inAnObstacle(hero.getPosition()))
 			hero.setPosition(lastPosition);
 	}
+		
 
 //--INTERFACE-GRAPHIQUE------------------------------------------------------
-
+	
 	/*
 	 * Drawing
 	 */
@@ -191,24 +199,24 @@ public class Room {
 		// For every tile, set background color.
 		StdDraw.setPenColor(StdDraw.BLUE);
 		double scaling = DisplaySettings.SCALE;
-
+		
 		Vector2 position = RoomInfos.POSITION_CENTER_OF_ROOM;
 		StdDraw.picture(position.getX(), position.getY(), ImagePaths.FLOOR, scaling, scaling);
 		StdDraw.picture(position.getX(), position.getY(), ImagePaths.WALL, scaling, scaling);
 
 		hero.drawGameObject();
 		ArrayList<Projectile> tears = hero.getProjectile();
-		for (Projectile tear : tears) {
+		for(Projectile tear:tears) {
 			tear.drawGameObject();
 		}
-		for (Monsters monster : monsters) {
+		for(Monsters monster:monsters) {
 			monster.drawGameObject();
 		}
-		for (Door door : doors) {
+		for(Door door: doors) {
 			door.drawGameObject();
 		}
-
-		// --HITBOX DREW---------------------
+		
+		//--HITBOX DREW---------------------
 //		double posX0 = this.getHero().getPosition().getX() - (this.getHero().getSize().getX() / 2);//TODO a supp
 //		double posX1 = this.getHero().getPosition().getX() + (this.getHero().getSize().getX() / 2);
 //		double posY0 = this.getHero().getPosition().getY() - (this.getHero().getSize().getY() / 2);
@@ -219,7 +227,7 @@ public class Room {
 //		StdDraw.filledCircle(posX0, posY0, 0.01);
 //		StdDraw.filledCircle(posX0, posY1, 0.01);
 //		StdDraw.filledCircle(0.5, 0.5, 0.02);
-
+		
 //		for (int i = 0; i < RoomInfos.NB_TILES; i++) {
 //			for (int j = 0; j < RoomInfos.NB_TILES; j++) {
 //				Vector2 position = positionFromTileIndex(i, j);
@@ -241,9 +249,9 @@ public class Room {
 //						RoomInfos.HALF_TILE_SIZE.getY() * 2);
 //			}
 //		}
-
+		
 	}
-
+	
 	/**
 	 * Convert a tile index to a 0-1 position.
 	 * 
@@ -251,16 +259,17 @@ public class Room {
 	 * @param indexY
 	 * @return
 	 */
-	@Deprecated
-	private static Vector2 positionFromTileIndex(int indexX, int indexY) {
+	@SuppressWarnings("unused")
+	private static Vector2 positionFromTileIndex(int indexX, int indexY)
+	{
 		return new Vector2(indexX * RoomInfos.TILE_WIDTH + RoomInfos.HALF_TILE_SIZE.getX(),
 				indexY * RoomInfos.TILE_HEIGHT + RoomInfos.HALF_TILE_SIZE.getY());
 	}
-
-	public ArrayList<Obstacle> getObstacles() {
+	
+	public ArrayList<Obstacle> getObstacles(){
 		return this.obstacles;
 	}
-
+	
 	protected Hero getHero() {
 		return hero;
 	}
@@ -268,5 +277,7 @@ public class Room {
 	public ArrayList<Door> getDoors() {
 		return doors;
 	}
-
+	
+	
+	
 }

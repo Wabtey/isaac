@@ -6,11 +6,10 @@ import gameWorld.room.Room;
 import gameobjects.Door;
 import gameobjects.moving_entity.Hero;
 
-public class Shop extends Room {
+public class ItemRoom extends Room{
 
-	public Shop(Hero hero, List<Door> doors) {
+	public ItemRoom(Hero hero, List<Door> doors) {
 		super(hero, doors);
-		// TODO Auto-generated constructor stub
 	}
 
 }

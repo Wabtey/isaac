@@ -1,10 +1,7 @@
 package gameobjects.moving_entity.monsters;
 
-import javax.swing.text.Position;
-
 import gameobjects.moving_entity.Hero;
 import gameobjects.moving_entity.Living_Creature;
-import gameobjects.obstacles.Obstacle;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.RoomInfos;
@@ -111,6 +108,8 @@ public abstract class Monsters extends Living_Creature {
 	}
 	
 	public void addFreezeTime(int freezeTime) {
+		if(freeze==0)
+			freeze += freezeTime;
 		if (freezeTime == 0)
 			freeze += freezeTime;
 	}
