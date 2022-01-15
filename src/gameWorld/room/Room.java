@@ -57,6 +57,7 @@ public class Room
 	 */
 	public void updateRoom()
 	{
+		checkDoorState();
 		makeHeroPlay();
 		updateProjectile();
 		makeMonstersPlay();
@@ -105,7 +106,7 @@ public class Room
 	//TODO implementer tout type de collision (cac et projectile)
 	private void checkCollision(){
 		checkRangeCollision();
-		//checkCloseCollision();
+		checkCloseCollision();
 	}
 	
 	private void checkCloseCollision() {
@@ -191,7 +192,18 @@ public class Room
 	 * @return Door touching Hero
 	 */
 	public Door inDoor() {
-		return checkDoor();
+		if (checkDoor()!=null && checkDoor().getDoorState()) {
+			return checkDoor();
+		}
+		return null;
+	}
+	
+	private void checkDoorState() {
+		if (monsters.isEmpty()) {
+			for (Door door:doors) {
+				door.openDoor();
+			}
+		}
 	}
 	
 	private Door checkDoor() {
