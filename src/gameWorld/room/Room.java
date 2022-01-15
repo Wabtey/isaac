@@ -1,8 +1,10 @@
 package gameWorld.room;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import gameobjects.Door;
 import gameobjects.moving_entity.Hero;
@@ -16,6 +18,7 @@ import libraries.StdDraw;
 import libraries.Vector2;
 import resources.CreaturesInfos;
 import resources.DisplaySettings;
+import resources.DoorInfos;
 import resources.ImagePaths;
 import resources.RoomInfos;
 
@@ -59,6 +62,7 @@ public class Room
 	 */
 	public void updateRoom()
 	{
+		checkMonstersHP();
 		checkDoorState();
 		makeHeroPlay();
 		updateProjectile();
@@ -112,54 +116,60 @@ public class Room
 	}
 	
 	private void checkCloseCollision() {
-		if (collisionWithMonster(getHero().getPosition(), getHero().getSize()) != null) {
-			Monsters contactMonster = collisionWithMonster(getHero().getPosition(), getHero().getSize());
+		for (Monsters monster : monsters) {
+		if (collisionWithMonster(getHero().getPosition(), getHero().getSize(),monster.getPosition(),monster.getSize())) {
+			Monsters contactMonster = monster;
 			//contactMonster.addFreezeTime(20);
 			getHero().getHitted(contactMonster.getDamage());
 			getHero().addInvincibilityFrames(CreaturesInfos.HERO_INVINCIBILITY);
+		}
 		}
 	}
 	
 	
 	private void checkRangeCollision() {
-		ArrayList<Monsters> monster_delete = new ArrayList<Monsters>(monsters.size());
 		ArrayList<Projectile> projectile_delete = new ArrayList<Projectile>(projectile.size());
 		ArrayList<Projectile> projectiles = new ArrayList<Projectile>(projectile.size());
 		projectiles.addAll(getHero().getProjectile());
 		if (!projectiles.isEmpty()) {
 			for (Projectile projectile : projectiles) {
-				Monsters monsterTouched = collisionWithMonster(projectile.getProjPosition(), (projectile.getProjSize()));
-				if (monsterTouched!= null) {
-					monster_delete.add(monsterTouched);
-					projectile_delete.add(projectile);
+				for (Monsters monster : monsters) {
+					if (collisionWithMonster(monster.getPosition(), monster.getSize(), projectile.getProjPosition(),
+							projectile.getProjSize())) {
+						monster.takeDamage(projectile.getProjDegat());
+						projectile_delete.add(projectile);
+					}
 				}
-			
 			}
 		}
-		monsters.removeAll(monster_delete);
 		getHero().removeProjectile(projectile_delete);
 	}
+	
 	
 	/**
 	 * @param Hero's coordonates
 	 * @param Hero's size
 	 * @return Monster which is in collision with the Hero
 	 */
-	private Monsters collisionWithMonster(Vector2 coordonnees, Vector2 size) {
+	private boolean collisionWithMonster(Vector2 coordonnees, Vector2 size, Vector2 coordonnees2, Vector2 size2) {
 		double posX0 = coordonnees.getX() - (size.getX() / 2);
 		double posX1 = coordonnees.getX() + (size.getX() / 2);
 		double posY0 = coordonnees.getY() - (size.getY() / 2);
 		double posY1 = coordonnees.getY() + (size.getY() / 2);
-		Monsters guilty = null;
-		for (Monsters monster : monsters) {
-			double monX0 = monster.getPosition().getX() - (monster.getSize().getX() / 2);
-			double monX1 = monster.getPosition().getX() + (monster.getSize().getX() / 2);
-			double monY0 = monster.getPosition().getY() - (monster.getSize().getY() / 2);
-			double monY1 = monster.getPosition().getY() + (monster.getSize().getY() / 2);
-			if (!(posX0 > monX1 || posX1 <= monX0 || posY0 >= monY1 || posY1 <= monY0))
-				guilty = monster;
+		double monX0 = coordonnees2.getX() - (size2.getX() / 2);
+		double monX1 = coordonnees2.getX() + (size2.getX() / 2);
+		double monY0 = coordonnees2.getY() - (size2.getY() / 2);
+		double monY1 = coordonnees2.getY() + (size2.getY() / 2);
+		if (!(posX0 > monX1 || posX1 <= monX0 || posY0 >= monY1 || posY1 <= monY0))
+			return true;
+		return false;
+	}
+	
+	private void checkMonstersHP() {
+		for (Monsters monster: monsters) {
+			if (monster.getRedHeart()==0)
+				monsters.remove(monster);
 		}
-		return guilty;
 	}
 
 //--OBSTACLES--------------------------------------------------
@@ -214,7 +224,7 @@ public class Room
 		for (Door door : doors) {
 			double doorX = door.getCoordonnees().getX() * 100;
 			double doorY = door.getCoordonnees().getY() * 100;
-			if ((posX + 5) > doorX && (posX - 5) < doorX && (posY + 5) > doorY && (posY - 5) < doorY)
+			if ((posX + DoorInfos.DOOR_RADIUS) > doorX && (posX - DoorInfos.DOOR_RADIUS) < doorX && (posY + DoorInfos.DOOR_RADIUS) > doorY && (posY - DoorInfos.DOOR_RADIUS) < doorY)
 				return door;
 		}
 		return null;

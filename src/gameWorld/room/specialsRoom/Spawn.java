@@ -18,10 +18,4 @@ public class Spawn extends Room {
 	}
 	
 	
-	public void drawRoom() {
-		super.drawRoom();
-		StdDraw.setPenColor(StdDraw.BLUE);
-		StdDraw.filledSquare(0.5, 0.2, 0.05);
-	}
-	
 }

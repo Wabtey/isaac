@@ -183,6 +183,12 @@ public abstract class Monsters extends Living_Creature {
 		return freeze;
 	}
 	
+	public void takeDamage(double d) {
+		if ((getRedHeart()-d)<0)
+			setRedHeart(0);
+		else
+			setRedHeart(getRedHeart()-d);
+	}
 
 	
 	
