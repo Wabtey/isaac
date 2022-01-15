@@ -14,10 +14,7 @@ public class Fly extends Monsters {
 	public void updateGameObject(Hero hero)
 	{
 		super.updateGameObject(hero);
-
-		if (getFreezeTime() == 0) 
-			moveTo(hero.getPosition());
-		else decreaseFreezeTime();
+		moveTo(hero.getPosition());
 	}
 
 	@Override
