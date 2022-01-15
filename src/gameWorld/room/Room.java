@@ -174,7 +174,6 @@ public class Room
 		ArrayList<Projectile> projectile_delete = new ArrayList<Projectile>();
 		projectile = hero.getProjectile();
 		for (Projectile p : projectile) {
-			System.out.println("les projos: " + hero.getProjectile());
 			if (inAnObstacle(p.getProjPosition())) {
 				projectile_delete.add(p);
 			}
@@ -215,10 +214,10 @@ public class Room
 		}
 		for(Door door: doors) {
 			door.drawGameObject();
-		}
+			}
 		
-		//--HITBOX DREW---------------------
-//		double posX0 = this.getHero().getPosition().getX() - (this.getHero().getSize().getX() / 2);//TODO a supp
+//		//--HITBOX DREW---------------------
+//		double posX0 = this.getHero().getPosition().getX() - (this.getHero().getSize().getX() / 2); //TODO a supp
 //		double posX1 = this.getHero().getPosition().getX() + (this.getHero().getSize().getX() / 2);
 //		double posY0 = this.getHero().getPosition().getY() - (this.getHero().getSize().getY() / 2);
 //		double posY1 = this.getHero().getPosition().getY() + (this.getHero().getSize().getY() / 2);
@@ -228,29 +227,6 @@ public class Room
 //		StdDraw.filledCircle(posX0, posY0, 0.01);
 //		StdDraw.filledCircle(posX0, posY1, 0.01);
 //		StdDraw.filledCircle(0.5, 0.5, 0.02);
-		
-//		for (int i = 0; i < RoomInfos.NB_TILES; i++) {
-//			for (int j = 0; j < RoomInfos.NB_TILES; j++) {
-//				Vector2 position = positionFromTileIndex(i, j);
-//				StdDraw.picture(position.getX(), position.getY(), "images/floor.jpg",
-//						RoomInfos.HALF_TILE_SIZE.getX() * 2, RoomInfos.HALF_TILE_SIZE.getY() * 2);
-//			}
-//		}
-//		StdDraw.setPenColor(88, 41, 0);// BROWN
-//		for (int i = 0; i < RoomInfos.NB_TILES; i++) {
-//			for (int j = 0; j < RoomInfos.NB_TILES; j++) {
-//				Vector2 position = positionFromTileIndex(i, j);
-//				StdDraw.picture(position.getX(), 0, ImagePaths.WALL, RoomInfos.HALF_TILE_SIZE.getX() * 2,
-//						RoomInfos.HALF_TILE_SIZE.getY());
-//				StdDraw.picture(position.getX(), 1, ImagePaths.WALL, RoomInfos.HALF_TILE_SIZE.getX() * 2,
-//						RoomInfos.HALF_TILE_SIZE.getY());
-//				StdDraw.picture(0, position.getY(), ImagePaths.WALL, RoomInfos.HALF_TILE_SIZE.getX(),
-//						RoomInfos.HALF_TILE_SIZE.getY() * 2);
-//				StdDraw.picture(1, position.getY(), ImagePaths.WALL, RoomInfos.HALF_TILE_SIZE.getX(),
-//						RoomInfos.HALF_TILE_SIZE.getY() * 2);
-//			}
-//		}
-		
 	}
 	
 	/**

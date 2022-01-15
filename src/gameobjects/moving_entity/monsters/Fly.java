@@ -22,10 +22,14 @@ public class Fly extends Monsters {
 
 	@Override
 	protected void moveTo(Vector2 cible) {
-		double posx =(double) Math.round(this.getPosition().getX()*10)/10;
-		double posy =(double) Math.round(this.getPosition().getY()*10)/10;
-		double cibx =(double) Math.round(cible.getX()*10)/10;
-		double ciby =(double) Math.round(cible.getY()*10)/10;
+		double posx =(double) Math.round(this.getPosition().getX()*100)/1000;
+		double posy =(double) Math.round(this.getPosition().getY()*100)/1000;
+		double cibx =(double) Math.round(cible.getX()*100)/1000;
+		double ciby =(double) Math.round(cible.getY()*100)/1000;
+		System.out.println(new Vector2(posx,posy) + "||" + new Vector2(cibx,ciby));
+		if (posx == cibx && posy==ciby) {
+			return;
+		}
 		if (posx<cibx && posy<ciby) { //pour bouger en diagonale
 			goRightNext();goUpNext();
 		}else if (posx<cibx && posy>ciby) {
@@ -44,7 +48,6 @@ public class Fly extends Monsters {
 		}else {
 			goDownNext();
 		}
-		System.out.println(new Vector2(posx,posy) + "||" + new Vector2(cibx,ciby));
 		Vector2 normalizedDirection = getNormalizedDirection();
 		Vector2 positionAfterMoving = getPosition().addVector(normalizedDirection);
 		setPosition(positionAfterMoving);

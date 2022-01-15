@@ -25,10 +25,13 @@ public class Spider extends Monsters{
 
 	@Override
 	protected void moveTo(Vector2 cible) {
-		double posx =(double) Math.round(this.getPosition().getX()*10)/10;
-		double posy =(double) Math.round(this.getPosition().getY()*10)/10;
-		double cibx =(double) Math.round(cible.getX()*10)/10;
-		double ciby =(double) Math.round(cible.getY()*10)/10;
+		double posx =(double) Math.round(this.getPosition().getX()*100)/1000;
+		double posy =(double) Math.round(this.getPosition().getY()*100)/1000;
+		double cibx =(double) Math.round(cible.getX()*10)/100;
+		double ciby =(double) Math.round(cible.getY()*10)/100;
+		if (posx == cibx && posy==ciby) {
+			return;
+		}
 		if (posx<cibx && posy<ciby) { //pour bouger en diagonale
 			goRightNext();goUpNext();
 		}else if (posx<cibx && posy>ciby) {
