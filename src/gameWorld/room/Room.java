@@ -36,8 +36,8 @@ public class Room
 		this.monsters = new LinkedList<Monsters>();
 		// The destination must be random (spider pattenr move)
 		this.monsters.add(new Spider(new Vector2(0.3, 0.3), hero.getPosition())); // CreaturesInfos.SPIDER
-		this.monsters.add(new Fly(new Vector2(0.3, 0.3), hero.getPosition()));
-		this.monsters.add(new Spider(new Vector2(0.6, 0.6), hero.getPosition()));
+		//this.monsters.add(new Fly(new Vector2(0.3, 0.3), hero.getPosition()));
+		//this.monsters.add(new Spider(new Vector2(0.6, 0.6), hero.getPosition()));
 
 		// carefull about scaling
 		obstacles.add(new Obstacle(new Vector2(0.5, 0), RoomInfos.WALL_DOWN[1], RoomInfos.WALL_DOWN[0])); // BAS
