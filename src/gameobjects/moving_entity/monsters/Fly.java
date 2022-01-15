@@ -32,6 +32,15 @@ public class Fly extends Monsters {
 		}else if (posx>cibx && posy>ciby) {
 			goLeftNext();goDownNext();
 		}
+		if (posx<cibx) {
+			goRightNext();
+		}else if (posx>cibx) {
+			goLeftNext();
+		}else if (posy<ciby){
+			goUpNext();
+		}else {
+			goDownNext();
+		}
 		
 		Vector2 normalizedDirection = getNormalizedDirection();
 		Vector2 positionAfterMoving = getPosition().addVector(normalizedDirection);

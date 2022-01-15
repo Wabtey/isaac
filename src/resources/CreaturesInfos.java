@@ -37,7 +37,7 @@ public class CreaturesInfos
 //--FLY---------------------------
 	public static Vector2 FLY_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.3);	
 	public static final double FLY_HEALTH = 5;
-	public static final double FLY_SPEED = 0.02;
+	public static final double FLY_SPEED = 0.005;
 	public static final double FLY_TEARRATE = 0;
 	public static final double FLY_DAMAGE = 0.5;
 	public static final double FLY_RANGE = 0;
