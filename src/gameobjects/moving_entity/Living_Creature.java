@@ -17,13 +17,14 @@ public abstract class Living_Creature {
 	private double damage;
 	private double range;
 	private double shootSpeed;
+	
 	private String imagePath;
 	private int reloadTime;
 	private Vector2 orientation;
 	private Vector2 shootOrientation;
 	private int invincibility; //freezing time of monsters and hero invincibility time are differents
 	
-	//Be sure to safezy the projectiles owner from his own projectiles
+	//Be sure to safezy the projectiles owner from his own projectiles if adding enemy's proj
 	private ArrayList<Projectile> tears;
 	
 	//Maybe create some less big constructor
@@ -149,12 +150,7 @@ public abstract class Living_Creature {
 //--HITTED---------------------------------------------------------------
 	
 	public void getHitted(double damage) {
-		if (invincibility==0) {
-			if (damage>=redHeart)
-				redHeart = 0;
-			else 
-				redHeart -= damage;
-		}
+		
 	}
 	
 	public void addInvincibilityFrames(int InvincibilityFrames) {

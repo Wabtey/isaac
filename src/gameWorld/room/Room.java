@@ -32,11 +32,6 @@ public class Room
 		this.obstacles = new ArrayList<Obstacle>(4);
 		this.projectile = new ArrayList<Projectile>(10);//valeur random
 		
-		//TODO DELETE - this is a pre-creation to test the game (delete when dungeon are ready)
-		//this.getDoors().add(new Door(new Vector2(0.5,0.9), new Boss(hero)));
-		//this.getDoors().add(new Door(new Vector2(0.9,0.5), new Shop(hero)));
-		//-----DELETE------------------------
-		
 		this.monsters = new LinkedList<Monsters>();
 		//The destination must be random (spider pattenr move)
 				this.monsters.add(new Spider(new Vector2(0.3,0.3), hero.getPosition())); //CreaturesInfos.SPIDER
@@ -46,6 +41,7 @@ public class Room
 		obstacles.add(new Obstacle(new Vector2(0.5,1), RoomInfos.WALL_UP[1], RoomInfos.WALL_UP[0])); 				//HAUT
 		obstacles.add(new Obstacle(new Vector2(0,0.5), RoomInfos.WALL_LEFTnRIGHT[1], RoomInfos.WALL_LEFTnRIGHT[0]));//GAUCHE
 		obstacles.add(new Obstacle(new Vector2(1,0.5), RoomInfos.WALL_LEFTnRIGHT[1], RoomInfos.WALL_LEFTnRIGHT[0]));//DROIT
+		
 		for (Door door:doors) {
 			if (door!=null) {
 				this.doors.add(door);
@@ -263,7 +259,7 @@ public class Room
 	 * @param indexY
 	 * @return
 	 */
-	@Deprecated
+	@SuppressWarnings("unused")
 	private static Vector2 positionFromTileIndex(int indexX, int indexY)
 	{
 		return new Vector2(indexX * RoomInfos.TILE_WIDTH + RoomInfos.HALF_TILE_SIZE.getX(),

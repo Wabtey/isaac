@@ -5,7 +5,7 @@ import libraries.StdDraw;
 import libraries.Vector2;
 import resources.RoomInfos;
 
-public class Monsters extends Living_Creature {
+public abstract class Monsters extends Living_Creature {
 	private Vector2 destination;
 	private int freeze; //freezing time and hero invincibility time are different
 	
@@ -36,9 +36,10 @@ public class Monsters extends Living_Creature {
 	}
 	
 	// donne des coordon�e au hasard 
+	//TODO check if the monster wont crush a wall
 	private Vector2 chooseRandomPoint() {
-		double x = (Math.random()+0.1)*(0.7);
-		double y = (Math.random()+0.1)*(0.7);	
+		double x = (Math.random()+0.1)*(RoomInfos.NB_TILES);
+		double y = (Math.random()+0.1)*(RoomInfos.NB_TILES);	
 		double rpx = (double)Math.round(x*10)/10;
 		double rpy = (double) Math.round(y*10)/10;
 		while (rpx==0||rpy==0||rpx==1|rpy==1 ||(rpx==0.5&&rpy==0.9)) {
@@ -117,7 +118,8 @@ public class Monsters extends Living_Creature {
 	}
 	
 	public void addFreezeTime(int freezeTime) {
-		freeze += freezeTime;
+		if(freeze==0)
+			freeze += freezeTime;
 	}
 	
 
