@@ -34,13 +34,6 @@ public class GameWorld
 	public void initalise() {
 		createDoors();
 		createRoom();
-		for (int i = 0; i<=doors.size()-1 ;i++) {
-			System.out.println(doors.get(i).getCoordonnees() + " : " + doors.get(i).getNextRoom());
-		}
-		System.out.println("coter room:");
-		for (int i = 0; i<=currentRoom.getDoors().size()-1 ;i++) {
-			System.out.println(currentRoom.getDoors().get(i).getCoordonnees() + " : " + currentRoom.getDoors().get(i).getNextRoom());
-		}
 		}
 
 	public void processUserInput()
@@ -59,7 +52,7 @@ public class GameWorld
 	}
 	
 	
-	public GameWorld checkDoor() {
+	public GameWorld checkDoorGW() {
 		Door temp =currentRoom.inDoor() ;
 		if (temp!=null) {
 			hero.setPosition(new Vector2(RoomInfos.POSITION_CENTER_OF_ROOM.getX(),RoomInfos.POSITION_CENTER_OF_ROOM.getY()));

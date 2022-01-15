@@ -91,10 +91,18 @@ public class WorldMap {
 		randomIndice = (int)(Math.round(Math.random()*(randomIndice-1)));
 		int imX = (int)whoWantToBecomeAOne.getX()+(int)frames.get(randomIndice).getX();
 		int imY = (int)whoWantToBecomeAOne.getY()+(int)frames.get(randomIndice).getY();
-		if(canICreateARoomHere(imX, imY)){
+		if(canICreateARoomHere(imX, imY) && !isInArray(frames,new Vector2(imX, imY)) ){
 			newFrames.add(new Vector2(imX, imY));
 		}else selectFrames(frames);
 		return newFrames;
+	}
+	
+	private boolean isInArray(ArrayList<Vector2> elements, Vector2 test) {
+		for (Vector2 element: elements) {
+			if (element.getX()==test.getX() && element.getY()==test.getY())
+				return true;
+		}
+		return false;
 	}
 	
 	//renvoie une direction aleatoire dans le plan soit (0,1)(0,-1)(1,0)(-1,0)

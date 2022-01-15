@@ -83,8 +83,7 @@ public abstract class Living_Creature {
 			double ticksToWait = 40/getTearRate();
 			reload((int)ticksToWait);
 			//CreaturesInfos.convertTearRateToTicks(getTearRate())
-			System.out.println("X :"+getOrientation().getX());
-			System.out.println("Y :"+getOrientation().getY());
+
 		}
 	}
 	
@@ -202,7 +201,7 @@ public abstract class Living_Creature {
 		orientation = new Vector2(0.1,0);
 	}
 
-	public Vector2 getNormalizedDirection()
+	private Vector2 getNormalizedDirection()
 	{
 		Vector2 normalizedVector = new Vector2(direction);
 		normalizedVector.euclidianNormalize(speed);

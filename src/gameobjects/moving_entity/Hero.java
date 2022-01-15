@@ -49,7 +49,6 @@ public class Hero extends Living_Creature
 				setRedHeart(getRedHeart()-damage);
 		}
 	}
-
 	
 	public void drawGameObject()
 	{

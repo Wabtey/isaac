@@ -47,7 +47,7 @@ public class Dungeon {
 
 	public void refreshDungeon() {
 		processNextStep(currentGameWorld);
-		GameWorld temp = currentGameWorld.checkDoor();
+		GameWorld temp = currentGameWorld.checkDoorGW();
 		if (temp != null)
 			this.currentGameWorld = temp;
 	}
@@ -115,7 +115,7 @@ public class Dungeon {
 					temp.addAll(gameWorlds.get(i));
 					temp.set(j, null);
 					gameWorlds.set(i, temp);
-				}
+				}	
 			}
 		}
 	}

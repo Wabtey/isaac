@@ -1,5 +1,6 @@
 package gameobjects.moving_entity.monsters;
 
+import gameobjects.moving_entity.Hero;
 import gameobjects.moving_entity.Living_Creature;
 import libraries.StdDraw;
 import libraries.Vector2;
@@ -19,7 +20,7 @@ public abstract class Monsters extends Living_Creature {
 		
 	}
 	
-	public void updateGameObject()
+	public void updateGameObject(Hero hero)
 	{
 		super.updateGameObject();
 		if (freeze == 0) 
@@ -35,11 +36,11 @@ public abstract class Monsters extends Living_Creature {
 		
 	}
 	
-	// donne des coordonï¿½e au hasard 
-	//TODO check if the monster wont crush a wall
+	
+	// donne des coordonée au hasard 
 	private Vector2 chooseRandomPoint() {
-		double x = (Math.random()+0.1)*(RoomInfos.NB_TILES);
-		double y = (Math.random()+0.1)*(RoomInfos.NB_TILES);	
+		double x = (Math.random()*(0.6))+0.2;//TODO changer les valeurs magiques
+		double y = (Math.random()*(0.6))+0.2;	
 		double rpx = (double)Math.round(x*10)/10;
 		double rpy = (double) Math.round(y*10)/10;
 		while (rpx==0||rpy==0||rpx==1|rpy==1 ||(rpx==0.5&&rpy==0.9)) {
@@ -51,52 +52,41 @@ public abstract class Monsters extends Living_Creature {
 		return new Vector2(rpx, rpy);
 	}
 		
-	private void moveTo(Vector2 cible) {
-		double posx = (double) Math.round(this.getPosition().getX() * 10) / 10;
-		double posy = (double) Math.round(this.getPosition().getY() * 10) / 10;
-		double cibx = (double) Math.round(cible.getX() * 10) / 10;
-		double ciby = (double) Math.round(cible.getY() * 10) / 10;
-		if (posx == cibx && posy == ciby) {
-			this.destination = chooseRandomPoint();
-			return;
+		private void moveTo(Vector2 cible) {
+			double posx =(double) Math.round(this.getPosition().getX()*10)/10;
+			double posy =(double) Math.round(this.getPosition().getY()*10)/10;
+			double cibx =(double) Math.round(cible.getX()*10)/10;
+			double ciby =(double) Math.round(cible.getY()*10)/10;
+			if (posx==cibx && posy==ciby) {
+				this.destination = chooseRandomPoint();
+				this.freeze = 40; //TODO valeur magique again
+				return;
+			}
+			else if (posx<cibx && posy<ciby) { //pour bouger en diagonale
+				goRightNext();goUpNext();
+			}else if (posx<cibx && posy>ciby) {
+				goRightNext();goDownNext();
+			}else if(posx>cibx && posy<ciby) {
+				goLeftNext();goUpNext();
+			}else if (posx>cibx && posy>ciby) {
+				goLeftNext();goDownNext();
+			}
+			if (posx<cibx) {
+				goRightNext();
+			}else if (posx>cibx) {
+				goLeftNext();
+			}else if (posy<ciby){
+				goUpNext();
+			}else {
+				goDownNext();
+			}
+			Vector2 normalizedDirection = getNormalizedDirection();
+			Vector2 positionAfterMoving = getPosition().addVector(normalizedDirection);
+			setPosition(positionAfterMoving);
+			this.setDirection(new Vector2());
 		}
-		/*
-		 * else if (posx<cibx && posy<ciby) { //pour bouger en diagonale
-		 * goRightNext();goUpNext(); }else if (posx<cibx && posy>ciby) {
-		 * goRightNext();goDownNext(); }else if(posx>cibx && posy<ciby) {
-		 * goLeftNext();goUpNext(); }else if (posx>cibx && posy>ciby) {
-		 * goLeftNext();goDownNext(); }
-		 */if (posx < cibx) {
-			goRightNext();
-		} else if (posx > cibx) {
-			goLeftNext();
-		} else if (posy < ciby) {
-			goUpNext();
-		} else {
-			goDownNext();
-		}
-		Vector2 normalizedDirection = getNormalizedDirection();
-		Vector2 positionAfterMoving = getPosition().addVector(normalizedDirection);
-		setPosition(positionAfterMoving);
-		this.setDirection(new Vector2());
-	}
+		
 
-	
-	
-	/*// keep the monster in the room
-	private boolean isAWall(Vector2 checkposition) {
-		if (checkposition.getX()>(0.1) && checkposition.getX()<(0.9) &&
-			checkposition.getY()>(0.1) && checkposition.getY()<(0.9)) {
-			return true;
-		}else {
-			return false;
-		}
-	}*/
-	
-	
-	/*
-	 * Moving from key inputs. Direction vector is later normalised.
-	 */
 	public void goUpNext()
 	{
 		getDirection().addY(1);
@@ -120,10 +110,16 @@ public abstract class Monsters extends Living_Creature {
 	public void addFreezeTime(int freezeTime) {
 		if(freeze==0)
 			freeze += freezeTime;
+		if (freezeTime == 0)
+			freeze += freezeTime;
+	}
+	
+	public void decreaseFreezeTime() {
+		this.freeze --; 
 	}
 	
 
-	public Vector2 getNormalizedDirection()
+	private Vector2 getNormalizedDirection()
 	{
 		Vector2 normalizedVector = new Vector2(getDirection());
 		normalizedVector.euclidianNormalize(getSpeed());
@@ -136,6 +132,10 @@ public abstract class Monsters extends Living_Creature {
 
 	public void setDestination(Vector2 destination) {
 		this.destination = destination;
+	}
+	
+	public int getFreezeTime(){
+		return freeze;
 	}
 	
 
