@@ -27,7 +27,6 @@ public class Spider extends Monsters{
 			move(hero.getPosition());
 			distanceTraveled+=0.01;
 			if(distanceTraveled>=0.1){
-				System.out.println("Freeze!");
 				addFreezeTime(10);
 				distanceTraveled = 0.00;
 			}

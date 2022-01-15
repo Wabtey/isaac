@@ -34,6 +34,7 @@ public class Dungeon {
 		createGameWorlds();
 		addNeighbors();
 		initialiseGameWorlds();
+		initialiseWorldBoss();
 		affichage();
 		setCurrentWorld();
 		setSpecialRooms();
@@ -109,7 +110,7 @@ public class Dungeon {
 					temp.addAll(gameWorlds.get(i));
 					temp.set(j, null);
 					gameWorlds.set(i, temp);
-				}	
+				}
 			}
 		}
 	}
@@ -119,6 +120,18 @@ public class Dungeon {
 			for (int j = 0; j <= dungeonSize - 1; j++) {
 				if (gameWorlds.get(i).get(j) != null)
 					gameWorlds.get(i).get(j).initalise();
+			}
+		}
+	}
+	
+	private void initialiseWorldBoss() {
+		for (int i = 0; i <= dungeonSize - 1; i++) {
+			for (int j = 0; j <= dungeonSize - 1; j++) {
+				if (worldMap.getWorldMap().get(i).get(j) == 2) {
+					gameWorlds.get(i).get(j).initalise();
+					gameWorlds.get(i).get(j).changeTypeOfRoom("boss");
+					System.out.println("salle boss creer");
+				}
 			}
 		}
 	}

@@ -81,7 +81,6 @@ public abstract class Monsters extends Living_Creature {
 		double posy = (double) Math.round(this.getPosition().getY() * 10) / 10;
 		double cibx = (double) Math.round(destination.getX() * 10) / 10;
 		double ciby = (double) Math.round(destination.getY() * 10) / 10;
-		System.out.println("=>" + posx + "|" + posy + "|" + cibx + "|" + ciby + "|");
 		if (posx == cibx && posy == ciby) {
 			setDestination(chooseRandomPoint());
 			return;

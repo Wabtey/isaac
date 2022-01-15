@@ -15,5 +15,4 @@ public class RoomInfos
 	public static final double[] WALL_UP = {0.15*DisplaySettings.SCALE, 1*DisplaySettings.SCALE};
 	public static final double[] WALL_DOWN = {0.21*DisplaySettings.SCALE, 1*DisplaySettings.SCALE};
 	public static final double[] WALL_LEFTnRIGHT = {1*DisplaySettings.SCALE, 0.13*DisplaySettings.SCALE};
-	
 }
