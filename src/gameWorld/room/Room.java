@@ -82,9 +82,9 @@ public class Room
 	 * need to be deleted and then send the new list to Hero class
 	 */
 	protected void updateProjectile() {
-		ArrayList<Projectile> projectile_delete = new ArrayList<Projectile>();
-		projectile = hero.getProjectile();
-		for (Projectile p : projectile) {
+		ArrayList<Projectile> projectile_delete = new ArrayList<Projectile>(projectile.size());
+		ArrayList<Projectile> projectiles = hero.getProjectile();
+		for (Projectile p : projectiles) {
 			if (inAnObstacle(p.getProjPosition())) {
 				projectile_delete.add(p);
 			}
@@ -121,14 +121,15 @@ public class Room
 	
 	
 	private void checkRangeCollision() {
-		ArrayList<Monsters> monster_delete = new ArrayList<Monsters>();
-		ArrayList<Projectile> projectile_delete = new ArrayList<Projectile>();
-		ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
+		ArrayList<Monsters> monster_delete = new ArrayList<Monsters>(monsters.size());
+		ArrayList<Projectile> projectile_delete = new ArrayList<Projectile>(projectile.size());
+		ArrayList<Projectile> projectiles = new ArrayList<Projectile>(projectile.size());
 		projectiles.addAll(getHero().getProjectile());
 		if (!projectiles.isEmpty()) {
 			for (Projectile projectile : projectiles) {
-				if (collisionWithMonster(projectile.getProjPosition(), projectile.getProjSize()) != null) {
-					monster_delete.add(collisionWithMonster(projectile.getProjPosition(), projectile.getProjSize()));
+				Monsters monsterTouched = collisionWithMonster(projectile.getProjPosition(), (projectile.getProjSize()));
+				if (monsterTouched!= null) {
+					monster_delete.add(monsterTouched);
 					projectile_delete.add(projectile);
 				}
 			
@@ -154,9 +155,8 @@ public class Room
 			double monX1 = monster.getPosition().getX() + (monster.getSize().getX() / 2);
 			double monY0 = monster.getPosition().getY() - (monster.getSize().getY() / 2);
 			double monY1 = monster.getPosition().getY() + (monster.getSize().getY() / 2);
-			if (posX0 > monX1 || posX1 <= monX0 || posY0 >= monY1 || posY1 <= monY0)
-				return null;// pas de collision
-			guilty = monster;
+			if (!(posX0 > monX1 || posX1 <= monX0 || posY0 >= monY1 || posY1 <= monY0))
+				guilty = monster;
 		}
 		return guilty;
 	}

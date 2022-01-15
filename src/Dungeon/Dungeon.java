@@ -36,13 +36,7 @@ public class Dungeon {
 		initialiseGameWorlds();
 		affichage();
 		setCurrentWorld();
-		System.out.println("currentWorld: " + currentGameWorld);
-		System.out.println("voisin nord:" + currentGameWorld.getNeighbors().getNorth());
-		System.out.println("voisin sud:" + currentGameWorld.getNeighbors().getSouth());
-		System.out.println("voisin east:" + currentGameWorld.getNeighbors().getEast());
-		System.out.println("voisin weast:" + currentGameWorld.getNeighbors().getWeast());
-		System.out.println(gameWorlds.isEmpty());
-		System.out.println("initialisation done");
+		setSpecialRooms();
 	}
 
 	public void refreshDungeon() {
@@ -125,6 +119,30 @@ public class Dungeon {
 			for (int j = 0; j <= dungeonSize - 1; j++) {
 				if (gameWorlds.get(i).get(j) != null)
 					gameWorlds.get(i).get(j).initalise();
+			}
+		}
+	}
+	
+	private void setSpecialRooms() {
+		setGameWorldRoom("spawn");
+		setGameWorldRoom("shop");
+	}
+	
+	/**
+	 * 
+	 * @param type (spawn|boss|shop|room_n)
+	 * @note n: number of rooms classes
+	 */
+	private void setGameWorldRoom(String type) {
+		for (int i = 0; i <= dungeonSize - 1; i++) {
+			for (int j = 0; j <= dungeonSize - 1; j++) {
+				if (gameWorlds.get(i).get(j) != null && !gameWorlds.get(i).get(j).isASpecialRoom()) {
+					gameWorlds.get(i).get(j).changeTypeOfRoom(type);
+					if (type == "spawn") {
+						currentGameWorld = gameWorlds.get(i).get(j);
+					}
+					return;
+				}
 			}
 		}
 	}

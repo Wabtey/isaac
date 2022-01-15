@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import gameWorld.room.Room;
+import gameWorld.room.specialsRoom.Boss;
+import gameWorld.room.specialsRoom.Shop;
 import gameWorld.room.specialsRoom.Spawn;
 import gameobjects.Door;
 import gameobjects.moving_entity.Hero;
@@ -34,7 +36,7 @@ public class GameWorld
 	public void initalise() {
 		createDoors();
 		createRoom();
-		}
+	}
 
 	public void processUserInput()
 	{
@@ -49,6 +51,7 @@ public class GameWorld
 	public void updateGameObjects()
 	{
 		currentRoom.updateRoom();
+		System.out.println(currentRoom.getClass());
 	}
 	
 	
@@ -80,6 +83,15 @@ public class GameWorld
 	
 	private void createRoom() {
 		this.currentRoom = new Room(hero,doors);
+	}
+	
+	public void changeTypeOfRoom(String type) {
+		switch (type) {
+		case "spawn" : currentRoom = new Spawn(hero, doors);break;
+		case "boss" : currentRoom = new Boss(hero, doors);break;
+		case "shop" : currentRoom = new Shop(hero, doors);break;
+		default : currentRoom = new Room(hero,doors);
+		}
 	}
 
 	public void drawGameObjects()
@@ -139,6 +151,14 @@ public class GameWorld
 	
 	public void setNeighbors(Cardinal_Points neighbors) {
 		this.neighbors = neighbors;
+	}
+	
+	public boolean isASpecialRoom() {
+		return (currentRoom instanceof Spawn || currentRoom instanceof Boss ||currentRoom instanceof Shop );
+	}
+	
+	public Room getCurrentRoom() {
+		return this.currentRoom;
 	}
 	
 }
