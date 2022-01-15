@@ -7,7 +7,6 @@ import gameobjects.moving_entity.Living_Creature;
 import gameobjects.obstacles.Obstacle;
 import libraries.StdDraw;
 import libraries.Vector2;
-import resources.RoomInfos;
 
 public abstract class Monsters extends Living_Creature {
 	private Vector2 destination;
@@ -53,6 +52,10 @@ public abstract class Monsters extends Living_Creature {
 	}
 		
 	abstract void moveTo(Vector2 cible);
+<<<<<<< HEAD
+=======
+		
+>>>>>>> branch 'master' of https://github.com/WaBtey/isaac.git
 
 	public void goUpNext()
 	{
