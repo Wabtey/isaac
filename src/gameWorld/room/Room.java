@@ -35,13 +35,8 @@ public class Room
 		
 		this.monsters = new LinkedList<Monsters>();
 		// The destination must be random (spider pattenr move)
-<<<<<<< HEAD
 		this.monsters.add(new Spider(new Vector2(0.3, 0.3), hero.getPosition())); // CreaturesInfos.SPIDER
 		this.monsters.add(new Fly(new Vector2(0.3, 0.3), hero.getPosition()));
-=======
-		//this.monsters.add(new Spider(new Vector2(0.3, 0.3), hero.getPosition())); // CreaturesInfos.SPIDER
-		//this.monsters.add(new Fly(new Vector2(0.3, 0.3), hero.getPosition()));
->>>>>>> branch 'master' of https://github.com/WaBtey/isaac.git
 		this.monsters.add(new Spider(new Vector2(0.6, 0.6), hero.getPosition()));
 
 		// carefull about scaling

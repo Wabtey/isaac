@@ -13,20 +13,14 @@ public class Fly extends Monsters {
 	
 	public void updateGameObject(Hero hero)
 	{
-<<<<<<< HEAD
 		super.updateGameObject(hero);
-=======
-		//super.updateGameObject(hero);		
->>>>>>> branch 'master' of https://github.com/WaBtey/isaac.git
+
 		if (getFreezeTime() == 0) 
 			moveTo(hero.getPosition());
 		else decreaseFreezeTime();
 	}
 
-<<<<<<< HEAD
 	@Override
-=======
->>>>>>> branch 'master' of https://github.com/WaBtey/isaac.git
 	protected void moveTo(Vector2 cible) {
 		double posx =(double) Math.round(this.getPosition().getX()*10)/10;
 		double posy =(double) Math.round(this.getPosition().getY()*10)/10;

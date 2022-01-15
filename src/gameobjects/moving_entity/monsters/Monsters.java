@@ -52,10 +52,6 @@ public abstract class Monsters extends Living_Creature {
 	}
 		
 	abstract void moveTo(Vector2 cible);
-<<<<<<< HEAD
-=======
-		
->>>>>>> branch 'master' of https://github.com/WaBtey/isaac.git
 
 	public void goUpNext()
 	{
