@@ -109,9 +109,9 @@ public class Room
 	}
 	
 	private void checkCloseCollision() {
-		Monsters contactMonster = collisionWithMonster(getHero().getPosition(), getHero().getSize());
-		if (contactMonster != null) {
-			contactMonster.addFreezeTime(20);
+		if (collisionWithMonster(getHero().getPosition(), getHero().getSize()) != null) {
+			Monsters contactMonster = collisionWithMonster(getHero().getPosition(), getHero().getSize());
+			//contactMonster.addFreezeTime(20);
 			getHero().getHitted(contactMonster.getDamage());
 			getHero().addInvincibilityFrames(CreaturesInfos.HERO_INVINCIBILITY);
 		}
