@@ -25,8 +25,9 @@ public class CreaturesInfos
 										ISAAC_TEARRATE, ISAAC_DAMAGE, ISAAC_RANGE, ISAAC_SHOTSPEED,
 		    							ImagePaths.ISAAC);
 	
-//--SPIDER---------------------------
+//--SPIDER-------------------------
 	public static Vector2 SPIDER_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.3);
+	public static final int SPIDER_CELLS_NB = 6;
 	public static final double SPIDER_HEALTH = 6.5;
 	public static final double SPIDER_SPEED = 0.02;
 	public static final double SPIDER_TEARRATE = 0;
@@ -37,12 +38,24 @@ public class CreaturesInfos
 	
 //--FLY---------------------------
 	public static Vector2 FLY_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.3);	
+	public static final int FLY_CELLS_NB = 4;
 	public static final double FLY_HEALTH = 5;
-	public static final double FLY_SPEED = 0.00;
+	public static final double FLY_SPEED = 0.01;
 	public static final double FLY_TEARRATE = 0;
 	public static final double FLY_DAMAGE = 0.5;
 	public static final double FLY_RANGE = 0;
 	public static final double FLY_SHOOTSPEED = 0;
+	
+//--MOTER-------------------------
+	public static Vector2 MOTER_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.3);
+	public static final int MOTER_SRITE_SHEET_SIZE = 26; //each cell is 26px long, 11px high
+	public static final int MOTER_CELLS_NB = 4;
+	public static final double MOTER_HEALTH = 10;
+	public static final double MOTER_SPEED = 0.008;
+	public static final double MOTER_TEARRATE = 0;
+	public static final double MOTER_DAMAGE = 0.5;
+	public static final double MOTER_RANGE = 0;
+	public static final double MOTER_SHOOTSPEED = 0;
 
 	
 	//public static Monsters SPIDER = new Spider(new Vector2(0.3,0.3), hero.getPosition());

@@ -30,6 +30,7 @@ public abstract class Monsters extends Living_Creature {
 		//Monster Spite
 		StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(),
 						getSize().getX(), getSize().getY(), 0);
+		//g.drawImage(animation.getSprite(), x, y, null);
 		
 	}
 	
@@ -143,6 +144,9 @@ public abstract class Monsters extends Living_Creature {
 		this.destination = destination;
 	}
 	
+	public boolean isMoving() {
+		return freeze==0;
+	}
 //--CONTROL---------------------------------------------
 
 	public void goUpNext()
