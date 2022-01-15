@@ -22,7 +22,7 @@ public class Main
 		initializeDisplay();
 
 		// Main loop of the game
-		while (!world.gameOver())
+		while (!monde.gameOver())
 		{
 			monde.refreshDungeon();
 			//world.processOneStep();

@@ -46,6 +46,8 @@ public class GameWorld
 
 	public boolean gameOver()
 	{
+		if(hero.getRedHeart()==0)
+			return true;
 		return false;
 	}
 

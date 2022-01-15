@@ -27,6 +27,10 @@ public class Dungeon {
 		currentGameWorld.processUserInput();
 		currentGameWorld.updateGameObjects();
 	}
+	
+	public boolean gameOver() {
+		return currentGameWorld.gameOver();
+	}
 
 	public void initalise() {
 		worldMap.newGame();
