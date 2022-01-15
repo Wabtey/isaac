@@ -13,12 +13,14 @@ public class Fly extends Monsters {
 	
 	public void updateGameObject(Hero hero)
 	{
+		super.updateGameObject(hero);
 		if (getFreezeTime() == 0) 
 			moveTo(hero.getPosition());
 		else decreaseFreezeTime();
 	}
 
-	private void moveTo(Vector2 cible) {
+	@Override
+	protected void moveTo(Vector2 cible) {
 		double posx =(double) Math.round(this.getPosition().getX()*10)/10;
 		double posy =(double) Math.round(this.getPosition().getY()*10)/10;
 		double cibx =(double) Math.round(cible.getX()*10)/10;
@@ -41,7 +43,7 @@ public class Fly extends Monsters {
 		}else {
 			goDownNext();
 		}
-		
+		System.out.println(new Vector2(posx,posy) + "||" + new Vector2(cibx,ciby));
 		Vector2 normalizedDirection = getNormalizedDirection();
 		Vector2 positionAfterMoving = getPosition().addVector(normalizedDirection);
 		setPosition(positionAfterMoving);

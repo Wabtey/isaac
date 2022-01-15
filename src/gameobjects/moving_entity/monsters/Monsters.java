@@ -1,7 +1,10 @@
 package gameobjects.moving_entity.monsters;
 
+import javax.swing.text.Position;
+
 import gameobjects.moving_entity.Hero;
 import gameobjects.moving_entity.Living_Creature;
+import gameobjects.obstacles.Obstacle;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.RoomInfos;
@@ -23,9 +26,6 @@ public abstract class Monsters extends Living_Creature {
 	public void updateGameObject(Hero hero)
 	{
 		super.updateGameObject();
-		if (freeze == 0) 
-			moveTo(destination);
-		else freeze --;
 	}
 	
 	public void drawGameObject()
@@ -52,40 +52,7 @@ public abstract class Monsters extends Living_Creature {
 		return new Vector2(rpx, rpy);
 	}
 		
-		private void moveTo(Vector2 cible) {
-			double posx =(double) Math.round(this.getPosition().getX()*10)/10;
-			double posy =(double) Math.round(this.getPosition().getY()*10)/10;
-			double cibx =(double) Math.round(cible.getX()*10)/10;
-			double ciby =(double) Math.round(cible.getY()*10)/10;
-			if (posx==cibx && posy==ciby) {
-				this.destination = chooseRandomPoint();
-				this.freeze = 40; //TODO valeur magique again
-				return;
-			}
-			else if (posx<cibx && posy<ciby) { //pour bouger en diagonale
-				goRightNext();goUpNext();
-			}else if (posx<cibx && posy>ciby) {
-				goRightNext();goDownNext();
-			}else if(posx>cibx && posy<ciby) {
-				goLeftNext();goUpNext();
-			}else if (posx>cibx && posy>ciby) {
-				goLeftNext();goDownNext();
-			}
-			if (posx<cibx) {
-				goRightNext();
-			}else if (posx>cibx) {
-				goLeftNext();
-			}else if (posy<ciby){
-				goUpNext();
-			}else {
-				goDownNext();
-			}
-			Vector2 normalizedDirection = getNormalizedDirection();
-			Vector2 positionAfterMoving = getPosition().addVector(normalizedDirection);
-			setPosition(positionAfterMoving);
-			this.setDirection(new Vector2());
-		}
-		
+	abstract void moveTo(Vector2 cible);
 
 	public void goUpNext()
 	{
@@ -108,8 +75,6 @@ public abstract class Monsters extends Living_Creature {
 	}
 	
 	public void addFreezeTime(int freezeTime) {
-		if(freeze==0)
-			freeze += freezeTime;
 		if (freezeTime == 0)
 			freeze += freezeTime;
 	}

@@ -28,7 +28,7 @@ public class CreaturesInfos
 //--SPIDER---------------------------
 	public static Vector2 SPIDER_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.3);
 	public static final double SPIDER_HEALTH = 6.5;
-	public static final double SPIDER_SPEED = 0.03;
+	public static final double SPIDER_SPEED = 0.01;
 	public static final double SPIDER_TEARRATE = 0;
 	public static final double SPIDER_DAMAGE = 0.5;
 	public static final double SPIDER_RANGE = 0;
@@ -37,7 +37,7 @@ public class CreaturesInfos
 //--FLY---------------------------
 	public static Vector2 FLY_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.3);	
 	public static final double FLY_HEALTH = 5;
-	public static final double FLY_SPEED = 0.005;
+	public static final double FLY_SPEED = 0.01;
 	public static final double FLY_TEARRATE = 0;
 	public static final double FLY_DAMAGE = 0.5;
 	public static final double FLY_RANGE = 0;
