@@ -7,6 +7,7 @@ import java.util.List;
 import gameobjects.Door;
 import gameobjects.moving_entity.Hero;
 import gameobjects.moving_entity.Projectile;
+import gameobjects.moving_entity.monsters.Fly;
 import gameobjects.moving_entity.monsters.Monsters;
 import gameobjects.moving_entity.monsters.Spider;
 import gameobjects.obstacles.Obstacle;
@@ -32,8 +33,9 @@ public class Room {
 
 		this.monsters = new LinkedList<Monsters>();
 		// The destination must be random (spider pattenr move)
-		this.monsters.add(new Spider(new Vector2(0.3, 0.3), hero.getPosition())); // CreaturesInfos.SPIDER
-
+		//this.monsters.add(new Spider(new Vector2(0.3, 0.3), hero.getPosition())); // CreaturesInfos.SPIDER
+		this.monsters.add(new Fly(new Vector2(0.3, 0.3), hero.getPosition()));
+		
 		// carefull about scaling
 		obstacles.add(new Obstacle(new Vector2(0.5, 0), RoomInfos.WALL_DOWN[1], RoomInfos.WALL_DOWN[0])); // BAS
 		obstacles.add(new Obstacle(new Vector2(0.5, 1), RoomInfos.WALL_UP[1], RoomInfos.WALL_UP[0])); // HAUT
@@ -60,7 +62,7 @@ public class Room {
 	private void makeMonstersPlay() {
 		for (Monsters monster : monsters) {
 			Vector2 lastPosition = monster.getPosition();
-			monster.updateGameObject(); // DO NOT MOVE you monster
+			monster.updateGameObject(hero); // DO NOT MOVE you monster
 			if (inAnObstacle(monster.getPosition()))
 				monster.setPosition(lastPosition);
 		}

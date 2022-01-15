@@ -2,13 +2,14 @@ package gameobjects.moving_entity.monsters;
 
 import javax.swing.text.Position;
 
+import gameobjects.moving_entity.Hero;
 import gameobjects.moving_entity.Living_Creature;
 import gameobjects.obstacles.Obstacle;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.RoomInfos;
 
-public class Monsters extends Living_Creature {
+public abstract class Monsters extends Living_Creature {
 	private Vector2 destination;
 	private int freeze; //freezing time and hero invincibility time are different
 	
@@ -22,10 +23,9 @@ public class Monsters extends Living_Creature {
 		
 	}
 	
-	public void updateGameObject()
+	public void updateGameObject(Hero hero)
 	{
 		super.updateGameObject();
-		System.out.println(freeze);
 		if (freeze == 0) 
 			moveTo(destination);
 		else freeze --;
@@ -60,7 +60,6 @@ public class Monsters extends Living_Creature {
 			double posy =(double) Math.round(this.getPosition().getY()*10)/10;
 			double cibx =(double) Math.round(cible.getX()*10)/10;
 			double ciby =(double) Math.round(cible.getY()*10)/10;
-			System.out.println("=>"+ posx + "|" + posy + "|"+ cibx + "|"+ciby + "|");
 			if (posx==cibx && posy==ciby) {
 				this.destination = chooseRandomPoint();
 				this.freeze = 40; //TODO valeur magique again
@@ -116,6 +115,10 @@ public class Monsters extends Living_Creature {
 			freeze += freezeTime;
 	}
 	
+	public void decreaseFreezeTime() {
+		this.freeze --; 
+	}
+	
 
 	private Vector2 getNormalizedDirection()
 	{
@@ -130,6 +133,10 @@ public class Monsters extends Living_Creature {
 
 	public void setDestination(Vector2 destination) {
 		this.destination = destination;
+	}
+	
+	public int getFreezeTime(){
+		return freeze;
 	}
 	
 

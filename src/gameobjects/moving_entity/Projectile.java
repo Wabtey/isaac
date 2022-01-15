@@ -24,7 +24,6 @@ public class Projectile {
 	
 	protected void move()
 	{
-		System.out.println(proj_direction);
 		Vector2 normalizedDirection = getNormalizedDirection();
 		Vector2 positionAfterMoving = getProjPosition().addVector(normalizedDirection);
 		setProjPosition(positionAfterMoving);

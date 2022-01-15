@@ -34,13 +34,6 @@ public class GameWorld
 	public void initalise() {
 		createDoors();
 		createRoom();
-		for (int i = 0; i<=doors.size()-1 ;i++) {
-			System.out.println(doors.get(i).getCoordonnees() + " : " + doors.get(i).getNextRoom());
-		}
-		System.out.println("coter room:");
-		for (int i = 0; i<=currentRoom.getDoors().size()-1 ;i++) {
-			System.out.println(currentRoom.getDoors().get(i).getCoordonnees() + " : " + currentRoom.getDoors().get(i).getNextRoom());
-		}
 		}
 
 	public void processUserInput()

@@ -33,6 +33,14 @@ public class CreaturesInfos
 	public static final double SPIDER_DAMAGE = 0.5;
 	public static final double SPIDER_RANGE = 0;
 	public static final double SPIDER_SHOOTSPEED = 0;
+//--FLY-----------------------------
+	public static Vector2 FLY_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.3);
+	public static final double FLY_HEALTH = 5;
+	public static final double FLY_SPEED = 0.03;
+	public static final double FLY_TEARRATE = 0;
+	public static final double FLY_DAMAGE = 0.5;
+	public static final double FLY_RANGE = 0;
+	public static final double FLY_SHOOTSPEED = 0;
 	
 	//public static Monsters SPIDER = new Spider(new Vector2(0.3,0.3), hero.getPosition());
 	

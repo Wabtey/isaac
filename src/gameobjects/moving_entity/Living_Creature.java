@@ -82,8 +82,6 @@ public abstract class Living_Creature {
 			double ticksToWait = 40/getTearRate();
 			reload((int)ticksToWait);
 			//CreaturesInfos.convertTearRateToTicks(getTearRate())
-			System.out.println("X :"+getOrientation().getX());
-			System.out.println("Y :"+getOrientation().getY());
 		}
 	}
 	
