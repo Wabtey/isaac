@@ -36,7 +36,7 @@ public class Room
 		this.monsters = new LinkedList<Monsters>();
 		// The destination must be random (spider pattenr move)
 		this.monsters.add(new Spider(new Vector2(0.3, 0.3), hero.getPosition())); // CreaturesInfos.SPIDER
-		//this.monsters.add(new Fly(new Vector2(0.3, 0.3), hero.getPosition()));
+		this.monsters.add(new Fly(new Vector2(0.3, 0.3), hero.getPosition()));
 		this.monsters.add(new Spider(new Vector2(0.6, 0.6), hero.getPosition()));
 
 		// carefull about scaling
@@ -80,9 +80,9 @@ public class Room
 	 * need to be deleted and then send the new list to Hero class
 	 */
 	protected void updateProjectile() {
-		ArrayList<Projectile> projectile_delete = new ArrayList<Projectile>();
-		projectile = hero.getProjectile();
-		for (Projectile p : projectile) {
+		ArrayList<Projectile> projectile_delete = new ArrayList<Projectile>(projectile.size());
+		ArrayList<Projectile> projectiles = hero.getProjectile();
+		for (Projectile p : projectiles) {
 			if (inAnObstacle(p.getProjPosition())) {
 				projectile_delete.add(p);
 			}
@@ -105,12 +105,12 @@ public class Room
 	//TODO implementer tout type de collision (cac et projectile)
 	private void checkCollision(){
 		checkRangeCollision();
-		checkCloseCollision();
+		//checkCloseCollision();
 	}
 	
 	private void checkCloseCollision() {
-		if (collisionWithMonster(getHero().getPosition(), getHero().getSize()) != null) {
-			Monsters contactMonster = collisionWithMonster(getHero().getPosition(), getHero().getSize());
+		Monsters contactMonster = collisionWithMonster(getHero().getPosition(), getHero().getSize());
+		if (contactMonster != null) {
 			contactMonster.addFreezeTime(20);
 			getHero().getHitted(contactMonster.getDamage());
 			getHero().addInvincibilityFrames(CreaturesInfos.HERO_INVINCIBILITY);
@@ -119,14 +119,15 @@ public class Room
 	
 	
 	private void checkRangeCollision() {
-		ArrayList<Monsters> monster_delete = new ArrayList<Monsters>();
-		ArrayList<Projectile> projectile_delete = new ArrayList<Projectile>();
-		ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
+		ArrayList<Monsters> monster_delete = new ArrayList<Monsters>(monsters.size());
+		ArrayList<Projectile> projectile_delete = new ArrayList<Projectile>(projectile.size());
+		ArrayList<Projectile> projectiles = new ArrayList<Projectile>(projectile.size());
 		projectiles.addAll(getHero().getProjectile());
 		if (!projectiles.isEmpty()) {
 			for (Projectile projectile : projectiles) {
-				if (collisionWithMonster(projectile.getProjPosition(), projectile.getProjSize()) != null) {
-					monster_delete.add(collisionWithMonster(projectile.getProjPosition(), projectile.getProjSize()));
+				Monsters monsterTouched = collisionWithMonster(projectile.getProjPosition(), (projectile.getProjSize()));
+				if (monsterTouched!= null) {
+					monster_delete.add(monsterTouched);
 					projectile_delete.add(projectile);
 				}
 			
@@ -152,9 +153,8 @@ public class Room
 			double monX1 = monster.getPosition().getX() + (monster.getSize().getX() / 2);
 			double monY0 = monster.getPosition().getY() - (monster.getSize().getY() / 2);
 			double monY1 = monster.getPosition().getY() + (monster.getSize().getY() / 2);
-			if (posX0 > monX1 || posX1 <= monX0 || posY0 >= monY1 || posY1 <= monY0)
-				return null;// pas de collision
-			guilty = monster;
+			if (!(posX0 > monX1 || posX1 <= monX0 || posY0 >= monY1 || posY1 <= monY0))
+				guilty = monster;
 		}
 		return guilty;
 	}

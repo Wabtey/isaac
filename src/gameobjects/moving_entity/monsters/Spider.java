@@ -34,11 +34,9 @@ public class Spider extends Monsters{
 	
 	private void move(Vector2 victime) {
 		if (inRange(victime) && Random.SuccessByPercentage(80)) {
-			System.out.println("je te suis");
 			moveTo(victime);
 		}
 		else {
-			System.out.println("je te suis pas");
 			moveToRandom(getDestination());
 		}
 	}
