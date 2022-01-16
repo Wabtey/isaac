@@ -1,6 +1,6 @@
 package gameloop;
 
-import Dungeon.Dungeon;
+import dungeon.Dungeon;
 import gameWorld.GameWorld;
 import gameobjects.moving_entity.Hero;
 import libraries.StdDraw;
