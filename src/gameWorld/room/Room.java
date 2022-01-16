@@ -41,7 +41,7 @@ public abstract class Room
 
 		this.monsters.add(new Spider(new Vector2(0.3, 0.3), hero.getPosition())); // CreaturesInfos.SPIDER
 		this.monsters.add(new Fly(new Vector2(0.3, 0.3), hero.getPosition()));
-		//this.monsters.add(new Spider(new Vector2(0.6, 0.6), hero.getPosition()));
+		this.monsters.add(new Spider(new Vector2(0.6, 0.6), hero.getPosition()));
 		this.monsters.add(new Moter(new Vector2(0.6, 0.6), hero.getPosition()));
 
 		obstacles.add(RoomInfos.WALL_DOWN);
@@ -78,12 +78,12 @@ public abstract class Room
 		if (inAnObstacle(hero.getPosition()))
 			hero.setPosition(lastPosition);
 	}
-	
+
 //--PROJECTILES-------------------------------------------------
-	
+
 	/**
-	 * Update the Room with the projectile in the Hero class, check if the projectile
-	 * need to be deleted and then send the new list to Hero class
+	 * Update the Room with the projectile in the Hero class, check if the
+	 * projectile need to be deleted and then send the new list to Hero class
 	 */
 	protected void updateProjectile() {
 		updateHeroProjectiles();
@@ -301,7 +301,7 @@ public abstract class Room
 		}
 		for (Monsters monster : monsters) {
 			monster.drawGameObject();
-			//monster.drawImage(animation.getSprite(), x, y, null);
+			// monster.drawImage(animation.getSprite(), x, y, null);
 		}
 		
 //		//--HITBOX DREW---------------------
