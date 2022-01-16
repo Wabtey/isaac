@@ -64,6 +64,7 @@ public abstract class Living_Creature {
 			tear.move();
 		}
 		isReloading();
+		System.out.println(tears);
 	}
 	
 	protected void move()
@@ -304,5 +305,9 @@ public abstract class Living_Creature {
 	
 	public int getInvincibilityFrames() {
 		return invincibility;
+	}
+	
+	public void addProjectile(Projectile projectile) {
+		tears.add(projectile);
 	}
 }

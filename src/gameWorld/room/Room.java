@@ -87,6 +87,24 @@ public class Room
 	 * need to be deleted and then send the new list to Hero class
 	 */
 	protected void updateProjectile() {
+		updateHeroProjectiles();
+		updateMonstersProjectiles();
+	}
+	
+	private void updateMonstersProjectiles() {
+		ArrayList<Projectile> projectile_delete = new ArrayList<Projectile>(projectile.size());
+		for (Monsters monster : monsters) {
+			ArrayList<Projectile> projectiles = monster.getProjectile();
+			for (Projectile mp : projectiles) {
+				if (inAnObstacle(mp.getProjPosition())) {
+					projectile_delete.add(mp);
+				}
+			}
+			monster.removeProjectile(projectile_delete);
+		}
+	}
+	
+	private void updateHeroProjectiles(){
 		ArrayList<Projectile> projectile_delete = new ArrayList<Projectile>(projectile.size());
 		ArrayList<Projectile> projectiles = hero.getProjectile();
 		for (Projectile p : projectiles) {
