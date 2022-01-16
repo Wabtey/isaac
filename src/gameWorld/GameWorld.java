@@ -6,7 +6,7 @@ import java.util.List;
 import gameWorld.room.Room;
 import gameWorld.room.roomPattern.RoomC1;
 import gameWorld.room.roomPattern.RoomC2;
-import gameWorld.room.specialsRoom.Boss;
+import gameWorld.room.specialsRoom.BossRoom;
 import gameWorld.room.specialsRoom.Shop;
 import gameWorld.room.specialsRoom.Spawn;
 import gameobjects.Door;
@@ -58,6 +58,7 @@ public class GameWorld
 	public void updateGameObjects()
 	{
 		currentRoom.updateRoom();
+		System.out.println(currentRoom.getClass());
 	}
 	
 	
@@ -100,7 +101,7 @@ public class GameWorld
 	public void changeTypeOfRoom(String type) {
 		switch (type) {
 		case "spawn" : currentRoom = new Spawn(hero, doors);break;
-		case "boss" : currentRoom = new Boss(hero, doors);break;
+		case "boss" : currentRoom = new BossRoom(hero, doors);break;
 		case "shop" : currentRoom = new Shop(hero, doors);break;
 		default : currentRoom = new RoomC1(hero,doors);
 		}
@@ -181,7 +182,7 @@ public class GameWorld
 	}
 	
 	public boolean isASpecialRoom() {
-		return (currentRoom instanceof Spawn || currentRoom instanceof Boss ||currentRoom instanceof Shop );
+		return (currentRoom instanceof Spawn || currentRoom instanceof BossRoom ||currentRoom instanceof Shop );
 	}
 	
 	public Room getCurrentRoom() {
