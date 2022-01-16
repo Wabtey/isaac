@@ -39,8 +39,11 @@ public class Projectile {
 	
 	public void drawGameObject()
 	{
-		StdDraw.picture(getProjPosition().getX(), getProjPosition().getY(), getProjImagePath(), getProjSize().getX(), getProjSize().getY(),
-				0);
+		StdDraw.picture(getProjPosition().getX(),
+						getProjPosition().getY(),
+						getProjImagePath(),
+						getProjSize().getX(),
+						getProjSize().getY());
 	}
 
 	

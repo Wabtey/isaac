@@ -45,7 +45,7 @@ public class Door {
 	
 	public void drawGameObject() {
 		StdDraw.picture(getCoordonnees().getX(), getCoordonnees().getY(), (open==true)?ImagePaths.OPENED_DOOR:ImagePaths.CLOSED_DOOR,
-				0.1, 0.1, 0);
+				0.1, 0.1);
 		
 	}
 	

@@ -67,47 +67,47 @@ public class Spider extends Monsters{
 		switch (state) {
 		case 0:
 			StdDraw.picture(getPosition().getX(), getPosition().getY(), ImagePaths.SPIDER, getSize().getX(),
-					getSize().getY(), 0);
+					getSize().getY());
 			break;
 			
 		case 1:
 			StdDraw.picture(getPosition().getX(), getPosition().getY(), ImagePaths.SPIDER_OFF, getSize().getX(),
-					getSize().getY(), 0);
+					getSize().getY());
 			break;
 			
 		case 2:
 			StdDraw.picture(getPosition().getX(), getPosition().getY(), ImagePaths.SPIDER_0, getSize().getX(),
-					getSize().getY(), 0);
+					getSize().getY());
 			break;		
 
 		case 3:
 			StdDraw.picture(getPosition().getX(), getPosition().getY(), ImagePaths.SPIDER_1, getSize().getX(),
-					getSize().getY(), 0);
+					getSize().getY());
 			break;
 			
 		case 4:
 			StdDraw.picture(getPosition().getX(), getPosition().getY(), ImagePaths.SPIDER_2, getSize().getX(),
-					getSize().getY(), 0);
+					getSize().getY());
 			break;
 			
 		case 5:
 			StdDraw.picture(getPosition().getX(), getPosition().getY(), ImagePaths.SPIDER_3, getSize().getX(),
-				getSize().getY(), 0);
+				getSize().getY());
 			break;
 			
 		case 6:
 			StdDraw.picture(getPosition().getX(), getPosition().getY(), ImagePaths.SPIDER_4, getSize().getX(),
-					getSize().getY(), 0);
+					getSize().getY());
 			break;
 		
 		case 7:
 			StdDraw.picture(getPosition().getX(), getPosition().getY(), ImagePaths.SPIDER_5, getSize().getX(),
-					getSize().getY(), 0);
+					getSize().getY());
 			break;
 			
 		default:
 			StdDraw.picture(getPosition().getX(), getPosition().getY(), ImagePaths.SPIDER_0, getSize().getX(),
-					getSize().getY(), 0);
+					getSize().getY());
 			state = 0;
 			break;
 		}

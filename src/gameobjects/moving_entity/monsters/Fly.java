@@ -32,20 +32,20 @@ public class Fly extends Monsters {
 	public void drawGameObject() {
 		switch (state) {
 			case 0: StdDraw.picture(getPosition().getX(), getPosition().getY(), ImagePaths.FLY_0,
-					getSize().getX(), getSize().getY(), 0);
+					getSize().getX(), getSize().getY());
 					break;
 			case 1: StdDraw.picture(getPosition().getX(), getPosition().getY(), ImagePaths.FLY_1,
-					getSize().getX(), getSize().getY(), 0);
+					getSize().getX(), getSize().getY());
 					break;
 			case 2: StdDraw.picture(getPosition().getX(), getPosition().getY(), ImagePaths.FLY_2,
-					getSize().getX(), getSize().getY(), 0);
+					getSize().getX(), getSize().getY());
 					break;
 				
 			case 3: StdDraw.picture(getPosition().getX(), getPosition().getY(), ImagePaths.FLY_3,
-					getSize().getX(), getSize().getY(), 0);
+					getSize().getX(), getSize().getY());
 					break;
 			default:StdDraw.picture(getPosition().getX(), getPosition().getY(), ImagePaths.FLY_0,
-					getSize().getX(), getSize().getY(), 0);
+					getSize().getX(), getSize().getY());
 					state=0;
 					break;
 		}

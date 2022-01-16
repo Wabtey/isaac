@@ -25,12 +25,12 @@ public abstract class Monsters extends Living_Creature {
 		super.updateGameObject();
 	}
 	
+	//Override by animation
 	public void drawGameObject()
 	{
 		//Monster Spite
 		StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(),
-						getSize().getX(), getSize().getY(), 0);
-		//g.drawImage(animation.getSprite(), x, y, null);
+						getSize().getX(), getSize().getY());
 		
 	}
 	
