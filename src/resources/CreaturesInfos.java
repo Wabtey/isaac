@@ -34,6 +34,7 @@ public class CreaturesInfos
 	public static final double SPIDER_DAMAGE = 0.5;
 	public static final double SPIDER_RANGE = 0;
 	public static final double SPIDER_SHOOTSPEED = 0;
+	public static final int SPIDERT_RELOADTIME = 20;
 	public static final Vector2 SPIDER_VISION = new Vector2(0.1,0.15);
 	
 //--FLY---------------------------

@@ -304,6 +304,10 @@ public abstract class Living_Creature {
 		return reloadTime;
 	}
 	
+	public void setReloadTime(int reloadTime) {
+		this.reloadTime = reloadTime;
+	}
+	
 	public int getInvincibilityFrames() {
 		return invincibility;
 	}

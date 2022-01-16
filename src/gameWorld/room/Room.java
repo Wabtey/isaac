@@ -267,6 +267,12 @@ public class Room
 		for(Projectile tear:tears) {
 			tear.drawGameObject();
 		}
+		for(Monsters monster: monsters) {
+			ArrayList<Projectile> pewpew = monster.getProjectile();
+			for(Projectile pew:pewpew) {
+				pew.drawGameObject();
+			}
+		}
 		for(Monsters monster:monsters) {
 			monster.drawGameObject();
 			//monster.drawImage(animation.getSprite(), x, y, null);
