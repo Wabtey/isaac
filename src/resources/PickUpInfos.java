@@ -15,5 +15,5 @@ public class PickUpInfos {
 	public static final int BLUE_HEART_DROP = 30; //percenatge
 	public static final int HALF_HEART_DROP = 25; //whatever its color
 	
-	public static final Vector2 SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.7);
+	public static final Vector2 SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.7*DisplaySettings.SCALE);
 }

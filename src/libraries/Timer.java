@@ -29,7 +29,7 @@ public class Timer
 			if (print)
 			{
 				System.out.println("Warning, your main loop took " + durationLoopMs + "ms to run (max for "
-						+ DisplaySettings.FRAME_PER_SECOND + "fps is "
+						+ DisplaySettings.FPS + "fps is "
 						+ DisplaySettings.MILLISECONDS_PER_FRAME_TO_MAINTAIN_FPS + ")");
 			}
 		}

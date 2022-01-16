@@ -22,7 +22,7 @@ import resources.DoorInfos;
 import resources.ImagePaths;
 import resources.RoomInfos;
 
-public class Room
+public abstract class Room
 {
 	private Hero hero;
 	private ArrayList<Door> doors ;
@@ -44,15 +44,14 @@ public class Room
 		//this.monsters.add(new Spider(new Vector2(0.6, 0.6), hero.getPosition()));
 		this.monsters.add(new Moter(new Vector2(0.6, 0.6), hero.getPosition()));
 
-		// carefull about scaling
-		obstacles.add(new Obstacle(new Vector2(0.5, 0), RoomInfos.WALL_DOWN[1], RoomInfos.WALL_DOWN[0])); // BAS
-		obstacles.add(new Obstacle(new Vector2(0.5, 1), RoomInfos.WALL_UP[1], RoomInfos.WALL_UP[0])); // HAUT
-		obstacles.add(new Obstacle(new Vector2(0, 0.5), RoomInfos.WALL_LEFTnRIGHT[1], RoomInfos.WALL_LEFTnRIGHT[0]));// GAUCHE
-		obstacles.add(new Obstacle(new Vector2(1, 0.5), RoomInfos.WALL_LEFTnRIGHT[1], RoomInfos.WALL_LEFTnRIGHT[0]));// DROIT
+		obstacles.add(RoomInfos.WALL_DOWN);
+		obstacles.add(RoomInfos.WALL_UP);
+		obstacles.add(RoomInfos.WALL_LEFT);
+		obstacles.add(RoomInfos.WALL_RIGHT);
+		
 		for (Door door : doors) {
-			if (door != null) {
+			if (door != null)
 				this.doors.add(door);
-			}
 		}
 	}
 	

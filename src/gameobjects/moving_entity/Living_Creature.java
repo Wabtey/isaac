@@ -4,6 +4,8 @@ package gameobjects.moving_entity;
 import java.util.ArrayList;
 import libraries.Keybinding.SpecialKeys;
 import libraries.Vector2;
+import resources.CreaturesInfos;
+import resources.DisplaySettings;
 import resources.ImagePaths;
 
 public abstract class Living_Creature {
@@ -78,16 +80,6 @@ public abstract class Living_Creature {
 
 //--COMBAT CODE-------------------------------------------------
 	
-	public void shoot() {
-		if(getReloadTime()==0) {
-			tears.add(new Projectile(getPosition(),getOrientation(),new Vector2(getSize().getX()/2,getSize().getY()/2),getDamage(), getShootSpeed(),ImagePaths.TEAR));//TODO enlever la valeur magique
-			double ticksToWait = 40/getTearRate();
-			reload((int)ticksToWait);
-			//CreaturesInfos.convertTearRateToTicks(getTearRate())
-
-		}
-	}
-	
 	public void shoot(SpecialKeys orientation)
 	{
 		//TODO Concider diagonals
@@ -101,8 +93,8 @@ public abstract class Living_Creature {
 			if(orientation == SpecialKeys.RIGHT)
 				shootOrientation = new Vector2(0.1, 0.0);
 			
-			tears.add(new Projectile(getPosition(),shootOrientation,new Vector2(getSize().getX()/2,getSize().getY()/2),getDamage(), getShootSpeed(), ImagePaths.TEAR));//TODO enlever la valeur magique
-			double ticksToWait = 40/getTearRate();
+			tears.add(new Projectile(getPosition(), shootOrientation, CreaturesInfos.TEAR_SIZE, getDamage(), getShootSpeed(), ImagePaths.TEAR));
+			double ticksToWait = DisplaySettings.FPS/getTearRate();
 			reload((int)ticksToWait);
 			//CreaturesInfos.convertTearRateToTicks(getTearRate())
 		}

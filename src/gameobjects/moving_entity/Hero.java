@@ -15,7 +15,7 @@ public class Hero extends Living_Creature
 	
 	public Hero(Vector2 position, Vector2 size,
 			    double redHeart, double blueHeart, 
-			    double speed, double damage, double tearRate, double range, double shootSpeed,
+			    double speed, double tearRate, double damage, double range, double shootSpeed,
 			    String imagePath) 
 	{
 		super(position, size, redHeart, speed, tearRate, damage, range, shootSpeed, imagePath);

@@ -8,15 +8,18 @@ import libraries.Vector2;
 public class CreaturesInfos
 {
 
+//--TEAR--------------------------
+	public static final Vector2 TEAR_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.35*DisplaySettings.SCALE);
+
 //--ISAAC-------------------------
 	public static final int HERO_INVINCIBILITY = 20; //can change with a trinket (supp final when implementing)
 	//--STARTER-------------------
-	public static Vector2 ISAAC_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.7);
+	public static Vector2 ISAAC_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.7*DisplaySettings.SCALE);
 	public static final double ISAAC_REDHEART = 4;
 	public static final double ISAAC_BLUEHEART = 3;
-	public static final double ISAAC_SPEED = 0.01;
-	public static final double ISAAC_TEARRATE = 2.5;
-	public static final double ISAAC_DAMAGE = 3.5;
+	public static final double ISAAC_SPEED = 0.01*DisplaySettings.SCALE;
+	public static final double ISAAC_TEARRATE = 3.5*DisplaySettings.SCALE;
+	public static final double ISAAC_DAMAGE = 6;
 	public static final double ISAAC_RANGE = 0.5;
 	public static final double ISAAC_SHOTSPEED = 0.03;
 	
@@ -26,7 +29,7 @@ public class CreaturesInfos
 		    							ImagePaths.ISAAC);
 	
 //--SPIDER-------------------------
-	public static Vector2 SPIDER_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.3);
+	public static Vector2 SPIDER_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.3*DisplaySettings.SCALE);
 	public static final int SPIDER_CELLS_NB = 6;
 	public static final double SPIDER_HEALTH = 6.5;
 	public static final double SPIDER_SPEED = 0.02;
@@ -37,7 +40,7 @@ public class CreaturesInfos
 	public static final Vector2 SPIDER_VISION = new Vector2(0.1,0.15);
 	
 //--FLY---------------------------
-	public static Vector2 FLY_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.3);	
+	public static Vector2 FLY_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.3*DisplaySettings.SCALE);	
 	public static final int FLY_CELLS_NB = 4;
 	public static final double FLY_HEALTH = 5;
 	public static final double FLY_SPEED = 0.01;
@@ -47,7 +50,7 @@ public class CreaturesInfos
 	public static final double FLY_SHOOTSPEED = 0;
 	
 //--MOTER-------------------------
-	public static Vector2 MOTER_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.3);
+	public static Vector2 MOTER_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.3*DisplaySettings.SCALE);
 	public static final int MOTER_SRITE_SHEET_SIZE = 26; //each cell is 26px long, 11px high
 	public static final int MOTER_CELLS_NB = 4;
 	public static final double MOTER_HEALTH = 10;

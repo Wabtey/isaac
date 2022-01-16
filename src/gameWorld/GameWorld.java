@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import gameWorld.room.Room;
+import gameWorld.room.roomPattern.RoomC1;
 import gameWorld.room.specialsRoom.Boss;
 import gameWorld.room.specialsRoom.Shop;
 import gameWorld.room.specialsRoom.Spawn;
@@ -83,7 +84,7 @@ public class GameWorld
 	}
 	
 	private void createRoom() {
-		this.currentRoom = new Room(hero,doors);
+		this.currentRoom = new RoomC1(hero,doors);
 	}
 	
 	public void changeTypeOfRoom(String type) {
@@ -91,7 +92,7 @@ public class GameWorld
 		case "spawn" : currentRoom = new Spawn(hero, doors);break;
 		case "boss" : currentRoom = new Boss(hero, doors);break;
 		case "shop" : currentRoom = new Shop(hero, doors);break;
-		default : currentRoom = new Room(hero,doors);
+		default : currentRoom = new RoomC1(hero,doors);
 		}
 	}
 
@@ -115,9 +116,6 @@ public class GameWorld
 		
 		if (StdDraw.isKeyPressed(Controls.goLeft))
 			hero.goLeftNext();
-		
-		if (StdDraw.isKeyPressed(Controls.shoot))
-			hero.shoot();
 		
 		if (StdDraw.isKeyPressed(Controls.up))
 			hero.shoot(SpecialKeys.UP); //param can be Controls.up or a simple String
