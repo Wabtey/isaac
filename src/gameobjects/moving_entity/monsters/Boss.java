@@ -29,7 +29,8 @@ public class Boss extends Monsters {
 		super.updateGameObject(hero);
 		moveTo(hero.getPosition());
 		reSizeBoss();
-		IsAVictory();
+		if (IsAVictory())
+			drawVictory();
 	}
 	
 	private void reSizeBoss() {
@@ -63,5 +64,9 @@ public class Boss extends Monsters {
 			return true;
 		}
 		return false;
+	}
+	
+	public void drawVictory() {
+		
 	}
 }

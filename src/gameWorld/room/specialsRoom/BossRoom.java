@@ -56,11 +56,14 @@ public class BossRoom extends Room {
 		createMonsters();
 
 	}
+
 	
 	//TODO change or implement an another methods to item reward when defeting the boss
 	@Override
 	public PickUp generateReward() {
 		return null;
 	}
+	
+	
 
 }
