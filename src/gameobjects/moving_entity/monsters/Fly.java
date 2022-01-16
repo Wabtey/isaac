@@ -37,30 +37,27 @@ public class Fly extends Monsters {
 			int flyX = (int) Math.round(getPosition().getX() * 100) / 10;
 			int flyY = (int) Math.round(getPosition().getY() * 100) / 10;
 			System.out.println("(" + heroX + ", " + heroY + ") (" + flyX + ", " + flyY + ")");
+			Vector2 shootDirection = new Vector2(0,0);
 			if (heroX == flyX) {
 				if (heroY < flyY) {
-					addProjectile(new Projectile(getPosition(), new Vector2(0.0, -0.1), getSize(), getDamage(),
-							getSpeed() / 10, getImagePath(), false));
-					setReloadTime(CreaturesInfos.SPIDERT_RELOADTIME);
+					shootDirection = new Vector2(0.0, -0.1);
+
 				} else {
-					addProjectile(new Projectile(getPosition(), new Vector2(0.0, 0.1), getSize(), getDamage(),
-							getSpeed() / 10, getImagePath(), false));
-					setReloadTime(CreaturesInfos.SPIDERT_RELOADTIME);
+					shootDirection = new Vector2(0.0, 0.1);
 				}
 
 			}
 			if (heroY == flyY) {
 				if (heroX < flyX) {
-					addProjectile(new Projectile(getPosition(), new Vector2(-1.0, 0.0), getSize(), getDamage(),
-							getSpeed() / 10, getImagePath(),false));
-					setReloadTime(CreaturesInfos.SPIDERT_RELOADTIME);
+					shootDirection = new Vector2(-1.0, 0.0);
 				} else {
-					addProjectile(new Projectile(getPosition(), new Vector2(1.0, 0.0), getSize(), getDamage(),
-							getSpeed() / 10, getImagePath(),false));
-					setReloadTime(CreaturesInfos.SPIDERT_RELOADTIME);
+					shootDirection = new Vector2(1.0, 0.0);
 				}
 
 			}
+			addProjectile(new Projectile(getPosition(), shootDirection, getSize(), getDamage(),
+					CreaturesInfos.FLY_SHOOTSPEED, ImagePaths.BLOOD_TEAR, false));
+			setReloadTime(CreaturesInfos.SPIDERT_RELOADTIME);
 		}
 	
 	// TODO better animation
