@@ -12,6 +12,12 @@ public class Boss extends Room {
 		super(hero, doors);
 		//GameWorld.
 	}
+
+	@Override
+	public void initialise() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }

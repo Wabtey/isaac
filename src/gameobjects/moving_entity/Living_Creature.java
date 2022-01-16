@@ -79,7 +79,7 @@ public abstract class Living_Creature {
 	
 
 //--COMBAT CODE-------------------------------------------------
-	
+
 	public void shoot(SpecialKeys orientation)
 	{
 		//TODO Concider diagonals

@@ -21,6 +21,10 @@ public class Obstacle {
 		return false;
 	}
 	
+	public void drawGameObject() {
+		
+	}
+	
 	
 	//GETTERS SETTERS
 	public Vector2 getPosition() {

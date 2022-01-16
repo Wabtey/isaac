@@ -13,4 +13,10 @@ public class Shop extends Room {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public void initialise() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

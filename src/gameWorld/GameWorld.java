@@ -5,6 +5,7 @@ import java.util.List;
 
 import gameWorld.room.Room;
 import gameWorld.room.roomPattern.RoomC1;
+import gameWorld.room.roomPattern.RoomC2;
 import gameWorld.room.specialsRoom.Boss;
 import gameWorld.room.specialsRoom.Shop;
 import gameWorld.room.specialsRoom.Spawn;
@@ -87,7 +88,13 @@ public class GameWorld
 	}
 	
 	private void createRoom() {
-		this.currentRoom = new RoomC1(hero,doors);
+		int wichRoom = (int) Math.round((Math.random()*2)*10)/10;
+		switch (wichRoom){
+		case 0:this.currentRoom = new RoomC1(hero,doors);break;
+		case 1: this.currentRoom = new RoomC2(hero,doors); break;
+		case 2: this.currentRoom = new RoomC1(hero,doors); break;
+		}
+		currentRoom.initialise();
 	}
 	
 	public void changeTypeOfRoom(String type) {
