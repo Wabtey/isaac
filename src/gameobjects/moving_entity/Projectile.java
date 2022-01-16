@@ -13,7 +13,7 @@ public class Projectile {
 	private boolean isAHeroTear;
 	
 	public Projectile(Vector2 proj_position ,Vector2 proj_direction ,Vector2 proj_size, double proj_degat, double proj_speed,
-			String proj_imagePath, boolean isATear) {
+			String proj_imagePath, boolean isAHeroTear) {
 		this.proj_position = proj_position;
 		this.proj_size = proj_size;
 		this.proj_speed = proj_speed;
