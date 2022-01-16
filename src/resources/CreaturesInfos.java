@@ -60,6 +60,17 @@ public class CreaturesInfos
 	public static final double MOTER_DAMAGE = 0.5;
 	public static final double MOTER_RANGE = 0;
 	public static final double MOTER_SHOOTSPEED = 0;
+	
+//--BOSS-------------------------
+		public static Vector2 BOSS_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(2*DisplaySettings.SCALE);
+		public static final int BOSS_SRITE_SHEET_SIZE = 26; //each cell is 26px long, 11px high
+		public static final int BOSS_CELLS_NB = 4;
+		public static final double BOSS_HEALTH = 50;
+		public static final double BOSS_SPEED = 0.008;
+		public static final double BOSS_TEARRATE = 0;
+		public static final double BOSS_DAMAGE = 0.5;
+		public static final double BOSS_RANGE = 0;
+		public static final double BOSS_SHOOTSPEED = 0;
 
 	
 	//public static Monsters SPIDER = new Spider(new Vector2(0.3,0.3), hero.getPosition());

@@ -51,7 +51,9 @@ public class ImagePaths
 	public static final String MOTER_0 ="images/SpriteSheet/finals/Moter/Moter0.png";	
 	public static final String MOTER_1 ="images/SpriteSheet/finals/Moter/Moter1.png";	
 	public static final String MOTER_2 ="images/SpriteSheet/finals/Moter/Moter2.png";	
-	public static final String MOTER_3 ="images/SpriteSheet/finals/Moter/Moter3.png";	
+	public static final String MOTER_3 ="images/SpriteSheet/finals/Moter/Moter3.png";
+	
+	public static final String BOSS = "images/SpriteSheet/originals/Boss/Swarmer_0.png";
 	
 	public static final String GAPER = "images/Gaper.png";
 

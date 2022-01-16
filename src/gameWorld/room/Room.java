@@ -48,12 +48,6 @@ public abstract class Room
 		this.projectile = new ArrayList<Projectile>(10);//valeur random
 		
 		this.monsters = new LinkedList<Monsters>();
-
-//		this.monsters.add(new Spider(new Vector2(0.3, 0.3), hero.getPosition())); // CreaturesInfos.SPIDER
-//		this.monsters.add(new Fly(new Vector2(0.3, 0.3), hero.getPosition()));
-//		this.monsters.add(new Spider(new Vector2(0.6, 0.6), hero.getPosition()));
-//		this.monsters.add(new Moter(new Vector2(0.6, 0.7), hero.getPosition()));
-
 		obstacles.add(RoomInfos.WALL_DOWN);
 		obstacles.add(RoomInfos.WALL_UP);
 		obstacles.add(RoomInfos.WALL_LEFT);

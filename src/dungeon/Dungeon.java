@@ -133,7 +133,7 @@ public class Dungeon {
 				if (worldMap.getWorldMap().get(i).get(j) == 2) {
 					gameWorlds.get(i).get(j).initalise();
 					gameWorlds.get(i).get(j).changeTypeOfRoom("boss");
-					System.out.println("salle boss creer");
+					gameWorlds.get(i).get(j).getCurrentRoom().initialise();
 				}
 			}
 		}
