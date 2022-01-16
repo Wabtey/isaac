@@ -4,6 +4,7 @@ package gameobjects.moving_entity;
 import java.util.ArrayList;
 import libraries.Keybinding.SpecialKeys;
 import libraries.Vector2;
+import resources.ImagePaths;
 
 public abstract class Living_Creature {
 	private Vector2 position;
@@ -80,7 +81,7 @@ public abstract class Living_Creature {
 	
 	public void shoot() {
 		if(getReloadTime()==0) {
-			tears.add(new Projectile(getPosition(),getOrientation(),new Vector2(getSize().getX()/2,getSize().getY()/2),getDamage(), getShootSpeed(),"images/tear.png"));//TODO enlever la valeur magique
+			tears.add(new Projectile(getPosition(),getOrientation(),new Vector2(getSize().getX()/2,getSize().getY()/2),getDamage(), getShootSpeed(),ImagePaths.TEAR));//TODO enlever la valeur magique
 			double ticksToWait = 40/getTearRate();
 			reload((int)ticksToWait);
 			//CreaturesInfos.convertTearRateToTicks(getTearRate())
@@ -88,7 +89,7 @@ public abstract class Living_Creature {
 		}
 	}
 	
-	public void shootUP(SpecialKeys orientation)
+	public void shoot(SpecialKeys orientation)
 	{
 		//TODO Concider diagonals
 		if(getReloadTime()==0) {
@@ -101,7 +102,7 @@ public abstract class Living_Creature {
 			if(orientation == SpecialKeys.RIGHT)
 				shootOrientation = new Vector2(0.1, 0.0);
 			
-			tears.add(new Projectile(getPosition(),shootOrientation,new Vector2(getSize().getX()/2,getSize().getY()/2),getDamage(), getShootSpeed(), "images/tear.png"));//TODO enlever la valeur magique
+			tears.add(new Projectile(getPosition(),shootOrientation,new Vector2(getSize().getX()/2,getSize().getY()/2),getDamage(), getShootSpeed(), ImagePaths.TEAR));//TODO enlever la valeur magique
 			double ticksToWait = 40/getTearRate();
 			reload((int)ticksToWait);
 			//CreaturesInfos.convertTearRateToTicks(getTearRate())
