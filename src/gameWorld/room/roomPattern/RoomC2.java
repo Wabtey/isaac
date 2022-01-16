@@ -40,7 +40,7 @@ public class RoomC2 extends Room {
 
 	public void createMonsters() {
 		ArrayList<Monsters> monster = new ArrayList<Monsters>();
-		monster.add(new Fly(new Vector2(0.25, 0.4), new Vector2(0.25, 0.4)));
+		monster.add(new Fly(new Vector2(0.48, 0.4), new Vector2(0.25, 0.4)));
 		monster.add(new Fly(new Vector2(0.45, 0.6), new Vector2(0.45, 0.6)));
 		monster.add(new Fly(new Vector2(0.25, 0.68), new Vector2(0.25, 0.68)));
 		monster.add(new Fly(new Vector2(0.70, 0.68), new Vector2(0.70, 0.68)));

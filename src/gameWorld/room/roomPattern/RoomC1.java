@@ -45,7 +45,7 @@ public class RoomC1 extends Room{
 	private void createMonsters() {
 		ArrayList<Monsters> monster = new ArrayList<Monsters>();
 		monster.add(new Spider(new Vector2(0.25,0.5), new Vector2(0.25,0.5)));
-		monster.add(new Moter(new Vector2(0.4,0.5), new Vector2(0.4,0.5)) );
+		monster.add(new Moter(new Vector2(0.46,0.5), new Vector2(0.4,0.5)) );
 		monster.add(new Fly(new Vector2(0.7,0.7), getHero().getPosition()));
 		monster.add(new Moter(new Vector2(0.7,0.2),new Vector2(0.7,0.2)));
 		getMonsters().addAll(monster);
