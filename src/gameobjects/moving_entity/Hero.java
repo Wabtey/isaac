@@ -1,5 +1,7 @@
 package gameobjects.moving_entity;
 
+import gameobjects.Item;
+import gameobjects.pickup.*;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
@@ -11,6 +13,10 @@ public class Hero extends Living_Creature
 	private double luck;
 	private double devilDeal;	//chance to spawn a extra room after defeting the boss
 	private double angelRoom;	//between 0.00 and 100.00
+	
+	private int gold;
+	private int bomb;
+	private int key;
 
 	
 	public Hero(Vector2 position, Vector2 size,
@@ -29,6 +35,75 @@ public class Hero extends Living_Creature
 		if (getInvincibilityFrames()>0)
 			decreaseInvincibilityFrames(); ;
 	}
+	
+//--ITEM----------------------------------------------
+	public void takeItem(Item stuff) {
+		//TODO use convert array of (double)stats into current stats
+		//TODO sprite of rising item
+	}
+	
+	
+//--PICKUP--------------------------------------------
+	
+	/**
+	 * 
+	 * @param the PickUp that Hero picked up
+	 * @return true if Hero has taked it, false if it will remain in the room
+	 */
+	public boolean hasPickedUp(PickUp thing) {
+		boolean success = false;
+
+		//TODO implement blue heart
+		if(thing instanceof Heart) {
+			Heart heal = (Heart)thing;
+			if(getRedHeart()+heal.getValue() < heartContainer) {
+				setRedHeart(getRedHeart()+heal.getValue());
+				success = true;
+			}else if(getRedHeart()>= heartContainer) {
+				success = false; //to permit the player to play with the heart (implementing if !success then apply speed+inertie to move the pick
+			}else if(getRedHeart()+heal.getValue() > heartContainer) {
+				setRedHeart(heartContainer); //Full heal
+				success = true;
+			}
+		}
+		
+		if(thing instanceof Coin) {
+			Coin pay = (Coin)thing;
+			if(this.gold+pay.getValue()<99) {
+				this.gold++;
+				success=true;
+			}else {
+				this.gold=99;
+				success=true; //not aloid to play with coin/bomb/key
+			}
+		}
+		
+		if(thing instanceof Key) {
+			if(this.key+1<99) {
+				this.key++;
+				success = true;
+			}else {
+				this.key=99;
+				success = true;
+			}
+
+		}
+			
+		
+		if(thing instanceof Bomb && this.bomb<99) {
+			if(this.bomb+1<99) {
+				this.bomb++;
+				success = true;
+			}else {
+				this.bomb=99;
+				success = true;
+			}
+		}
+		
+		return success;
+	}
+	
+//--HIT-----------------------------------------------
 	
 	public void getHitted(double damage) {
 		if (getInvincibilityFrames()==0) {
@@ -49,6 +124,8 @@ public class Hero extends Living_Creature
 				setRedHeart(getRedHeart()-damage);
 		}
 	}
+
+//--DRAW HERO and HUD----------------------------------
 	
 	public void drawGameObject()
 	{
@@ -148,6 +225,30 @@ public class Hero extends Living_Creature
 
 	public void setAngelRoom(double angelRoom) {
 		this.angelRoom = angelRoom;
+	}
+
+	public int getGold() {
+		return gold;
+	}
+
+	public void setGold(int gold) {
+		this.gold = gold;
+	}
+
+	public int getBomb() {
+		return bomb;
+	}
+
+	public void setBomb(int bomb) {
+		this.bomb = bomb;
+	}
+
+	public int getKey() {
+		return key;
+	}
+
+	public void setKey(int key) {
+		this.key = key;
 	}
 
 }

@@ -70,7 +70,8 @@ public abstract class Room
 		makeMonstersPlay();
 		updateProjectile();
 		checkCollision();
-		
+	
+
 	}
 
 //--HERO--------------------------------------------------------

@@ -16,6 +16,13 @@ public class Heart extends PickUp{
 		generate();
 
 	}
+	
+	public Heart(Vector2 position, String color, double value, String image) {
+		super(position);
+		this.color = color;
+		this.value = value;
+		this.image = image;
+	}
 
 //--GRAPHIC-----------------------------------
 	public void drawGameObject() {
@@ -31,10 +38,9 @@ public class Heart extends PickUp{
 	
 	private void redOrBlue() {
 		if(Random.SuccessByPercentage(PickUpInfos.BLUE_HEART_DROP)) {
-			this.color = PickUpInfos.BLUE_HEART;
-			this.image = ImagePaths.BLUE_HEART_PICKABLE;
+			this.color = PickUpInfos.BLUE_HEART_COLOR;
 		}else
-			this.color = PickUpInfos.RED_HEART;
+			this.color = PickUpInfos.RED_HEART_COLOR;
 			
 	}
 	
@@ -46,14 +52,14 @@ public class Heart extends PickUp{
 	private void entireOrHalf(String color) {
 		
 		if (Random.SuccessByPercentage(PickUpInfos.HALF_HEART_DROP)) {
-			this.value = PickUpInfos.HALF_HEART;
-			if (color == PickUpInfos.BLUE_HEART) {
+			this.value = PickUpInfos.HALF_HEART_VALUE;
+			if (color == PickUpInfos.BLUE_HEART_COLOR) {
 				this.image = ImagePaths.HALF_BLUE_HEART_PICKABLE;
 			} else // atm no other color than red or blue
 				this.image = ImagePaths.HALF_HEART_PICKABLE;
 		} else {
-			this.value = PickUpInfos.FULL_HEART;
-			if (color == PickUpInfos.BLUE_HEART) {
+			this.value = PickUpInfos.FULL_HEART_VALUE;
+			if (color == PickUpInfos.BLUE_HEART_COLOR) {
 				this.image = ImagePaths.BLUE_HEART_PICKABLE;
 			} else
 				this.image = ImagePaths.HEART_PICKABLE;
