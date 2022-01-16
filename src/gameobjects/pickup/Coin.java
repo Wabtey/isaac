@@ -1,5 +1,6 @@
 package gameobjects.pickup;
 
+import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
 import resources.PickUpInfos;
@@ -12,7 +13,6 @@ public class Coin extends PickUp{
 	
 	public Coin(Vector2 position) {
 		super(position);
-		// TODO Auto-generated constructor stub
 		generate();
 	}
 	
@@ -21,6 +21,18 @@ public class Coin extends PickUp{
 		this.value=value;
 		this.image=image;
 	}
+	
+	
+//--DRAW-----------------------------------------
+	
+	public void drawGameObject() {
+		StdDraw.picture(getPosition().getX(), getPosition().getY(), getImage(),
+				getSize().getX(), getSize().getY());
+	}
+
+	
+	
+//--ROOM REWARD DROP-----------------------------
 	
 	private void generate() {
 		whichValue();

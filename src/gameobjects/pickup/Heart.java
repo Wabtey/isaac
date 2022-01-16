@@ -1,5 +1,6 @@
 package gameobjects.pickup;
 
+import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
 import resources.PickUpInfos;
@@ -26,7 +27,8 @@ public class Heart extends PickUp{
 
 //--GRAPHIC-----------------------------------
 	public void drawGameObject() {
-
+		StdDraw.picture(getPosition().getX(), getPosition().getY(), getImage(),
+				getSize().getX(), getSize().getY());
 	}
 	
 	

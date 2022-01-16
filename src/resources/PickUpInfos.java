@@ -38,5 +38,7 @@ public class PickUpInfos {
 	public static final double NICKEL_DROP = 20;//25% mean 1/4 coin is a nickel
 	public static final double DIME_DROP = 5;	//5% mean 1/20 coin is a dime
 	
-	
+	//TODO have to set the position after using this final unless the position is still in the center of the room
+	public static final Coin NICKEL = new Coin(RoomInfos.POSITION_CENTER_OF_ROOM, NICKEL_VALUE, ImagePaths.NICKEL);
+	public static final Coin DIME   = new Coin(RoomInfos.POSITION_CENTER_OF_ROOM, DIME_VALUE, ImagePaths.DIME);
 }

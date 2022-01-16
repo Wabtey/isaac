@@ -23,6 +23,8 @@ import resources.CreaturesInfos;
 import resources.DisplaySettings;
 import resources.DoorInfos;
 import resources.ImagePaths;
+import resources.PickUpInfos;
+import resources.Random;
 import resources.RoomInfos;
 
 public abstract class Room
@@ -32,6 +34,11 @@ public abstract class Room
 	private ArrayList<Obstacle> obstacles;
 	private ArrayList<Projectile> projectile;
 	private LinkedList<Monsters> monsters;
+	private PickUp reward;
+	
+	private boolean isClear;
+	
+	private Vector2 freePosition; //TODO set the freePosition (@see in RoomC1 and RoomC2)
 	
 	public Room(Hero hero, List<Door> doors)
 	{
@@ -56,6 +63,7 @@ public abstract class Room
 			if (door != null)
 				this.doors.add(door);
 		}
+		this.isClear = false;
 	}
 	
 	public abstract void initialise();
@@ -209,6 +217,41 @@ public abstract class Room
 		}
 		monsters.removeAll(toDelete);
 	}
+	
+//--REWARD-----------------------------------------------------
+	
+
+	/**
+	 * this method is override by the special Room to avoid them to have reward
+	 * 
+	 * That percent number is then used to determine the reward given after clearing the room, using the following index:
+	 * 
+     * Nothing (< 0.22, base 22% chance)
+     * A coin (0.22 - 0.37, base 15% chance)
+     * A heart (0.37 - 0.52, base 15% chance)
+     * A key (0.52 - 0.72, base 20% chance)
+     * A bomb (0.72 - 0.87, base 15% chance)
+     * A chest (>0.87) (for now nothing)
+     *
+	 * @return PickUp droped or null
+	 */
+	public PickUp generateReward() {
+		double percent = Random.roomRewardPercentage(getHero().getLuck());
+		PickUp drop = null;
+		if(percent>=0.22 || percent < 0.87) {
+			if (percent<0.37) {
+				drop = new Coin(freePosition); //Generate a Coin, Nickel or Dime 
+			}else if (percent <0.52) {
+				drop = new Heart(freePosition); //Generate a redHeart, half one, BlueHeart or a half one
+			}else if (percent < 0.72) {
+				drop = new Key(freePosition);
+			}else if (percent < 0.87) {
+				drop = new Bomb(freePosition);
+			}
+		}		
+		return drop;
+
+	}
 
 //--OBSTACLES--------------------------------------------------
 
@@ -253,6 +296,10 @@ public abstract class Room
 		if (monsters.isEmpty()) {
 			for (Door door : doors) {
 				door.openDoor();
+				if(!isClear()) {
+					setReward(generateReward());
+					setIsClear(true);
+				}
 			}
 		}
 	}
@@ -292,6 +339,9 @@ public abstract class Room
 
 		for(Door door: doors) {
 			door.drawGameObject();
+		}
+		if(reward!=null) {
+			reward.drawGameObject();
 		}
 		
 		hero.drawGameObject();
@@ -353,6 +403,30 @@ public abstract class Room
 	
 	public LinkedList<Monsters> getMonsters(){
 		return monsters;
+	}
+
+	public PickUp getReward() {
+		return reward;
+	}
+
+	public void setReward(PickUp reward) {
+		this.reward = reward;
+	}
+
+	public boolean isClear() {
+		return isClear;
+	}
+
+	public void setIsClear(boolean isClear) {
+		this.isClear = isClear;
+	}
+
+	public Vector2 getFreePosition() {
+		return freePosition;
+	}
+
+	public void setFreePosition(Vector2 freePosition) {
+		this.freePosition = freePosition;
 	}
 	
 	

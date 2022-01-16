@@ -20,12 +20,13 @@ public class Random {
 	 * 
 	 * That number is then used to determine the reward given after clearing the room, using the following index:
 	 * 
-    Nothing (< 0.22, base 22% chance)
-    A coin (0.22 - 0.37, base 15% chance)
-    A heart (0.37 - 0.52, base 15% chance)
-    A key (0.52 - 0.72, base 20% chance)
-    A bomb (0.72 - 0.87, base 15% chance)
-    A chest (<0.87) (for now nothing)
+     * Nothing (< 0.22, base 22% chance)
+     * A coin (0.22 - 0.37, base 15% chance)
+     * A heart (0.37 - 0.52, base 15% chance)
+     * A key (0.52 - 0.72, base 20% chance)
+     * A bomb (0.72 - 0.87, base 15% chance)
+     * A chest (<0.87) (for now nothing)
+     * 
 	 * @return percentage obtained by the above formula
 	 */
 	public static double roomRewardPercentage(double heroLuck) {
