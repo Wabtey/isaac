@@ -103,7 +103,7 @@ public class GameWorld
 	{
 		
 		currentRoom.drawRoom();
-		if(gameOver())
+		if(gameOver()) //TODO MAKE A PROPER DEATH with item picked, the killer, etc
 			StdDraw.picture(RoomInfos.POSITION_CENTER_OF_ROOM.getX(), RoomInfos.POSITION_CENTER_OF_ROOM.getY(), ImagePaths.LOSE_SCREEN);
 	}
 
