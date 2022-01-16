@@ -21,7 +21,7 @@ public class Fly extends Monsters {
 	public void updateGameObject(Hero hero)
 	{
 		super.updateGameObject(hero);
-		//moveTo(hero.getPosition());
+		moveTo(hero.getPosition());
 		if (getReloadTime()==0)
 			shootHero(hero.getPosition());
 		drawGameObject();
@@ -40,11 +40,11 @@ public class Fly extends Monsters {
 			if (heroX == flyX) {
 				if (heroY < flyY) {
 					addProjectile(new Projectile(getPosition(), new Vector2(0.0, -0.1), getSize(), getDamage(),
-							getSpeed() / 10, getImagePath()));
+							getSpeed() / 10, getImagePath(), false));
 					setReloadTime(CreaturesInfos.SPIDERT_RELOADTIME);
 				} else {
 					addProjectile(new Projectile(getPosition(), new Vector2(0.0, 0.1), getSize(), getDamage(),
-							getSpeed() / 10, getImagePath()));
+							getSpeed() / 10, getImagePath(), false));
 					setReloadTime(CreaturesInfos.SPIDERT_RELOADTIME);
 				}
 
@@ -52,11 +52,11 @@ public class Fly extends Monsters {
 			if (heroY == flyY) {
 				if (heroX < flyX) {
 					addProjectile(new Projectile(getPosition(), new Vector2(-1.0, 0.0), getSize(), getDamage(),
-							getSpeed() / 10, getImagePath()));
+							getSpeed() / 10, getImagePath(),false));
 					setReloadTime(CreaturesInfos.SPIDERT_RELOADTIME);
 				} else {
 					addProjectile(new Projectile(getPosition(), new Vector2(1.0, 0.0), getSize(), getDamage(),
-							getSpeed() / 10, getImagePath()));
+							getSpeed() / 10, getImagePath(),false));
 					setReloadTime(CreaturesInfos.SPIDERT_RELOADTIME);
 				}
 
