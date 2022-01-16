@@ -1,8 +1,10 @@
 package gameobjects.moving_entity.monsters;
 
 import gameobjects.moving_entity.Hero;
+import gameobjects.moving_entity.Projectile;
 import libraries.StdDraw;
 import libraries.Vector2;
+import libraries.Keybinding.SpecialKeys;
 import resources.CreaturesInfos;
 import resources.ImagePaths;
 
@@ -20,11 +22,45 @@ public class Fly extends Monsters {
 	{
 		super.updateGameObject(hero);
 		moveTo(hero.getPosition());
+		if (getReloadTime()==0)
+			shootHero(hero.getPosition());
 		drawGameObject();
 		if(state<CreaturesInfos.FLY_CELLS_NB-1)
 			state+=1;
 		else
 			state=0;
+		}
+	
+		private void shootHero(Vector2 hero) {
+			int heroX = (int) Math.round(hero.getX() * 100) / 10;
+			int heroY = (int) Math.round(hero.getY() * 100) / 10;
+			int flyX = (int) Math.round(getPosition().getX() * 100) / 10;
+			int flyY = (int) Math.round(getPosition().getY() * 100) / 10;
+			System.out.println("(" + heroX + ", " + heroY + ") (" + flyX + ", " + flyY + ")");
+			if (heroX == flyX) {
+				if (heroY < flyY) {
+					addProjectile(new Projectile(getPosition(), new Vector2(0.0, -0.1), getSize(), getDamage(),
+							getSpeed() / 10, getImagePath(), false));
+					setReloadTime(CreaturesInfos.SPIDERT_RELOADTIME);
+				} else {
+					addProjectile(new Projectile(getPosition(), new Vector2(0.0, 0.1), getSize(), getDamage(),
+							getSpeed() / 10, getImagePath(), false));
+					setReloadTime(CreaturesInfos.SPIDERT_RELOADTIME);
+				}
+
+			}
+			if (heroY == flyY) {
+				if (heroX < flyX) {
+					addProjectile(new Projectile(getPosition(), new Vector2(-1.0, 0.0), getSize(), getDamage(),
+							getSpeed() / 10, getImagePath(),false));
+					setReloadTime(CreaturesInfos.SPIDERT_RELOADTIME);
+				} else {
+					addProjectile(new Projectile(getPosition(), new Vector2(1.0, 0.0), getSize(), getDamage(),
+							getSpeed() / 10, getImagePath(),false));
+					setReloadTime(CreaturesInfos.SPIDERT_RELOADTIME);
+				}
+
+			}
 		}
 	
 	// TODO better animation

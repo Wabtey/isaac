@@ -10,15 +10,17 @@ public class Projectile {
 	private double proj_speed;
 	private double proj_degat;
 	private String proj_imagePath;
+	private boolean isAHeroTear;
 	
 	public Projectile(Vector2 proj_position ,Vector2 proj_direction ,Vector2 proj_size, double proj_degat, double proj_speed,
-			String proj_imagePath) {
+			String proj_imagePath, boolean isATear) {
 		this.proj_position = proj_position;
 		this.proj_size = proj_size;
 		this.proj_speed = proj_speed;
 		this.proj_direction = proj_direction;
 		this.proj_degat = proj_degat;
 		this.proj_imagePath = proj_imagePath;
+		this.isAHeroTear = isAHeroTear;
 	}
 	
 	
@@ -79,6 +81,10 @@ public class Projectile {
 	
 	public String getProjImagePath() {
 		return proj_imagePath;
+	}
+	
+	public boolean getIsAHeroTear() {
+		return isAHeroTear;
 	}
 		
 	

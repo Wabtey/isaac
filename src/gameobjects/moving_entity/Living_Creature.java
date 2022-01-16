@@ -93,7 +93,7 @@ public abstract class Living_Creature {
 			if(orientation == SpecialKeys.RIGHT)
 				shootOrientation = new Vector2(0.1, 0.0);
 			
-			tears.add(new Projectile(getPosition(), shootOrientation, CreaturesInfos.TEAR_SIZE, getDamage(), getShootSpeed(), ImagePaths.TEAR));
+			tears.add(new Projectile(getPosition(), shootOrientation, CreaturesInfos.TEAR_SIZE, getDamage(), getShootSpeed(), ImagePaths.TEAR, true));
 			double ticksToWait = DisplaySettings.FPS/getTearRate();
 			reload((int)ticksToWait);
 			//CreaturesInfos.convertTearRateToTicks(getTearRate())
@@ -295,7 +295,15 @@ public abstract class Living_Creature {
 		return reloadTime;
 	}
 	
+	public void setReloadTime(int reloadTime) {
+		this.reloadTime = reloadTime;
+	}
+	
 	public int getInvincibilityFrames() {
 		return invincibility;
+	}
+	
+	public void addProjectile(Projectile projectile) {
+		tears.add(projectile);
 	}
 }
