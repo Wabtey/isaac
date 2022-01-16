@@ -60,20 +60,20 @@ public class Moter extends Monsters{
 	public void drawGameObject() {
 		switch (state) {
 			case 0: StdDraw.picture(getPosition().getX(), getPosition().getY(), ImagePaths.MOTER_0,
-					getSize().getX(), getSize().getY(), 0);
+					getSize().getX(), getSize().getY());
 					break;
 			case 1: StdDraw.picture(getPosition().getX(), getPosition().getY(), ImagePaths.MOTER_1,
-					getSize().getX(), getSize().getY(), 0);
+					getSize().getX(), getSize().getY());
 					break;
 			case 2: StdDraw.picture(getPosition().getX(), getPosition().getY(), ImagePaths.MOTER_2,
-					getSize().getX(), getSize().getY(), 0);
+					getSize().getX(), getSize().getY());
 					break;
 				
 			case 3: StdDraw.picture(getPosition().getX(), getPosition().getY(), ImagePaths.MOTER_3,
-					getSize().getX(), getSize().getY(), 0);
+					getSize().getX(), getSize().getY());
 					break;
 			default:StdDraw.picture(getPosition().getX(), getPosition().getY(), ImagePaths.MOTER_0,
-					getSize().getX(), getSize().getY(), 0);
+					getSize().getX(), getSize().getY());
 					state=0;
 					break;
 		}

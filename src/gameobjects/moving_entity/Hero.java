@@ -54,7 +54,7 @@ public class Hero extends Living_Creature
 	{
 		//ISAAC Spite
 		StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(),
-						getSize().getX(), getSize().getY(), 0);
+						getSize().getX(), getSize().getY());
 		drawHUD();
 		
 	}
