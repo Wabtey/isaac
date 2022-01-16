@@ -23,7 +23,6 @@ public class GameWorld
 	private Room currentRoom;
 	private List<Door> doors;
 	private Hero hero; 
-	private int NumberOfRooms;
 
 	// A world needs a hero
 	public GameWorld(Hero hero)
@@ -54,7 +53,6 @@ public class GameWorld
 	public void updateGameObjects()
 	{
 		currentRoom.updateRoom();
-		System.out.println(currentRoom.getClass());
 	}
 	
 	
@@ -165,15 +163,6 @@ public class GameWorld
 
 	public Cardinal_Points getNeighbors() {
 		return neighbors;
-	}
-	
-	public int getNumberOfRooms() {
-		return NumberOfRooms;
-	}
-	
-	public void decreaseRoomsNumber() {
-		if (NumberOfRooms>0)
-			NumberOfRooms --;
 	}
 	
 	public void setNeighbors(Cardinal_Points neighbors) {

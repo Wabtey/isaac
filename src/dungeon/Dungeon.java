@@ -40,7 +40,6 @@ public class Dungeon {
 		initialiseGameWorlds();
 		initialiseWorldBoss();
 		affichage();
-		setCurrentWorld();
 		setSpecialRooms();
 	}
 
@@ -159,17 +158,6 @@ public class Dungeon {
 						currentGameWorld = gameWorlds.get(i).get(j);
 					}
 					return;
-				}
-			}
-		}
-	}
-
-	private void setCurrentWorld() {
-		for (int i = 0; i <= dungeonSize - 1; i++) {
-			for (int j = 0; j <= dungeonSize - 1; j++) {
-				if (gameWorlds.get(i).get(j) != null) {
-					this.currentGameWorld = gameWorlds.get(i).get(j);
-					break;
 				}
 			}
 		}

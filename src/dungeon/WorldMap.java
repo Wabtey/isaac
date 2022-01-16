@@ -109,12 +109,9 @@ public class WorldMap {
 	private void addBossFrame() {
 		Vector2 beforeBoss = choseAFrameBeforeBoss();
 		Vector2 bossFrame = beforeBoss.addVector(randomDirection());
-		int compteur = 0;
 		while(!(isAnEligibleBossFrame(bossFrame) && checkNeighborhood(bossFrame,beforeBoss))) {
 			beforeBoss = choseAFrameBeforeBoss();
 			bossFrame = beforeBoss.addVector(randomDirection());
-			compteur++;
-			System.out.println(compteur);
 		}
 			List<Integer> temp = new ArrayList<Integer>();
 			temp.addAll(tab.get((int) bossFrame.getX()));

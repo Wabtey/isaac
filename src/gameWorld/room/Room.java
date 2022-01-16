@@ -65,8 +65,8 @@ public class Room
 		checkMonstersHP();
 		checkDoorState();
 		makeHeroPlay();
-		updateProjectile();
 		makeMonstersPlay();
+		updateProjectile();
 		checkCollision(); //TODO Only the first Mnster on the list can deal dmg to hero
 	}
 
