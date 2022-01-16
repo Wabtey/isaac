@@ -12,4 +12,10 @@ public class ItemRoom extends Room{
 		super(hero, doors);
 	}
 
+	@Override
+	public void initialise() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

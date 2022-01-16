@@ -16,6 +16,12 @@ public class Spawn extends Room {
 		//getDoors().add(new Door(DoorInfos.NORTH, new Room(hero)));
 		
 	}
+
+	@Override
+	public void initialise() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

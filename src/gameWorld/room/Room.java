@@ -39,10 +39,10 @@ public abstract class Room
 		
 		this.monsters = new LinkedList<Monsters>();
 
-		this.monsters.add(new Spider(new Vector2(0.3, 0.3), hero.getPosition())); // CreaturesInfos.SPIDER
-		this.monsters.add(new Fly(new Vector2(0.3, 0.3), hero.getPosition()));
-		this.monsters.add(new Spider(new Vector2(0.6, 0.6), hero.getPosition()));
-		this.monsters.add(new Moter(new Vector2(0.6, 0.6), hero.getPosition()));
+//		this.monsters.add(new Spider(new Vector2(0.3, 0.3), hero.getPosition())); // CreaturesInfos.SPIDER
+//		this.monsters.add(new Fly(new Vector2(0.3, 0.3), hero.getPosition()));
+//		this.monsters.add(new Spider(new Vector2(0.6, 0.6), hero.getPosition()));
+//		this.monsters.add(new Moter(new Vector2(0.6, 0.7), hero.getPosition()));
 
 		obstacles.add(RoomInfos.WALL_DOWN);
 		obstacles.add(RoomInfos.WALL_UP);
@@ -55,6 +55,7 @@ public abstract class Room
 		}
 	}
 	
+	public abstract void initialise();
 	
 	/*
 	 * Make every entity that compose a room process one step
@@ -343,6 +344,10 @@ public abstract class Room
 
 	public ArrayList<Door> getDoors() {
 		return doors;
+	}
+	
+	public LinkedList<Monsters> getMonsters(){
+		return monsters;
 	}
 	
 	
