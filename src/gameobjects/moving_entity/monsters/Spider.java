@@ -121,5 +121,11 @@ public class Spider extends Monsters{
 	public void setState(int state) {
 		this.state = state;
 	}
+
+	@Override
+	public boolean isANewPhase() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

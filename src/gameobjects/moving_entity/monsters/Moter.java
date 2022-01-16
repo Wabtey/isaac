@@ -79,5 +79,11 @@ public class Moter extends Monsters{
 		}
 //		animation.update();
 	}
+
+	@Override
+	public boolean isANewPhase() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

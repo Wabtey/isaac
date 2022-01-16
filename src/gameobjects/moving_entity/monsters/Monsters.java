@@ -1,5 +1,7 @@
 package gameobjects.moving_entity.monsters;
 
+import java.util.LinkedList;
+
 import gameobjects.moving_entity.Hero;
 import gameobjects.moving_entity.Living_Creature;
 import gameobjects.obstacles.Obstacle;
@@ -189,6 +191,12 @@ public abstract class Monsters extends Living_Creature {
 		else
 			setRedHeart(getRedHeart()-d);
 	}
+	
+	public LinkedList<Monsters> getMonsters(){
+		return getMonsters();
+	}
+
+	public abstract boolean isANewPhase();
 
 	
 	

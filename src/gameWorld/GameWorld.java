@@ -58,7 +58,6 @@ public class GameWorld
 	public void updateGameObjects()
 	{
 		currentRoom.updateRoom();
-		System.out.println(currentRoom.getClass());
 	}
 	
 	
