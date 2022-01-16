@@ -36,11 +36,10 @@ public class Fly extends Monsters {
 			int heroY = (int) Math.round(hero.getY() * 100) / 10;
 			int flyX = (int) Math.round(getPosition().getX() * 100) / 10;
 			int flyY = (int) Math.round(getPosition().getY() * 100) / 10;
-			System.out.println("(" + heroX + ", " + heroY + ") (" + flyX + ", " + flyY + ")");
 			if (heroX == flyX) {
 				if (heroY < flyY) {
-					addProjectile(new Projectile(getPosition(), new Vector2(0.0, -0.1), getSize(), getDamage(),
-							getSpeed() / 10, getImagePath(), false));
+					addProjectile(new Projectile(getPosition(), new Vector2(0.0, -0.1), CreaturesInfos.FLY_BULLET_SIZE, CreaturesInfos.FLY_DAMAGE,
+							CreaturesInfos.FLY_SHOOTSPEED, ImagePaths.TEAR, false));
 					setReloadTime(CreaturesInfos.SPIDERT_RELOADTIME);
 				} else {
 					addProjectile(new Projectile(getPosition(), new Vector2(0.0, 0.1), getSize(), getDamage(),
