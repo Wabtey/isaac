@@ -48,7 +48,7 @@ public class CreaturesInfos
 	public static final double FLY_TEARRATE = 0;
 	public static final double FLY_DAMAGE = 0.5;
 	public static final double FLY_RANGE = 0;
-	public static final double FLY_SHOOTSPEED = 0;
+	public static final double FLY_SHOOTSPEED = 0.01;
 	
 //--MOTER-------------------------
 	public static Vector2 MOTER_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.3*DisplaySettings.SCALE);

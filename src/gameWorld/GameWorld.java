@@ -16,6 +16,7 @@ import libraries.StdDraw;
 import libraries.Vector2;
 import resources.Controls;
 import resources.DoorInfos;
+import resources.ImagePaths;
 import resources.RoomInfos;
 import test.Cardinal_Points;
 
@@ -47,9 +48,11 @@ public class GameWorld
 
 	public boolean gameOver()
 	{
-		if(hero.getRedHeart()==0)
+		if(hero.getRedHeart()==0) {
 			return true;
-		return false;
+		}else 
+			return false;
+
 	}
 
 	public void updateGameObjects()
@@ -100,7 +103,10 @@ public class GameWorld
 
 	public void drawGameObjects()
 	{
+		
 		currentRoom.drawRoom();
+		if(gameOver()) //TODO MAKE A PROPER DEATH with item picked, the killer, etc
+			StdDraw.picture(RoomInfos.POSITION_CENTER_OF_ROOM.getX(), RoomInfos.POSITION_CENTER_OF_ROOM.getY(), ImagePaths.LOSE_SCREEN);
 	}
 
 	//TODO if select is pressed show the map bigger

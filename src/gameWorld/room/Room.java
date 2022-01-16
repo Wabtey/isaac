@@ -14,8 +14,11 @@ import gameobjects.moving_entity.monsters.Monsters;
 import gameobjects.moving_entity.monsters.Moter;
 import gameobjects.moving_entity.monsters.Spider;
 import gameobjects.obstacles.Obstacle;
+import gameobjects.pickup.*;
+
 import libraries.StdDraw;
 import libraries.Vector2;
+
 import resources.CreaturesInfos;
 import resources.DisplaySettings;
 import resources.DoorInfos;
@@ -67,7 +70,8 @@ public abstract class Room
 		makeHeroPlay();
 		makeMonstersPlay();
 		updateProjectile();
-		checkCollision(); //TODO Only the first Mnster on the list can deal dmg to hero
+		checkCollision();
+		
 	}
 
 //--HERO--------------------------------------------------------

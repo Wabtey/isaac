@@ -93,7 +93,7 @@ public abstract class Living_Creature {
 			if(orientation == SpecialKeys.RIGHT)
 				shootOrientation = new Vector2(0.1, 0.0);
 			
-			tears.add(new Projectile(getPosition(), shootOrientation, CreaturesInfos.TEAR_SIZE, getDamage(), getShootSpeed(), ImagePaths.TEAR, true));
+			tears.add(new Projectile(getPosition(), shootOrientation, CreaturesInfos.TEAR_SIZE, getDamage(), getShootSpeed(), ImagePaths.NEW_TEAR, true));
 			double ticksToWait = DisplaySettings.FPS/getTearRate();
 			reload((int)ticksToWait);
 			//CreaturesInfos.convertTearRateToTicks(getTearRate())

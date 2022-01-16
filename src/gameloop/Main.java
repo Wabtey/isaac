@@ -6,6 +6,7 @@ import gameobjects.moving_entity.Hero;
 import libraries.StdDraw;
 import libraries.Timer;
 import resources.DisplaySettings;
+import resources.ImagePaths;
 import resources.CreaturesInfos;
 import resources.RoomInfos;
 
@@ -14,9 +15,8 @@ public class Main
 	public static void main(String[] args)
 	{
 		// Hero, world and display initialization.
-		//NOT THE GOODS STATS (go to CreatureINFOS
 		Hero isaac = CreaturesInfos.ISAAC;
-		GameWorld world = new GameWorld(isaac);	
+		GameWorld world = new GameWorld(isaac);	//TODO unused
 		Dungeon monde = new Dungeon(isaac, 5);
 		monde.initalise();
 		initializeDisplay();
@@ -27,6 +27,7 @@ public class Main
 			monde.refreshDungeon();
 			//world.processOneStep();
 		}
+		StdDraw.picture(RoomInfos.POSITION_CENTER_OF_ROOM.getX(), RoomInfos.POSITION_CENTER_OF_ROOM.getY(), ImagePaths.LOSE_SCREEN);
 	}
 
 	/*private static void processNextStep(GameWorld world)
