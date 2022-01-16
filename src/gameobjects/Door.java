@@ -4,6 +4,7 @@ import gameWorld.GameWorld;
 import gameWorld.room.Room;
 import libraries.StdDraw;
 import libraries.Vector2;
+import resources.DoorInfos;
 import resources.ImagePaths;
 
 public class Door {
@@ -44,8 +45,13 @@ public class Door {
 	}
 	
 	public void drawGameObject() {
-		StdDraw.picture(getCoordonnees().getX(), getCoordonnees().getY(), (open==true)?ImagePaths.OPENED_DOOR:ImagePaths.CLOSED_DOOR,
-				0.1, 0.1);
+		//North Door
+		if(coordonnees.getY()==DoorInfos.NORTH.getY())
+			StdDraw.picture(DoorInfos.POSITION_DOOR_NORTH.getX(), DoorInfos.POSITION_DOOR_NORTH.getY(), (open==true)?ImagePaths.OPENED_DOOR:ImagePaths.CLOSED_DOOR,
+					DoorInfos.DOOR_SIZE.getX(), DoorInfos.DOOR_SIZE.getY());
+		else
+			StdDraw.picture(getCoordonnees().getX(), getCoordonnees().getY(), (open==true)?ImagePaths.OPENED_DOOR:ImagePaths.CLOSED_DOOR,
+				DoorInfos.DOOR_SIZE.getX(), DoorInfos.DOOR_SIZE.getY());
 		
 	}
 	

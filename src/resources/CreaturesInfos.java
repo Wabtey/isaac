@@ -15,15 +15,15 @@ public class CreaturesInfos
 	public static final int HERO_INVINCIBILITY = 20; //can change with a trinket (supp final when implementing)
 	//--STARTER-------------------
 	public static Vector2 ISAAC_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.7*DisplaySettings.SCALE);
-	public static final double ISAAC_REDHEART = 4;
-	public static final double ISAAC_BLUEHEART = 3;
+	public static final double ISAAC_REDHEART = 3;
+	public static final double ISAAC_BLUEHEART = 2;
 	public static final double ISAAC_SPEED = 0.01*DisplaySettings.SCALE;
 	public static final double ISAAC_TEARRATE = 3.5*DisplaySettings.SCALE;
 	public static final double ISAAC_DAMAGE = 6;
-	public static final double ISAAC_RANGE = 0.5;
-	public static final double ISAAC_SHOTSPEED = 0.03;
+	public static final double ISAAC_RANGE = 0.5*DisplaySettings.SCALE; //depend the room's width
+	public static final double ISAAC_SHOTSPEED = 0.03*DisplaySettings.SCALE;
 	
-	public static Hero ISAAC = new Hero(new Vector2(0.5,0.5), ISAAC_SIZE,
+	public static Hero ISAAC = new Hero(RoomInfos.POSITION_CENTER_OF_ROOM, ISAAC_SIZE,
 										ISAAC_REDHEART, ISAAC_BLUEHEART, ISAAC_SPEED,
 										ISAAC_TEARRATE, ISAAC_DAMAGE, ISAAC_RANGE, ISAAC_SHOTSPEED,
 		    							ImagePaths.ISAAC);

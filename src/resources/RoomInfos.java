@@ -36,10 +36,5 @@ public class RoomInfos
 	public static final Obstacle WALL_RIGHT = new Obstacle(new Vector2(POSITION_END_OF_ROOM.getX(), POSITION_CENTER_OF_ROOM.getY()),
 														   RoomInfos.SIZE_WALL_LEFTnRIGHT.getX(),
 														   RoomInfos.SIZE_WALL_LEFTnRIGHT.getY());
-
-//new Obstacle(new Vector2(0.5, 0), RoomInfos.WALL_DOWN[1], RoomInfos.WALL_DOWN[0]) 			// BAS
-//new Obstacle(new Vector2(0.5, 1), RoomInfos.WALL_UP[1], RoomInfos.WALL_UP[0]) 				// HAUT
-//new Obstacle(new Vector2(0, 0.5), RoomInfos.WALL_LEFTnRIGHT[1], RoomInfos.WALL_LEFTnRIGHT[0])	// GAUCHE
-//new Obstacle(new Vector2(1, 0.5), RoomInfos.WALL_LEFTnRIGHT[1], RoomInfos.WALL_LEFTnRIGHT[0])	// DROIT
 	
 }

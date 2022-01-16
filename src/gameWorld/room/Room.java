@@ -237,12 +237,22 @@ public abstract class Room
 	public void drawRoom() {
 		// For every tile, set background color.
 		StdDraw.setPenColor(StdDraw.BLUE);
-		double scaling = DisplaySettings.SCALE;
+		//double scaling = DisplaySettings.SCALE;
 		
 		Vector2 position = RoomInfos.POSITION_CENTER_OF_ROOM;
-		StdDraw.picture(position.getX(), position.getY(), ImagePaths.FLOOR, scaling, scaling);
-		StdDraw.picture(position.getX(), position.getY(), ImagePaths.WALL, scaling, scaling);
+		//Make a room rectancular
+//		StdDraw.picture(position.getX(), position.getY(), ImagePaths.FLOOR);
+//		StdDraw.picture(position.getX(), position.getY(), ImagePaths.WALL);
+		
+		//TODO removing the display of wall and floor make the game faster
+		StdDraw.picture(position.getX(), position.getY(), ImagePaths.FLOOR, DisplaySettings.SCALE, DisplaySettings.SCALE);
+		StdDraw.picture(position.getX(), position.getY(), ImagePaths.WALL, DisplaySettings.SCALE, DisplaySettings.SCALE);
 
+
+		for(Door door: doors) {
+			door.drawGameObject();
+		}
+		
 		hero.drawGameObject();
 		ArrayList<Projectile> tears = hero.getProjectile();
 		for(Projectile tear:tears) {
@@ -251,9 +261,6 @@ public abstract class Room
 		for(Monsters monster:monsters) {
 			monster.drawGameObject();
 			//monster.drawImage(animation.getSprite(), x, y, null);
-		}
-		for(Door door: doors) {
-			door.drawGameObject();
 		}
 		
 //		//--HITBOX DREW---------------------
