@@ -67,6 +67,6 @@ public class Boss extends Monsters {
 	}
 	
 	public void drawVictory() {
-		
+		StdDraw.picture(RoomInfos.POSITION_CENTER_OF_ROOM.getX(), RoomInfos.POSITION_CENTER_OF_ROOM.getY(), ImagePaths.WIN_SCREEN);
 	}
 }
