@@ -11,6 +11,7 @@ import gameWorld.room.specialsRoom.Shop;
 import gameWorld.room.specialsRoom.Spawn;
 import gameobjects.Door;
 import gameobjects.moving_entity.Hero;
+import gameobjects.moving_entity.monsters.Monsters;
 import libraries.Keybinding.SpecialKeys;
 import libraries.StdDraw;
 import libraries.Vector2;
@@ -142,6 +143,22 @@ public class GameWorld
 		
 		if (StdDraw.isKeyPressed(Controls.right))
 			hero.shoot(SpecialKeys.RIGHT);
+		
+		if(StdDraw.isKeyPressed(Controls.beInvincible))
+			hero.changeInvincibility();
+	
+		if(StdDraw.isKeyPressed(Controls.beSuperFast))
+			hero.changeUltraSpeed();
+		
+		if(StdDraw.isKeyPressed(Controls.killEveryMonster))
+			currentRoom.getMonsters().removeAll(currentRoom.getMonsters());
+		
+		if(StdDraw.isKeyPressed(Controls.bePowerfull))
+			hero.changePowerfull();
+		
+		if(StdDraw.isKeyPressed(Controls.beRich))
+			hero.setGold(hero.getGold()+10);
+		
 	}
 	
 	public Vector2 repositionHero(Vector2 door) {

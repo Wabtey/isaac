@@ -4,6 +4,8 @@ import gameobjects.Item;
 import gameobjects.pickup.*;
 import libraries.StdDraw;
 import libraries.Vector2;
+import resources.CreaturesInfos;
+import resources.DisplaySettings;
 import resources.ImagePaths;
 
 public class Hero extends Living_Creature
@@ -17,6 +19,12 @@ public class Hero extends Living_Creature
 	private int gold;
 	private int bomb;
 	private int key;
+	
+	//TRICHE
+	private boolean invincibility;
+	private boolean ultraSpeed;
+	private boolean powerfull;
+
 
 	
 	public Hero(Vector2 position, Vector2 size,
@@ -32,8 +40,19 @@ public class Hero extends Living_Creature
 	public void updateGameObject() {
 		super.updateGameObject();
 		move();
-		if (getInvincibilityFrames()>0)
-			decreaseInvincibilityFrames(); ;
+		
+		//--TRICHE------------And no OneShooted gameplay
+		if (!isInvincible() && getInvincibilityFrames()>0)
+			decreaseInvincibilityFrames();
+		if(isUltraSpeed()) {
+			setSpeed(0.05*DisplaySettings.SCALE);
+		}else
+			setSpeed(CreaturesInfos.ISAAC_SPEED);
+		if(isPowerfull()) {
+			setDamage(50); setTearRate(8);
+		}else {
+			setDamage(CreaturesInfos.ISAAC_DAMAGE); setTearRate(CreaturesInfos.ISAAC_TEARRATE);
+		}
 	}
 	
 //--ITEM----------------------------------------------
@@ -251,6 +270,45 @@ public class Hero extends Living_Creature
 		this.key = key;
 	}
 
+//--TRICHE------------------------------------
+	
+	public boolean isInvincible() {
+		return invincibility;
+	}
+
+	//will be unused
+	public void setInvincibility(boolean invisibility) {
+		this.invincibility = invisibility;
+	}
+	
+	public void changeInvincibility() {
+		this.invincibility = !invincibility;
+	}
+
+	public boolean isUltraSpeed() {
+		return ultraSpeed;
+	}
+
+	//will be unused
+	public void setUltraSpeed(boolean ultraSpeed) {
+		this.ultraSpeed = ultraSpeed;
+	}
+
+	public void changeUltraSpeed() {
+		this.ultraSpeed = !ultraSpeed;
+	}
+	
+	public boolean isPowerfull() {
+		return powerfull;
+	}
+
+	public void setPowerfull(boolean powerfull) {
+		this.powerfull = powerfull;
+	}
+
+	public void changePowerfull() {
+		this.powerfull=!powerfull;
+	}
 }
 	
 	
