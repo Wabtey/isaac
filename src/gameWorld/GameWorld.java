@@ -120,16 +120,16 @@ public class GameWorld
 			hero.shoot();
 		
 		if (StdDraw.isKeyPressed(Controls.up))
-			hero.shootUP(SpecialKeys.UP); //param can be Controls.up or a simple String
+			hero.shoot(SpecialKeys.UP); //param can be Controls.up or a simple String
 		
 		if (StdDraw.isKeyPressed(Controls.down))
-			hero.shootUP(SpecialKeys.DOWN);
+			hero.shoot(SpecialKeys.DOWN);
 		
 		if (StdDraw.isKeyPressed(Controls.left))
-			hero.shootUP(SpecialKeys.LEFT);
+			hero.shoot(SpecialKeys.LEFT);
 		
 		if (StdDraw.isKeyPressed(Controls.right))
-			hero.shootUP(SpecialKeys.RIGHT);
+			hero.shoot(SpecialKeys.RIGHT);
 	}
 	
 	public Vector2 repositionHero(Vector2 door) {
