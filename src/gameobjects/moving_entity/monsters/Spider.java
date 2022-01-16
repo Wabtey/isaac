@@ -10,8 +10,8 @@ import resources.Random;
 public class Spider extends Monsters{
 	
 	private int state;
-
 	private double distanceTraveled;
+	
 	public Spider(Vector2 position, Vector2 destination)
 	{
 		super(position, CreaturesInfos.SPIDER_SIZE, destination, CreaturesInfos.SPIDER_HEALTH,

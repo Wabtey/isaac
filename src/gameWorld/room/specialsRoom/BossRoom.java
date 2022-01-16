@@ -12,6 +12,7 @@ import gameobjects.moving_entity.monsters.Fly;
 import gameobjects.moving_entity.monsters.Monsters;
 import gameobjects.obstacles.Obstacle;
 import libraries.Vector2;
+import gameobjects.pickup.PickUp;
 
 public class BossRoom extends Room {
 
@@ -54,6 +55,12 @@ public class BossRoom extends Room {
 	public void initialise() {
 		createMonsters();
 
+	}
+	
+	//TODO change or implement an another methods to item reward when defeting the boss
+	@Override
+	public PickUp generateReward() {
+		return null;
 	}
 
 }

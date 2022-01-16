@@ -13,6 +13,7 @@ import gameobjects.moving_entity.monsters.Spider;
 import gameobjects.obstacles.Obstacle;
 import gameobjects.obstacles.collisionable.Rock;
 import libraries.Vector2;
+import resources.RoomInfos;
 
 public class RoomC2 extends Room {
 
@@ -23,6 +24,7 @@ public class RoomC2 extends Room {
 	public void initialise() {
 		createObstacles();
 		createMonsters();
+		setFreePosition(RoomInfos.POSITION_CENTER_OF_ROOM); //TODO Change it to something coherent
 	}
 
 	public void updateRoom() {

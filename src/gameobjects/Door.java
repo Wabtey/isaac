@@ -45,6 +45,7 @@ public class Door {
 	}
 	
 	public void drawGameObject() {
+		//TODO make the hitbox higher to let the player walk along the wall in front of the door without going in
 		//North Door
 		if(coordonnees.getY()==DoorInfos.NORTH.getY())
 			StdDraw.picture(DoorInfos.POSITION_DOOR_NORTH.getX(), DoorInfos.POSITION_DOOR_NORTH.getY(), (open==true)?ImagePaths.OPENED_DOOR:ImagePaths.CLOSED_DOOR,

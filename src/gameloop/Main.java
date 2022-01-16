@@ -16,7 +16,6 @@ public class Main
 	{
 		// Hero, world and display initialization.
 		Hero isaac = CreaturesInfos.ISAAC;
-		GameWorld world = new GameWorld(isaac);	//TODO unused
 		Dungeon monde = new Dungeon(isaac, 8);
 		monde.initalise();
 		initializeDisplay();
