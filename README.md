@@ -1,5 +1,5 @@
 # isaac
-Project L2 Informatic ISTIC Semester 3, Object Programmation  
+Project L2 Informatic ISTIC Semester 3, Object Programming  
 
 
 In this fanbase game, _inspired_ by the famous **BINDING OF ISAAC** (gameplay repentance)  
