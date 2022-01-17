@@ -38,4 +38,8 @@ Now you have the choice to opti this floor, go back buy items, explode Marked Ro
 When you're done, jump into the trap, and be ready to fight for your life again !
 
 The chest is your hope. Jump right into it, Hide yourself in there.
+
+If you're still not dead, //TODO Implement a proper Death Screen
 And hope for Mother doesn't open this chest. //TODO rool end Credit, with cut screen or diaporama explaining the story. 
+
+HAVE FUN
