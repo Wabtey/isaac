@@ -60,7 +60,7 @@ public class Boss extends Monsters {
 	}
 	
 	private boolean IsAVictory(){
-		if (getRedHeart()==0) {
+		if (getRedHeart()<=0) {
 			return true;
 		}
 		return false;

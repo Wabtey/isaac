@@ -57,7 +57,7 @@ public class Hero extends Living_Creature
 	
 //--ITEM----------------------------------------------
 	public void takeItem(Item stuff) {
-		//TODO use convert array of (double)stats into current stats
+		//TODO use convert array of (double)stats into current stats or just add each stats from the item
 		//TODO sprite of rising item
 	}
 	
@@ -69,7 +69,8 @@ public class Hero extends Living_Creature
 	 * @param the PickUp that Hero picked up
 	 * @return true if Hero has taked it, false if it will remain in the room
 	 */
-	public boolean hasPickedUp(PickUp thing) {
+	public boolean hasPickedUp(PickUp thing)
+	{
 		boolean success = false;
 
 		//TODO implement blue heart
@@ -118,9 +119,12 @@ public class Hero extends Living_Creature
 				success = true;
 			}
 		}
-		
+		System.out.println("coin : "+getGold()+"\n"
+						  +"bomb: "+getBomb()+"\n"
+						  +"key: "+getKey()+"\n");
 		return success;
 	}
+	
 	
 //--HIT-----------------------------------------------
 	

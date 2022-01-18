@@ -17,6 +17,7 @@ public abstract class PickUp {
 
 	}
 	
+	
 //--GETTERS/SETTERS-------------------------------
 	public Vector2 getPosition() {
 		return position;

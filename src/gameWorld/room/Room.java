@@ -34,8 +34,8 @@ public abstract class Room
 	private ArrayList<Obstacle> obstacles;
 	private ArrayList<Projectile> projectile;
 	private LinkedList<Monsters> monsters;
-	private PickUp reward;
 	
+	private LinkedList<PickUp> rewards; //TODO remove all @Deprecated methods
 	private boolean isClear;
 	
 	private Vector2 freePosition; //TODO set the freePosition (@see in RoomC1 and RoomC2)
@@ -57,6 +57,7 @@ public abstract class Room
 			if (door != null)
 				this.doors.add(door);
 		}
+		this.rewards = new LinkedList<PickUp>();  //initiate a empty list of rewards for every room created
 		this.isClear = false;
 	}
 	
@@ -148,6 +149,20 @@ public abstract class Room
 				getHero().addInvincibilityFrames(CreaturesInfos.HERO_INVINCIBILITY);
 			}
 		}
+		
+		//--REWARD--
+		for (PickUp pickUp : rewards) {
+			// TODO shrink hero collision to his feet about pick up the reward
+			if (collision(getHero().getPosition(), getHero().getSize(), pickUp.getPosition(),
+					pickUp.getSize())) {
+				PickUp contactPickup = pickUp;
+				if (getHero().hasPickedUp(contactPickup)) {
+					rewards.remove(contactPickup);
+				}
+			}
+		}
+
+		
 	}
 
 	private void checkRangeCollisionWithMonster() {
@@ -187,7 +202,7 @@ public abstract class Room
 	/**
 	 * @param Hero's coordonates
 	 * @param Hero's size
-	 * @return Monster which is in collision with the Hero
+	 * @return Monster which is in collision with the Hero //TODO no it doesn't
 	 */
 	private boolean collision(Vector2 coordonnees, Vector2 size, Vector2 coordonnees2, Vector2 size2) {
 		double posX0 = coordonnees.getX() - (size.getX() / 2);
@@ -246,6 +261,15 @@ public abstract class Room
 		return drop;
 
 	}
+	
+	/**
+	 * Make all pickUp in the Room disappear
+	 * Carefull about this methods
+	 */
+	@Deprecated
+	public void removeAllPickUp() {
+		setRewards(null);
+	}
 
 //--OBSTACLES--------------------------------------------------
 
@@ -291,7 +315,9 @@ public abstract class Room
 			for (Door door : doors) {
 				door.openDoor();
 				if(!isClear()) {
-					setReward(generateReward());
+					PickUp RoomPickUp = generateReward();
+					if(RoomPickUp!=null)
+					getRewards().add(RoomPickUp);
 					setIsClear(true);
 				}
 			}
@@ -334,8 +360,8 @@ public abstract class Room
 		for(Door door: doors) {
 			door.drawGameObject();
 		}
-		if(reward!=null) {
-			reward.drawGameObject();
+		for(PickUp pickup: rewards) {
+			pickup.drawGameObject();
 		}
 		
 		hero.drawGameObject();
@@ -398,13 +424,17 @@ public abstract class Room
 	public LinkedList<Monsters> getMonsters(){
 		return monsters;
 	}
-
-	public PickUp getReward() {
-		return reward;
+	
+	//--PICKUPs--
+	
+	public LinkedList<PickUp> getRewards() {
+		return rewards;
 	}
 
-	public void setReward(PickUp reward) {
-		this.reward = reward;
+	//carefull about this methods
+	@Deprecated
+	public void setRewards(LinkedList<PickUp> rewards) {
+		this.rewards = rewards;
 	}
 
 	public boolean isClear() {
