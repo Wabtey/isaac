@@ -90,7 +90,7 @@ public class Hero extends Living_Creature
 		if(thing instanceof Coin) {
 			Coin pay = (Coin)thing;
 			if(this.gold+pay.getValue()<99) {
-				this.gold++;
+				this.gold+=pay.getValue();
 				success=true;
 			}else {
 				this.gold=99;

@@ -2,17 +2,11 @@ package gameobjects;
 
 public class Item {
 
-	private double[] statsUp; //change to statsChange (can be negative)
-	private double[] statsDown;
+	private double[] statsChange; //change to statsChange (can be negative)
 	
 	//can be negative
 	private int heartContainer;
-	public double[] getStatsUp() {
-		return statsUp;
-	}
-
-	
-
+	private double redHeart; //
 	private double blueHeart;
 	
 	private double speed;
@@ -20,7 +14,17 @@ public class Item {
 	private double damage;
 	private double range;
 	private double shootSpeed;
+	
 	private double luck;
+	
+	private double devilDeal;
+	private double angelRoom;
+	
+	private int gold;
+	private int bomb;
+	private int key;
+	
+	private double size;	
 	
 	private String imagePath;
 	
@@ -35,19 +39,39 @@ public class Item {
 		this.shootSpeed = shootSpeed;
 		
 		this.imagePath = imagePath;
+		
+		//TODO create Pedestal
 	}
 	
-	public void setStatsUp(double[] statsUp) {
-		this.statsUp = statsUp;
+//--GETTERS/SETTERS---------------------------------
+	
+	public String getImagePath() {
+		return imagePath;
 	}
 
-	public double[] getStatsDown() {
-		return statsDown;
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+	
+	public double getSize() {
+		return size;
 	}
 
-	public void setStatsDown(double[] statsDown) {
-		this.statsDown = statsDown;
+	public void setSize(double size) {
+		this.size = size;
 	}
+
+//--STATS GLOBAL-------------------------------------------
+	
+	public double[] getStatsChange() {
+		return statsChange;
+	}
+
+	public void setStatsChange(double[] statsChange) {
+		this.statsChange = statsChange;
+	}
+
+//--HP----------------------------------------------
 
 	public int getHeartContainer() {
 		return heartContainer;
@@ -55,6 +79,14 @@ public class Item {
 
 	public void setHeartContainer(int heartContainer) {
 		this.heartContainer = heartContainer;
+	}
+
+	public double getRedHeart() {
+		return redHeart;
+	}
+
+	public void setRedHeart(double redHeart) {
+		this.redHeart = redHeart;
 	}
 
 	public double getBlueHeart() {
@@ -65,6 +97,7 @@ public class Item {
 		this.blueHeart = blueHeart;
 	}
 
+//--STATS-------------------------------------------
 	public double getSpeed() {
 		return speed;
 	}
@@ -113,11 +146,49 @@ public class Item {
 		this.luck = luck;
 	}
 
-	public String getImagePath() {
-		return imagePath;
+//--DEAL LUCK-----------------------------------
+
+	public double getDevilDeal() {
+		return devilDeal;
 	}
 
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
+	public void setDevilDeal(double devilDeal) {
+		this.devilDeal = devilDeal;
 	}
+
+	public double getAngelRoom() {
+		return angelRoom;
+	}
+
+	public void setAngelRoom(double angelRoom) {
+		this.angelRoom = angelRoom;
+	}
+	
+//--PICK UP-----------------------------------
+
+	public int getGold() {
+		return gold;
+	}
+
+	public void setGold(int gold) {
+		this.gold = gold;
+	}
+
+	public int getBomb() {
+		return bomb;
+	}
+
+	public void setBomb(int bomb) {
+		this.bomb = bomb;
+	}
+
+	public int getKey() {
+		return key;
+	}
+
+	public void setKey(int key) {
+		this.key = key;
+	}
+
+
 }

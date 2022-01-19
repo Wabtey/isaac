@@ -9,6 +9,8 @@ import libraries.StdDraw;
 import libraries.Vector2;
 
 public abstract class Monsters extends Living_Creature {
+	
+	
 	private Vector2 destination;
 	private int freeze; //freezing time and hero invincibility time are different
 	
