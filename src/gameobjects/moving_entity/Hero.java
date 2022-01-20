@@ -1,5 +1,7 @@
 package gameobjects.moving_entity;
 
+import java.util.LinkedList;
+
 import gameobjects.Item;
 import gameobjects.pickup.*;
 import libraries.StdDraw;
@@ -20,6 +22,8 @@ public class Hero extends Living_Creature
 	private int bomb;
 	private int key;
 	
+	private LinkedList<Item> items;
+	
 	//TRICHE
 	private boolean invincibility;
 	private boolean ultraSpeed;
@@ -30,11 +34,13 @@ public class Hero extends Living_Creature
 	public Hero(Vector2 position, Vector2 size,
 			    double redHeart, double blueHeart, 
 			    double speed, double tearRate, double damage, double range, double shootSpeed,
-			    String imagePath) 
+			    LinkedList<Item> starterItems, String imagePath) 
 	{
 		super(position, size, redHeart, speed, tearRate, damage, range, shootSpeed, imagePath);
 		this.heartContainer = (int)redHeart;
 		this.blueHeart = blueHeart;
+		
+		items = starterItems;
 	}
 	
 	public void updateGameObject() {
@@ -56,9 +62,18 @@ public class Hero extends Living_Creature
 	}
 	
 //--ITEM----------------------------------------------
-	public void takeItem(Item stuff) {
+	public boolean takeItem(Item stuff) {
+		boolean currentlyRisingItem= false; //TODO code better -> create methods and getter and attribute to know if it's true or false
 		//TODO use convert array of (double)stats into current stats or just add each stats from the item
 		//TODO sprite of rising item
+		//TODO if not currently taking a Item tempo multiple takes
+		if(!currentlyRisingItem) {
+			items.add(stuff); //TODO add stats to Hero at the same time or in a different methods with .add in there
+			return true;
+		}
+		return false;
+		
+		
 	}
 	
 	
@@ -145,6 +160,8 @@ public class Hero extends Living_Creature
 				setRedHeart(0);
 			else 
 				setRedHeart(getRedHeart()-damage);
+			
+			addInvincibilityFrames(CreaturesInfos.HERO_INVINCIBILITY);
 		}
 	}
 
@@ -274,8 +291,19 @@ public class Hero extends Living_Creature
 		this.key = key;
 	}
 
-//--TRICHE------------------------------------
+//--ITEMS LIST--------------------------------
 	
+	public LinkedList<Item> getItems() {
+		return items;
+	}
+	
+	@Deprecated
+	public void setItems(LinkedList<Item> items) {
+		this.items = items;
+	}
+
+//--TRICHE------------------------------------
+
 	public boolean isInvincible() {
 		return invincibility;
 	}

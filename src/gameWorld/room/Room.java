@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import gameobjects.Door;
+import gameobjects.Item;
 import gameobjects.moving_entity.Hero;
 import gameobjects.moving_entity.Projectile;
 import gameobjects.moving_entity.monsters.Fly;
@@ -38,7 +39,9 @@ public abstract class Room
 	private LinkedList<PickUp> rewards; //TODO remove all @Deprecated methods
 	private boolean isClear;
 	
-	private Vector2 freePosition; //TODO set the freePosition (@see in RoomC1 and RoomC2)
+	private LinkedList<Item> items;
+	
+	private Vector2 freePosition; //TODO set the freePosition (@see in RoomC1 and RoomC2 with Tiles position methods)
 	
 	public Room(Hero hero, List<Door> doors)
 	{
@@ -48,6 +51,7 @@ public abstract class Room
 		this.projectile = new ArrayList<Projectile>(10);//valeur random
 		
 		this.monsters = new LinkedList<Monsters>();
+		
 		obstacles.add(RoomInfos.WALL_DOWN);
 		obstacles.add(RoomInfos.WALL_UP);
 		obstacles.add(RoomInfos.WALL_LEFT);
@@ -58,6 +62,7 @@ public abstract class Room
 				this.doors.add(door);
 		}
 		this.rewards = new LinkedList<PickUp>();  //initiate a empty list of rewards for every room created
+		this.items = new LinkedList<Item>();
 		this.isClear = false;
 	}
 	
@@ -140,6 +145,7 @@ public abstract class Room
 		checkCloseCollision();
 	}
 
+	//TODO : Separated PickUp and Item into different checkCloseCollison() methods ?
 	private void checkCloseCollision() {
 		for (Monsters monster : monsters) {
 			if (collision(getHero().getPosition(), getHero().getSize(), monster.getPosition(), monster.getSize())) {
@@ -158,6 +164,17 @@ public abstract class Room
 				PickUp contactPickup = pickUp;
 				if (getHero().hasPickedUp(contactPickup)) {
 					rewards.remove(contactPickup);
+				}
+			}
+		}
+		
+		//--ITEM--
+		for (Item item : items) {
+			if (collision(getHero().getPosition(), getHero().getSize(), item.getPosition(),
+					item.getSize())) {
+				Item contactItem = item;
+				if (getHero().takeItem(contactItem)) {
+					items.remove(contactItem);
 				}
 			}
 		}
@@ -317,7 +334,7 @@ public abstract class Room
 				if(!isClear()) {
 					PickUp RoomPickUp = generateReward();
 					if(RoomPickUp!=null)
-					getRewards().add(RoomPickUp);
+						getRewards().add(RoomPickUp);
 					setIsClear(true);
 				}
 			}
@@ -435,6 +452,15 @@ public abstract class Room
 	@Deprecated
 	public void setRewards(LinkedList<PickUp> rewards) {
 		this.rewards = rewards;
+	}
+
+	public LinkedList<Item> getItems() {
+		return items;
+	}
+
+	@Deprecated
+	public void setItems(LinkedList<Item> items) {
+		this.items = items;
 	}
 
 	public boolean isClear() {

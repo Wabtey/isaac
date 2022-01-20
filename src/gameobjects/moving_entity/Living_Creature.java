@@ -25,7 +25,7 @@ public abstract class Living_Creature {
 	private int reloadTime;
 	private Vector2 orientation;
 	private Vector2 shootOrientation;
-	private int invincibility; //freezing time of monsters and hero invincibility time are differents
+	private int invincibility; //TODO not sure : freezing time of monsters and hero invincibility time are differents
 	
 	//Be sure to safezy the projectiles owner from his own projectiles if adding enemy's proj
 	private ArrayList<Projectile> tears;

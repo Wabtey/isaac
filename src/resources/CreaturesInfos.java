@@ -1,5 +1,8 @@
 package resources;
 
+import java.util.LinkedList;
+
+import gameobjects.Item;
 import gameobjects.moving_entity.Hero;
 import gameobjects.moving_entity.monsters.Spider;
 import libraries.Vector2;
@@ -13,6 +16,7 @@ public class CreaturesInfos
 
 //--ISAAC-------------------------
 	public static final int HERO_INVINCIBILITY = 20; //can change with a trinket (supp final when implementing)
+	
 	//--STARTER-------------------
 	public static Vector2 ISAAC_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.7*DisplaySettings.SCALE);
 	public static final double ISAAC_REDHEART = 3;
@@ -23,10 +27,12 @@ public class CreaturesInfos
 	public static final double ISAAC_RANGE = 0.5*DisplaySettings.SCALE; //depend the room's width
 	public static final double ISAAC_SHOTSPEED = 0.03*DisplaySettings.SCALE;
 	
+	public static final LinkedList<Item> ISAAC_STARTER = new LinkedList<Item>();
+	
 	public static Hero ISAAC = new Hero(RoomInfos.POSITION_CENTER_OF_ROOM, ISAAC_SIZE,
 										ISAAC_REDHEART, ISAAC_BLUEHEART, ISAAC_SPEED,
 										ISAAC_TEARRATE, ISAAC_DAMAGE, ISAAC_RANGE, ISAAC_SHOTSPEED,
-		    							ImagePaths.ISAAC);
+		    							ISAAC_STARTER, ImagePaths.ISAAC);
 	
 //--SPIDER-------------------------
 	public static Vector2 SPIDER_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.3*DisplaySettings.SCALE);
