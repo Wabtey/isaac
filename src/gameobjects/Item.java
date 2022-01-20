@@ -32,7 +32,7 @@ public class Item {
 	private int bomb;
 	private int key;
 	
-	private double heroSize;	//changing the heroSize change @see in CreaturesInfos heroSize : 0.7 atm
+	private double heroSize;	//Multiplier changing the heroSize change @see in CreaturesInfos heroSize : 0.7 atm
 	
 	private Vector2 position;
 	private Vector2 size;
@@ -43,7 +43,7 @@ public class Item {
 	
 	/**
 	 * Every statistics
-	 * Be carefull with healing (TODO : When taking a item don't overpass the max of RedHeart)
+	 * Be careful with healing (TODO : When taking a item don't overpass the max of RedHeart)
 	 * @param HC
 	 * @param RH
 	 * @param BH
@@ -62,7 +62,7 @@ public class Item {
 	 * @param imagePath
 	 */
 	public Item(int HC, double RH, double BH, double speed, double tearRate, double damage, double range, double shootSpeed,
-			   double luck, double devilDeal, double angelRoom, int gold, int bomb, int key, double heroSize, Vector2 size, String imagePath) {
+			   double luck, double devilDeal, double angelRoom, int gold, int bomb, int key, double heroSize, Vector2 position, Vector2 size, String imagePath) {
 		this.heartContainer = HC;
 		this.redHeart = RH + HC;
 		this.blueHeart = BH;
@@ -84,6 +84,7 @@ public class Item {
 		
 		this.heroSize = heroSize;
 		
+		this.position = position;
 		this.size = size;
 		this.imagePath = imagePath;
 	}
@@ -99,7 +100,9 @@ public class Item {
 	 * @param heroSize
 	 * @param imagePath
 	 */
-	public Item(double luck, double devilDeal, double angelRoom, int gold, int bomb, int key, double heroSize, Vector2 size, String imagePath) {
+	public Item(double luck, double devilDeal, double angelRoom,
+			    int gold, int bomb, int key, double heroSize,
+			    Vector2 position, Vector2 size, String imagePath) {
 		
 		this.luck = luck;
 		
@@ -110,25 +113,60 @@ public class Item {
 		this.bomb = bomb;
 		this.key = key;
 		
+		this.position = position;
 		this.size = size;
 		this.imagePath = imagePath;
+		
+		//--AVOID adding null statistic to hero--
+		
+		this.heartContainer = 0;
+		this.redHeart = 0;
+		this.blueHeart = 0;
+		
+		this.speed = 0;
+		this.tearRate = 0;
+		this.damage = 0;
+		this.range = 0;
+		this.shootSpeed = 0;
+		
+		this.heroSize = 0;
 	}
 	
 	/**
 	 * Every HPs
-	 * Be carefull with healing (TODO : When taking a item don't overpass the max of RedHeart)
+	 * Be careful with healing (TODO : When taking a item don't overpass the max of RedHeart)
 	 * @param HC
 	 * @param RH
 	 * @param BH
 	 * @param imagePath
 	 */
-	public Item(int HC, double RH, double BH, Vector2 size, String imagePath) {
+	public Item(int HC, double RH, double BH, Vector2 position, Vector2 size, String imagePath) {
 		this.heartContainer = HC;
 		this.redHeart = RH + HC;
 		this.blueHeart = BH;
 		
+		this.position = position;
 		this.size = size;
 		this.imagePath = imagePath;
+		
+		//--AVOID adding null statistic to hero--
+		
+		this.speed = 0;
+		this.tearRate = 0;
+		this.damage = 0;
+		this.range = 0;
+		this.shootSpeed = 0;
+		
+		this.luck = 0;
+		
+		this.devilDeal = 0;
+		this.angelRoom = 0;
+		
+		this.gold = 0;
+		this.bomb = 0;
+		this.key = 0;
+		
+		this.heroSize = 0;
 	}
 	
 	
@@ -143,7 +181,7 @@ public class Item {
 	 * @param imagePath
 	 */
 	public Item(double speed, double tearRate, double damage, double range, double shootSpeed,
-			   double luck, Vector2 size, String imagePath) {
+			   double luck, Vector2 position, Vector2 size, String imagePath) {
 		
 		this.speed = speed;
 		this.tearRate = tearRate;
@@ -153,24 +191,25 @@ public class Item {
 		
 		this.luck = luck;
 		
+		this.position = position;
 		this.size = size;
 		this.imagePath = imagePath;
-	}
-	
-	/**
-	 * DamageUp/Down Items
-	 * @param damage
-	 * @param size
-	 * @param imagePath
-	 */
-	public Item(double damage, Vector2 size, String imagePath) {
 		
-		this.damage = damage;
+		//--AVOID adding null statistic to hero--
 		
-		this.size = size;
-		this.imagePath = imagePath;
+		this.heartContainer = 0;
+		this.redHeart = 0;
+		this.blueHeart = 0;
+		
+		this.devilDeal = 0;
+		this.angelRoom = 0;
+		
+		this.gold = 0;
+		this.bomb = 0;
+		this.key = 0;
+		
+		this.heroSize = 0;
 	}
-	
 	
 	
 //	public Item(ArrayList<Integer> allStats) {
@@ -180,14 +219,14 @@ public class Item {
 //--DRAW--------------------------------------------
 	
 	public void drawGameObject() {
-		StdDraw.picture(RoomInfos.POSITION_CENTER_OF_ROOM.getX(), RoomInfos.POSITION_CENTER_OF_ROOM.getY(), imagePath);
+		StdDraw.picture(position.getX(), position.getY(), imagePath);
 		//TODO create temp Pedestal with casual comportement
 	}
 	
 //--Export ITEM Stats-------------------------------
 	
 	//TODO create this beautiful method
-	private ArrayList<Double> convertAllStatsIntoList(){
+	private double[] convertAllStatsIntoList(){
 		return null;
 	}
 	
@@ -229,7 +268,8 @@ public class Item {
 
 //--STATS GLOBAL-------------------------------------------
 	
-	public ArrayList<Double> getListOFStats(){
+
+	public double[] getListOfStats() {
 		return convertAllStatsIntoList();
 	}
 	
@@ -241,10 +281,18 @@ public class Item {
 		this.statsChange = statsChange;
 	}
 	
+	@Deprecated
+	public ArrayList<Double> getListOFStats(){
+		return null;
+		//return convertAllStatsIntoList();
+	}
+	
+	@Deprecated
 	public ArrayList<Double> getAllStats() {
 		return allStats;
 	}
-
+	
+	@Deprecated
 	public void setAllStats(ArrayList<Double> allStats) {
 		this.allStats = allStats;
 	}

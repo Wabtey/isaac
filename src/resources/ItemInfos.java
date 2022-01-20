@@ -15,10 +15,9 @@ public class ItemInfos {
 	public static final double PENTAGRAM_SHOOTSPEED = 0;
 	public static final double PENTAGRAM_LUCK = 0;
 	
-	public static final Item PENTAGRAM = new Item(PENTAGRAM_DAMAGE, ITEM_SIZE, ImagePaths.PENTAGRAM);
-	
-//	public static final Item PENTAGRAM = new Item(PENTAGRAM_SPEED, PENTAGRAM_TEAR_RATE, PENTAGRAM_DAMAGE, PENTAGRAM_RANGE,
-//											  PENTAGRAM_SHOOTSPEED, PENTAGRAM_LUCK, ITEM_SIZE, ImagePaths.PENTAGRAM);
+	//TODO find a way to give a proper position when created (using freePosition)
+	public static final Item PENTAGRAM = new Item(PENTAGRAM_SPEED, PENTAGRAM_TEAR_RATE, PENTAGRAM_DAMAGE, PENTAGRAM_RANGE,
+											  PENTAGRAM_SHOOTSPEED, PENTAGRAM_LUCK, RoomInfos.POSITION_CENTER_OF_ROOM, ITEM_SIZE, ImagePaths.PENTAGRAM);
 	
 	//--HP UP--
 	

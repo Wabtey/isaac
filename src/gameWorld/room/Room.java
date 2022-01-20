@@ -24,6 +24,7 @@ import resources.CreaturesInfos;
 import resources.DisplaySettings;
 import resources.DoorInfos;
 import resources.ImagePaths;
+import resources.ItemInfos;
 import resources.PickUpInfos;
 import resources.Random;
 import resources.RoomInfos;
@@ -47,7 +48,7 @@ public abstract class Room
 	{
 		this.hero = hero;
 		this.doors = new ArrayList<Door>(4);
-		this.obstacles = new ArrayList<Obstacle>(4);
+		this.obstacles = new ArrayList<Obstacle>();
 		this.projectile = new ArrayList<Projectile>(10);//valeur random
 		
 		this.monsters = new LinkedList<Monsters>();
@@ -61,8 +62,12 @@ public abstract class Room
 			if (door != null)
 				this.doors.add(door);
 		}
+		
 		this.rewards = new LinkedList<PickUp>();  //initiate a empty list of rewards for every room created
 		this.items = new LinkedList<Item>();
+		
+		spawnItem(ItemInfos.PENTAGRAM);
+		
 		this.isClear = false;
 	}
 	
@@ -281,11 +286,21 @@ public abstract class Room
 	
 	/**
 	 * Make all pickUp in the Room disappear
-	 * Carefull about this methods
+	 * Careful about this methods
 	 */
 	@Deprecated
 	public void removeAllPickUp() {
 		setRewards(null);
+	}
+	
+	/**
+	 * give a position to every single item which need to spawn
+	 */
+	public void spawnItem(Item coolStuff) {
+		//TODO spawn item method
+		coolStuff.setPosition(new Vector2(0.3, 0.3));
+		items.add(coolStuff);
+
 	}
 
 //--OBSTACLES--------------------------------------------------
@@ -365,7 +380,7 @@ public abstract class Room
 		//double scaling = DisplaySettings.SCALE;
 
 		Vector2 position = RoomInfos.POSITION_CENTER_OF_ROOM;
-		//Make a room rectancular
+		//Make a room rectangular
 //		StdDraw.picture(position.getX(), position.getY(), ImagePaths.FLOOR);
 //		StdDraw.picture(position.getX(), position.getY(), ImagePaths.WALL);
 		
@@ -377,8 +392,14 @@ public abstract class Room
 		for(Door door: doors) {
 			door.drawGameObject();
 		}
+		
 		for(PickUp pickup: rewards) {
 			pickup.drawGameObject();
+		}
+		
+		for(Item item: items) {
+			//item.setPosition(new Vector2(0.5, 0.4)); replace it by spawnItem() method
+			item.drawGameObject();
 		}
 		
 		hero.drawGameObject();

@@ -1,5 +1,6 @@
 package gameobjects.moving_entity;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import gameobjects.Item;
@@ -22,7 +23,8 @@ public class Hero extends Living_Creature
 	private int bomb;
 	private int key;
 	
-	private LinkedList<Item> items;
+	private LinkedList<Item> items; //To keep up the order of item took 
+									//(situation : remove one of them + one of them was a damage multiplier)
 	
 	//TRICHE
 	private boolean invincibility;
@@ -62,18 +64,42 @@ public class Hero extends Living_Creature
 	}
 	
 //--ITEM----------------------------------------------
+	
 	public boolean takeItem(Item stuff) {
 		boolean currentlyRisingItem= false; //TODO code better -> create methods and getter and attribute to know if it's true or false
+		
 		//TODO use convert array of (double)stats into current stats or just add each stats from the item
 		//TODO sprite of rising item
 		//TODO if not currently taking a Item tempo multiple takes
+		
 		if(!currentlyRisingItem) {
-			items.add(stuff); //TODO add stats to Hero at the same time or in a different methods with .add in there
+			addStats(stuff); //TODO add stats to Hero at the same time or in a different methods with .add in there
 			return true;
 		}
 		return false;
 		
 		
+	}
+	
+	private void addStats(Item stuff) {
+		
+		double[] allStats = stuff.getStatsChange(); //return null atm
+		
+		this.heartContainer = (int)allStats[0];
+		setRedHeart(allStats[1]); //verify this
+		this.blueHeart = allStats[2];
+
+		setSpeed(allStats[3]);
+		setTearRate(allStats[4]);
+		setDamage(allStats[5]);
+		setRange(allStats[6]);
+		setShootSpeed(allStats[7]);
+		
+		setSize(getSize()/**allStats[8]*/);
+		
+		//setInvincibilityFrame(allStats[?]);
+		
+		items.add(stuff);
 	}
 	
 	

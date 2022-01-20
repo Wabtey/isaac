@@ -16,6 +16,7 @@ public class Spawn extends Room {
 		super(hero, doors);
 		//getDoors().add(new Door(DoorInfos.NORTH, new Room(hero)));
 		
+		
 	}
 
 	@Override
