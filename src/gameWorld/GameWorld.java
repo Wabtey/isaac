@@ -153,7 +153,7 @@ public class GameWorld
 			currentRoom.getMonsters().removeAll(currentRoom.getMonsters());
 		
 		if(StdDraw.isKeyPressed(Controls.bePowerfull))
-			hero.changePowerfull();
+			hero.changePowerful();
 		
 		if(StdDraw.isKeyPressed(Controls.beRich))
 			hero.setGold(hero.getGold()+10);

@@ -24,7 +24,7 @@ public class CreaturesInfos
 	public static final double ISAAC_SPEED = 0.01*DisplaySettings.SCALE;
 	public static final double ISAAC_TEARRATE = 3.5*DisplaySettings.SCALE;
 	public static final double ISAAC_DAMAGE = 6;
-	public static final double ISAAC_RANGE = 0.5*DisplaySettings.SCALE; //depend the room's width
+	public static final double ISAAC_RANGE = 0.5*DisplaySettings.SCALE; //depend the room's width //TODO MAKE IT WORK
 	public static final double ISAAC_SHOTSPEED = 0.03*DisplaySettings.SCALE;
 	
 	public static final LinkedList<Item> ISAAC_STARTER = new LinkedList<Item>();
@@ -33,6 +33,14 @@ public class CreaturesInfos
 										ISAAC_REDHEART, ISAAC_BLUEHEART, ISAAC_SPEED,
 										ISAAC_TEARRATE, ISAAC_DAMAGE, ISAAC_RANGE, ISAAC_SHOTSPEED,
 		    							ISAAC_STARTER, ImagePaths.ISAAC);
+
+	//--CHEATING STATS------------
+	public static final double BROKEN_DAMAGE = 100;
+	public static final double BROKEN_SPEED = 0.03*DisplaySettings.SCALE; //TODO verify the placement of scale multiplier
+	public static final double BROKEN_TEAR_RATE = 10;
+	public static final double BROKEN_RANGE = 1*DisplaySettings.SCALE;
+
+
 	
 //--SPIDER-------------------------
 	public static Vector2 SPIDER_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.3*DisplaySettings.SCALE);

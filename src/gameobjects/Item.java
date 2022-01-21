@@ -219,15 +219,39 @@ public class Item {
 //--DRAW--------------------------------------------
 	
 	public void drawGameObject() {
+		
 		StdDraw.picture(position.getX(), position.getY(), imagePath);
 		//TODO create temp Pedestal with casual comportement
 	}
 	
 //--Export ITEM Stats-------------------------------
 	
-	//TODO create this beautiful method
+
+	/**
+	 * 
+	 * @return allStats in a array
+	 */
 	private double[] convertAllStatsIntoList(){
-		return null;
+		
+		double[] allStats = new double[15];
+		
+		allStats[0]=getHeartContainer();
+		allStats[1]=getRedHeart();
+		allStats[2]=getBlueHeart();
+		allStats[3]=getSpeed();
+		allStats[4]=getTearRate();
+		allStats[5]=getDamage();
+		allStats[6]=getRange();
+		allStats[7]=getShootSpeed();
+		allStats[8]=getLuck();
+		allStats[9]=getDevilDeal();
+		allStats[10]=getAngelRoom();
+		allStats[11]=getGold();
+		allStats[12]=getBomb();
+		allStats[13]=getKey();
+		allStats[14]=getheroSize();
+		
+		return allStats;
 	}
 	
 //--GETTERS/SETTERS---------------------------------
@@ -269,14 +293,11 @@ public class Item {
 //--STATS GLOBAL-------------------------------------------
 	
 
-	public double[] getListOfStats() {
+	public double[] getArrayOfStats() {
 		return convertAllStatsIntoList();
 	}
-	
-	public double[] getStatsChange() {
-		return statsChange;
-	}
 
+	@Deprecated
 	public void setStatsChange(double[] statsChange) {
 		this.statsChange = statsChange;
 	}

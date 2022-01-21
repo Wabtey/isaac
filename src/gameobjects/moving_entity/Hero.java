@@ -27,9 +27,17 @@ public class Hero extends Living_Creature
 									//(situation : remove one of them + one of them was a damage multiplier)
 	
 	//TRICHE
+	private boolean cheating;
+	
 	private boolean invincibility;
 	private boolean ultraSpeed;
-	private boolean powerfull;
+	private boolean Powerful;
+	
+	//prevent multiple set every frame in the cheat() method but horrible atm
+	private boolean activatingPowerful;
+	private boolean activatingUltraSpeed;
+	
+	private double[] statsRecovery;
 
 
 	
@@ -52,15 +60,45 @@ public class Hero extends Living_Creature
 		//--TRICHE------------And no OneShooted gameplay
 		if (!isInvincible() && getInvincibilityFrames()>0)
 			decreaseInvincibilityFrames();
-		if(isUltraSpeed()) {
-			setSpeed(0.05*DisplaySettings.SCALE);
-		}else
-			setSpeed(CreaturesInfos.ISAAC_SPEED);
-		if(isPowerfull()) {
-			setDamage(50); setTearRate(8);
-		}else {
-			setDamage(CreaturesInfos.ISAAC_DAMAGE); setTearRate(CreaturesInfos.ISAAC_TEARRATE);
+		
+		//TODO clean this place up
+		setCheating(isUltraSpeed() || isPowerful());
+		if(!isCheating())
+			this.statsRecovery = convertAllStatsIntoList();
+		for(int i=0; i<statsRecovery.length; i++) {
+			System.out.print(statsRecovery[i]+" ");
+			if(i==statsRecovery.length-1)
+				System.out.println();
 		}
+		
+	}
+	
+//--STATS ARRAY-----------------------------------
+	/**
+	 * Duplicated methods from Item class
+	 * @return allStats in a array
+	 */
+	private double[] convertAllStatsIntoList(){
+		
+		double[] allStats = new double[15];
+		
+		allStats[0]=getheartContainer();
+		allStats[1]=getRedHeart();
+		allStats[2]=getblueHeart();
+		allStats[3]=getSpeed();
+		allStats[4]=getTearRate();
+		allStats[5]=getDamage();
+		allStats[6]=getRange();
+		allStats[7]=getShootSpeed();
+		allStats[8]=getLuck();
+		allStats[9]=getDevilDeal();
+		allStats[10]=getAngelRoom();
+		allStats[11]=getGold();
+		allStats[12]=getBomb();
+		allStats[13]=getKey();
+		//allStats[14]=getheroSize();
+		
+		return allStats;
 	}
 	
 //--ITEM----------------------------------------------
@@ -83,19 +121,34 @@ public class Hero extends Living_Creature
 	
 	private void addStats(Item stuff) {
 		
-		double[] allStats = stuff.getStatsChange(); //return null atm
+		double[] allStats = stuff.getArrayOfStats();
 		
-		this.heartContainer = (int)allStats[0];
-		setRedHeart(allStats[1]); //verify this
-		this.blueHeart = allStats[2];
+		setheartContainer(getheartContainer()+(int)allStats[0]);
+		if(getRedHeart() != getheartContainer()) {
+			if(getRedHeart()+allStats[1]<=getheartContainer())
+				setRedHeart(getRedHeart()+allStats[1]);
+			else
+				setRedHeart(getheartContainer());
+		}
+		setblueHeart(getblueHeart()+allStats[2]);
 
-		setSpeed(allStats[3]);
-		setTearRate(allStats[4]);
-		setDamage(allStats[5]);
-		setRange(allStats[6]);
-		setShootSpeed(allStats[7]);
+		setSpeed(super.getSpeed()+allStats[3]);
+		setTearRate(super.getTearRate()+allStats[4]);
+		setDamage(super.getDamage()+allStats[5]);
+		setRange(super.getRange()+allStats[6]);
+		setShootSpeed(super.getShootSpeed()+allStats[7]);
 		
-		setSize(getSize()/**allStats[8]*/);
+		setLuck(getLuck()+allStats[8]);
+		setDevilDeal(getDevilDeal()+allStats[9]); //TODO verify and implement deal after boss
+		setAngelRoom(allStats[10]);
+		
+		setGold(getGold()+(int)allStats[11]);
+		setBomb(getBomb()+(int)allStats[12]);
+		setKey(getKey()+(int)allStats[13]);
+		
+		double sizeModifier = allStats[14];
+		if(sizeModifier>0)
+			setSize(new Vector2(getSize().getX()*sizeModifier, getSize().getY()*sizeModifier));
 		
 		//setInvincibilityFrame(allStats[?]);
 		
@@ -115,16 +168,21 @@ public class Hero extends Living_Creature
 		boolean success = false;
 
 		//TODO implement blue heart
-		if(thing instanceof Heart) {
-			Heart heal = (Heart)thing;
-			if(getRedHeart()+heal.getValue() < heartContainer) {
-				setRedHeart(getRedHeart()+heal.getValue());
-				success = true;
-			}else if(getRedHeart()>= heartContainer) {
-				success = false; //to permit the player to play with the heart (implementing if !success then apply speed+inertie to move the pick
-			}else if(getRedHeart()+heal.getValue() > heartContainer) {
-				setRedHeart(heartContainer); //Full heal
-				success = true;
+		if (thing instanceof Heart) {
+			Heart heal = (Heart) thing;
+			if (heal.getColor() == "red") {
+				if (getRedHeart() + heal.getValue() < heartContainer) {
+					setRedHeart(getRedHeart() + heal.getValue());
+					success = true;
+				} else if (getRedHeart() >= heartContainer) {
+					success = false; // to permit the player to play with the heart (implementing if !success then
+										// apply speed+inertie to move the pick
+				} else if (getRedHeart() + heal.getValue() > heartContainer) {
+					setRedHeart(heartContainer); // Full heal
+					success = true;
+				}
+			}else if(heal.getColor()=="blue") {
+				setblueHeart(getblueHeart()+heal.getValue());
 			}
 		}
 		
@@ -256,6 +314,39 @@ public class Hero extends Living_Creature
 
 //--GETTER/SETTER-----------------------------------------
 	
+	//--OVERRIDE To ALLOWED CHETING NICELY
+	public double getSpeed() {
+		if(isUltraSpeed())
+			return CreaturesInfos.BROKEN_SPEED;
+		else
+			return super.getSpeed(); //this current stats is preserved from changes due to cheat
+	}
+	
+	public double getTearRate() {
+		if(isPowerful())
+			return CreaturesInfos.BROKEN_TEAR_RATE;
+		else
+			return super.getTearRate();
+	}
+
+	
+	public double getDamage() {
+		if(isPowerful())
+			return CreaturesInfos.BROKEN_DAMAGE;
+		else
+			return super.getDamage();
+	}
+
+
+	public double getRange() {
+		if(isPowerful())
+			return CreaturesInfos.BROKEN_RANGE;
+		else
+			return super.getRange();
+	}
+
+//--CURRENT STATS--
+	
 	public int getheartContainer() {
 		return heartContainer;
 	}
@@ -330,15 +421,26 @@ public class Hero extends Living_Creature
 
 //--TRICHE------------------------------------
 
+	public boolean isCheating() {
+		return cheating;
+	}
+
+	public void setCheating(boolean cheating) {
+		this.cheating = cheating;
+	}
+
+	public double[] getStatsRecovery() {
+		return statsRecovery;
+	}
+
+	public void setStatsRecovery(double[] statsRecovery) {
+		this.statsRecovery = statsRecovery;
+	}
+
 	public boolean isInvincible() {
 		return invincibility;
 	}
 
-	//will be unused
-	public void setInvincibility(boolean invisibility) {
-		this.invincibility = invisibility;
-	}
-	
 	public void changeInvincibility() {
 		this.invincibility = !invincibility;
 	}
@@ -347,26 +449,24 @@ public class Hero extends Living_Creature
 		return ultraSpeed;
 	}
 
-	//will be unused
-	public void setUltraSpeed(boolean ultraSpeed) {
-		this.ultraSpeed = ultraSpeed;
-	}
 
 	public void changeUltraSpeed() {
 		this.ultraSpeed = !ultraSpeed;
 	}
 	
-	public boolean isPowerfull() {
-		return powerfull;
+	public boolean isPowerful() {
+		return Powerful;
 	}
 
-	public void setPowerfull(boolean powerfull) {
-		this.powerfull = powerfull;
+	public void setPowerful(boolean Powerful) {
+		this.Powerful = Powerful;
 	}
 
-	public void changePowerfull() {
-		this.powerfull=!powerfull;
+	public void changePowerful() {
+		this.Powerful=!Powerful;
 	}
+	
+
 }
 	
 	
