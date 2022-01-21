@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import libraries.StdDraw;
 import libraries.Vector2;
+import resources.ItemInfos;
 import resources.RoomInfos;
 
 public class Item {
@@ -224,33 +225,32 @@ public class Item {
 		//TODO create temp Pedestal with casual comportement
 	}
 	
-//--Export ITEM Stats-------------------------------
+// --Export ITEM Stats-------------------------------
 	
-
 	/**
-	 * 
+	 * convert item's stats into a double[] to simplified addItem()
 	 * @return allStats in a array
 	 */
-	private double[] convertAllStatsIntoList(){
-		
-		double[] allStats = new double[15];
-		
-		allStats[0]=getHeartContainer();
-		allStats[1]=getRedHeart();
-		allStats[2]=getBlueHeart();
-		allStats[3]=getSpeed();
-		allStats[4]=getTearRate();
-		allStats[5]=getDamage();
-		allStats[6]=getRange();
-		allStats[7]=getShootSpeed();
-		allStats[8]=getLuck();
-		allStats[9]=getDevilDeal();
-		allStats[10]=getAngelRoom();
-		allStats[11]=getGold();
-		allStats[12]=getBomb();
-		allStats[13]=getKey();
-		allStats[14]=getheroSize();
-		
+	private double[] convertAllStatsIntoList() {
+
+		double[] allStats = new double[ItemInfos.STATS_A_LENGTH];
+
+		allStats[0] = getHeartContainer();
+		allStats[1] = getRedHeart();
+		allStats[2] = getBlueHeart();
+		allStats[3] = getSpeed();
+		allStats[4] = getTearRate();
+		allStats[5] = getDamage();
+		allStats[6] = getRange();
+		allStats[7] = getShootSpeed();
+		allStats[8] = getLuck();
+		allStats[9] = getDevilDeal();
+		allStats[10] = getAngelRoom();
+		allStats[11] = getGold();
+		allStats[12] = getBomb();
+		allStats[13] = getKey();
+		allStats[14] = getheroSize();
+
 		return allStats;
 	}
 	

@@ -66,8 +66,6 @@ public abstract class Room
 		this.rewards = new LinkedList<PickUp>();  //initiate a empty list of rewards for every room created
 		this.items = new LinkedList<Item>();
 		
-		spawnItem(ItemInfos.PENTAGRAM);
-		
 		this.isClear = false;
 	}
 	
@@ -384,7 +382,7 @@ public abstract class Room
 //		StdDraw.picture(position.getX(), position.getY(), ImagePaths.FLOOR);
 //		StdDraw.picture(position.getX(), position.getY(), ImagePaths.WALL);
 		
-		//TODO removing the display of wall and floor make the game faster
+		//TODO removing the display of wall and floor make the game faster: learn why
 		StdDraw.picture(position.getX(), position.getY(), ImagePaths.FLOOR, DisplaySettings.SCALE, DisplaySettings.SCALE);
 		StdDraw.picture(position.getX(), position.getY(), ImagePaths.WALL, DisplaySettings.SCALE, DisplaySettings.SCALE);
 
@@ -402,20 +400,25 @@ public abstract class Room
 			item.drawGameObject();
 		}
 		
-		hero.drawGameObject();
-		ArrayList<Projectile> tears = hero.getProjectile();
-		for(Projectile tear:tears) {
-			tear.drawGameObject();
-		}
+		//--ENTITY--
+		
+		//TODO make the pewpew stayed even if the shooter is dead
 		for (Monsters monster : monsters) {
 			ArrayList<Projectile> pewpew = monster.getProjectile();
 			for (Projectile pew : pewpew) {
 				pew.drawGameObject();
 			}
 		}
+		
 		for (Monsters monster : monsters) {
 			monster.drawGameObject();
-			// monster.drawImage(animation.getSprite(), x, y, null);
+		}
+		
+		hero.drawGameObject();
+		
+		ArrayList<Projectile> tears = hero.getProjectile();
+		for(Projectile tear:tears) {
+			tear.drawGameObject();
 		}
 		
 //		//--HITBOX DREW---------------------

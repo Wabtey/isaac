@@ -4,13 +4,18 @@ import java.util.List;
 
 import gameWorld.room.Room;
 import gameobjects.Door;
+import gameobjects.Item;
 import gameobjects.moving_entity.Hero;
 import gameobjects.pickup.PickUp;
+import resources.ItemInfos;
 
 public class ItemRoom extends Room{
 
 	public ItemRoom(Hero hero, List<Door> doors) {
 		super(hero, doors);
+		
+		spawnItem(ItemInfos.PENTAGRAM);
+		spawnItem(generateItem());
 	}
 
 	@Override
@@ -22,6 +27,11 @@ public class ItemRoom extends Room{
 	//Keep the specials room without reward
 	@Override
 	public PickUp generateReward() {
+		return null;
+	}
+	
+	public Item generateItem() {
+		
 		return null;
 	}
 	

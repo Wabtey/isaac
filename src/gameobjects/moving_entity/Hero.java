@@ -33,10 +33,6 @@ public class Hero extends Living_Creature
 	private boolean ultraSpeed;
 	private boolean Powerful;
 	
-	//prevent multiple set every frame in the cheat() method but horrible atm
-	private boolean activatingPowerful;
-	private boolean activatingUltraSpeed;
-	
 	private double[] statsRecovery;
 
 
@@ -61,15 +57,15 @@ public class Hero extends Living_Creature
 		if (!isInvincible() && getInvincibilityFrames()>0)
 			decreaseInvincibilityFrames();
 		
-		//TODO clean this place up
-		setCheating(isUltraSpeed() || isPowerful());
-		if(!isCheating())
-			this.statsRecovery = convertAllStatsIntoList();
-		for(int i=0; i<statsRecovery.length; i++) {
-			System.out.print(statsRecovery[i]+" ");
-			if(i==statsRecovery.length-1)
-				System.out.println();
-		}
+//		//TODO clean this place up
+//		setCheating(isUltraSpeed() || isPowerful());
+//		if(!isCheating())
+//			this.statsRecovery = convertAllStatsIntoList();
+//		for(int i=0; i<statsRecovery.length; i++) {
+//			System.out.print(statsRecovery[i]+" ");
+//			if(i==statsRecovery.length-1)
+//				System.out.println();
+//		}
 		
 	}
 	
