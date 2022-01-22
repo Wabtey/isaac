@@ -22,6 +22,8 @@ public class GameWorld
 	private Hero hero; 
 	
 	private int tempo;
+	
+	private boolean leftSpawn; //allow the player to switch character if he's still in the spawn
 
 	// A world needs a hero
 	public GameWorld(Hero hero)
@@ -87,8 +89,8 @@ public class GameWorld
 	}
 	
 	private void createRoom() {
-		int wichRoom = (int) Math.round((Math.random()*2)*10)/10;
-		switch (wichRoom){
+		int whichRoom = (int) Math.round((Math.random()*2)*10)/10;
+		switch (whichRoom){
 		case 0:this.currentRoom = new RoomC1(hero,doors);break;
 		case 1: this.currentRoom = new RoomC2(hero,doors); break;
 		case 2: this.currentRoom = new RoomC1(hero,doors); break;
@@ -175,6 +177,12 @@ public class GameWorld
 		
 		if(StdDraw.isKeyPressed(Controls.beRich))
 			hero.setGold(hero.getGold()+10);
+		
+		if(StdDraw.isKeyPressed(Controls.switchHero)) {
+			if(currentRoom instanceof Spawn && !leftSpawn) {
+				//TODO create switch character
+			}
+		}
 		
 	}
 	

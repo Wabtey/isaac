@@ -239,7 +239,7 @@ public abstract class Room
 		for (Monsters monster : monsters) {
 			if (monster.getRedHeart() == 0) {
 				toDelete.add(monster);
-				if (monster instanceof Moter) {
+				if (monster instanceof Moter) { //TODO Issue when multiple moter dying in the same frame -> spawn only 2
 					// monster.spawnBabies();
 					Baby1 = new Fly(new Vector2(monster.getPosition().getX() + 0.1, monster.getPosition().getY()),
 							new Vector2(monster.getPosition().getX() + 0.1, monster.getPosition().getY()));
@@ -302,6 +302,7 @@ public abstract class Room
 	public void removeAllPickUp() {
 		setRewards(null);
 	}
+	
 	public void addItems(Item stuff) {
 		getItems().add(stuff);
 	}
