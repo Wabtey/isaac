@@ -3,8 +3,8 @@ package gameobjects.moving_entity;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import gameobjects.Item;
 import gameobjects.pickup.*;
+import gameobjects.stuff.Item;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.CreaturesInfos;
@@ -26,6 +26,8 @@ public class Hero extends Living_Creature
 	private LinkedList<Item> items; //To keep up the order of item took 
 									//(situation : remove one of them + one of them was a damage multiplier)
 	
+	private boolean showHUD;
+	
 	//TRICHE
 	private boolean cheating;
 	
@@ -34,6 +36,7 @@ public class Hero extends Living_Creature
 	private boolean Powerful;
 	
 	private double[] statsRecovery;
+
 
 
 	
@@ -54,7 +57,7 @@ public class Hero extends Living_Creature
 		move();
 		
 		//--TRICHE------------And no OneShooted gameplay
-		if (!isInvincible() && getInvincibilityFrames()>0)
+		if (!isInvincible() && getInvincibilityFrames()>0 ) //
 			decreaseInvincibilityFrames();
 		
 //		//TODO clean this place up
@@ -74,6 +77,7 @@ public class Hero extends Living_Creature
 	 * Duplicated methods from Item class
 	 * @return allStats in a array
 	 */
+	@Deprecated
 	private double[] convertAllStatsIntoList(){
 		
 		double[] allStats = new double[15];
@@ -107,7 +111,7 @@ public class Hero extends Living_Creature
 		//TODO if not currently taking a Item tempo multiple takes
 		
 		if(!currentlyRisingItem) {
-			addStats(stuff); //TODO add stats to Hero at the same time or in a different methods with .add in there
+			addStats(stuff);
 			return true;
 		}
 		return false;
@@ -128,7 +132,7 @@ public class Hero extends Living_Creature
 		}
 		setblueHeart(getblueHeart()+allStats[2]);
 
-		setSpeed(super.getSpeed()+allStats[3]);
+		setSpeed(super.getSpeed()+allStats[3]); 
 		setTearRate(super.getTearRate()+allStats[4]);
 		setDamage(super.getDamage()+allStats[5]);
 		setRange(super.getRange()+allStats[6]);
@@ -179,6 +183,7 @@ public class Hero extends Living_Creature
 				}
 			}else if(heal.getColor()=="blue") {
 				setblueHeart(getblueHeart()+heal.getValue());
+				success = true;
 			}
 		}
 		
@@ -205,7 +210,7 @@ public class Hero extends Living_Creature
 		}
 			
 		
-		if(thing instanceof Bomb && this.bomb<99) {
+		if(thing instanceof Bomb) {
 			if(this.bomb+1<99) {
 				this.bomb++;
 				success = true;
@@ -252,7 +257,8 @@ public class Hero extends Living_Creature
 		//ISAAC Spite
 		StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(),
 						getSize().getX(), getSize().getY());
-		drawHUD();
+		if(showHUD)
+			drawHUD();
 		
 	}
 	
@@ -265,7 +271,7 @@ public class Hero extends Living_Creature
 	private void drawHealhMeter()
 	{
 		double heigth = 0.9;
-		// Red Heart
+		// Red Heart //TODO magical number
 		for (int i = 0; i < getheartContainer(); i++) {
 
 			double pos;
@@ -283,7 +289,7 @@ public class Hero extends Living_Creature
 
 		}
 
-		// Blue/Black Heart
+		// Blue/Black Heart //TODO magical number
 		for (int i = 0; i < getblueHeart(); i++) {
 			double posR = 0.1 + 0.05 * (getheartContainer());
 			double posB = posR + 0.05 * (i);
@@ -305,10 +311,15 @@ public class Hero extends Living_Creature
 	 */
 	private void drawStatsFlex()
 	{
-		StdDraw.picture(0.1, 0.5, ImagePaths.FOUND_HUD, 0.08, 0.691764, 0);
+		StdDraw.picture(0.05, 0.5, ImagePaths.FOUND_HUD, 0.08, 0.691764, 0); //TODO magical number
 	}
 
 //--GETTER/SETTER-----------------------------------------
+	
+	//--SHOW OR NOT THE HUD-------------------------------
+	public void changeHUD() {
+		this.showHUD=!showHUD;
+	}
 	
 	//--OVERRIDE To ALLOWED CHETING NICELY
 	public double getSpeed() {
@@ -439,6 +450,7 @@ public class Hero extends Living_Creature
 
 	public void changeInvincibility() {
 		this.invincibility = !invincibility;
+		addInvincibilityFrames(1);
 	}
 
 	public boolean isUltraSpeed() {
@@ -461,6 +473,8 @@ public class Hero extends Living_Creature
 	public void changePowerful() {
 		this.Powerful=!Powerful;
 	}
+
+	
 	
 
 }

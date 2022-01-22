@@ -52,8 +52,8 @@ public abstract class Living_Creature {
 		this.reloadTime = 0;
 		this.invincibility = 0;
 		
-			//TODO Change this magic number to something coherent
-		this.tears = new ArrayList<Projectile> (10);
+
+		this.tears = new ArrayList<Projectile>();
 		this.shootOrientation = new Vector2();
 
 	}
@@ -196,8 +196,8 @@ public abstract class Living_Creature {
 
 	private Vector2 getNormalizedDirection()
 	{
-		Vector2 normalizedVector = new Vector2(direction);
-		normalizedVector.euclidianNormalize(speed);
+		Vector2 normalizedVector = new Vector2(getDirection());
+		normalizedVector.euclidianNormalize(getSpeed());
 		return normalizedVector;
 	}
 	

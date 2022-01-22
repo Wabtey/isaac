@@ -10,6 +10,8 @@ public class Controls
 	public static int goRight = Keybinding.keycodeOf('d');
 	public static int goLeft = Keybinding.keycodeOf('q');
 	
+	public static int hud = Keybinding.keycodeOf('h');
+	
 	public static final int beInvincible = Keybinding.keycodeOf('i');
 	public static final int beSuperFast = Keybinding.keycodeOf('l');
 	public static final int killEveryMonster = Keybinding.keycodeOf('k');

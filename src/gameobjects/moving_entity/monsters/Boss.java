@@ -14,6 +14,7 @@ public class Boss extends Monsters {
 	private int phase;
 	private int phase_max;
 	private boolean newPhase;
+	
 	public Boss() {
 		super(RoomInfos.POSITION_CENTER_OF_ROOM, CreaturesInfos.BOSS_SIZE, RoomInfos.POSITION_CENTER_OF_ROOM, CreaturesInfos.BOSS_HEALTH,
 				CreaturesInfos.BOSS_SPEED, CreaturesInfos.BOSS_TEARRATE, CreaturesInfos.BOSS_DAMAGE,

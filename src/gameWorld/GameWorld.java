@@ -4,21 +4,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 import gameWorld.room.Room;
-import gameWorld.room.roomPattern.RoomC1;
-import gameWorld.room.roomPattern.RoomC2;
-import gameWorld.room.specialsRoom.BossRoom;
-import gameWorld.room.specialsRoom.Shop;
-import gameWorld.room.specialsRoom.Spawn;
+import gameWorld.room.roomPattern.*;
+import gameWorld.room.specialsRoom.*;
 import gameobjects.Door;
 import gameobjects.moving_entity.Hero;
-import gameobjects.moving_entity.monsters.Monsters;
 import libraries.Keybinding.SpecialKeys;
 import libraries.StdDraw;
 import libraries.Vector2;
-import resources.Controls;
-import resources.DoorInfos;
-import resources.ImagePaths;
-import resources.RoomInfos;
+import resources.*;
 import test.Cardinal_Points;
 
 public class GameWorld
@@ -27,6 +20,8 @@ public class GameWorld
 	private Room currentRoom;
 	private List<Door> doors;
 	private Hero hero; 
+	
+	private int tempo;
 
 	// A world needs a hero
 	public GameWorld(Hero hero)
@@ -44,6 +39,8 @@ public class GameWorld
 
 	public void processUserInput()
 	{
+		if(tempo>0) //Prevent double activation of cheat code or any activable keys
+			tempo--;
 		processKeysForMovement();
 	}
 
@@ -59,6 +56,7 @@ public class GameWorld
 	public void updateGameObjects()
 	{
 		currentRoom.updateRoom();
+
 	}
 	
 	
@@ -77,7 +75,7 @@ public class GameWorld
 			doors.add(new Door(DoorInfos.NORTH,neighbors.getNorth()));
 		}
 		if(neighbors.getSouth()!=null) {
-			doors.add(new Door(DoorInfos.SUD,neighbors.getSouth()));
+			doors.add(new Door(DoorInfos.SOUTH,neighbors.getSouth()));
 		}
 		if(neighbors.getEast()!=null) {
 			doors.add(new Door(DoorInfos.EAST,neighbors.getEast()));
@@ -143,17 +141,37 @@ public class GameWorld
 		if (StdDraw.isKeyPressed(Controls.right))
 			hero.shoot(SpecialKeys.RIGHT);
 		
-		if(StdDraw.isKeyPressed(Controls.beInvincible))
-			hero.changeInvincibility();
+		if(StdDraw.isKeyPressed(Controls.hud)) {
+			if(this.tempo==0) {
+				hero.changeHUD();
+				this.tempo=5;
+			}
+		}
+		
+		if(StdDraw.isKeyPressed(Controls.beInvincible)) {
+			if(this.tempo==0) {
+				hero.changeInvincibility();
+				this.tempo=5;
+			}
+		}
 	
-		if(StdDraw.isKeyPressed(Controls.beSuperFast))
-			hero.changeUltraSpeed();
+		if(StdDraw.isKeyPressed(Controls.beSuperFast)) {
+			if(this.tempo==0) {
+				hero.changeUltraSpeed();
+				this.tempo=5;
+			}
+			
+		}
 		
 		if(StdDraw.isKeyPressed(Controls.killEveryMonster))
 			currentRoom.getMonsters().removeAll(currentRoom.getMonsters());
 		
-		if(StdDraw.isKeyPressed(Controls.bePowerfull))
-			hero.changePowerful();
+		if(StdDraw.isKeyPressed(Controls.bePowerfull)) {
+			if(this.tempo==0) {
+				hero.changePowerful();
+				this.tempo=5;
+			}
+		}
 		
 		if(StdDraw.isKeyPressed(Controls.beRich))
 			hero.setGold(hero.getGold()+10);
@@ -163,11 +181,11 @@ public class GameWorld
 	public Vector2 repositionHero(Vector2 door) {
 		Vector2 temp = new Vector2(RoomInfos.POSITION_CENTER_OF_ROOM);
 		if (door.equals(DoorInfos.NORTH)) {
-			temp.setX(DoorInfos.SUD.getX());
-			temp.setY(DoorInfos.SUD.getY());
+			temp.setX(DoorInfos.SOUTH.getX());
+			temp.setY(DoorInfos.SOUTH.getY());
 			temp.addY(0.1);
 		}
-		if (door.equals(DoorInfos.SUD)) {
+		if (door.equals(DoorInfos.SOUTH)) {
 			temp.setX(DoorInfos.NORTH.getX());
 			temp.setY(DoorInfos.NORTH.getY());
 			temp.addY(-0.1);
@@ -198,7 +216,7 @@ public class GameWorld
 	}
 	
 	public boolean isASpecialRoom() {
-		return (currentRoom instanceof Spawn || currentRoom instanceof BossRoom ||currentRoom instanceof Shop );
+		return (currentRoom instanceof Spawn || currentRoom instanceof BossRoom ||currentRoom instanceof Shop || currentRoom instanceof ItemRoom);
 	}
 	
 	public Room getCurrentRoom() {

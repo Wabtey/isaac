@@ -38,14 +38,18 @@ public class Coin extends PickUp{
 		whichValue();
 	}
 	
-	//TODO is the fact that we roll two time does not interfere with the drop result ?
+	/*
+	 * is the fact that we roll two time does not interfere with the drop result ?
+	 * @see in test.Test for the result :
+	 * using the method SuccessByPercentage permit us to respect the drop indicate in PickUpInfos simply
+	 */
 	private void whichValue() {
-		if(Random.SuccessByPercentage(PickUpInfos.NICKEL_DROP)) {
-			this.value = PickUpInfos.NICKEL_VALUE;
-			this.image = ImagePaths.NICKEL;
-		}else if(Random.SuccessByPercentage(PickUpInfos.DIME_DROP)) {
+		if(Random.SuccessByPercentage(PickUpInfos.DIME_DROP)) {
 			this.value = PickUpInfos.DIME_VALUE;
 			this.image = ImagePaths.DIME;
+		}else if(Random.SuccessByPercentage(PickUpInfos.NICKEL_DROP)) {
+			this.value = PickUpInfos.NICKEL_VALUE;
+			this.image = ImagePaths.NICKEL;
 		}else {
 			this.value = PickUpInfos.COIN_VALUE;
 			this.image = ImagePaths.COIN;

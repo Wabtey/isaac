@@ -47,12 +47,21 @@ public class Door {
 	public void drawGameObject() {
 		//TODO make the hitbox higher to let the player walk along the wall in front of the door without going in
 		//North Door
-		if(coordonnees.getY()==DoorInfos.NORTH.getY())
+		if(coordonnees==DoorInfos.NORTH)
 			StdDraw.picture(DoorInfos.POSITION_DOOR_NORTH.getX(), DoorInfos.POSITION_DOOR_NORTH.getY(), (open==true)?ImagePaths.OPENED_DOOR:ImagePaths.CLOSED_DOOR,
 					DoorInfos.DOOR_SIZE.getX(), DoorInfos.DOOR_SIZE.getY());
+		
+		else if(coordonnees==DoorInfos.EAST)
+			StdDraw.picture(DoorInfos.POSITION_DOOR_EAST.getX(), DoorInfos.POSITION_DOOR_EAST.getY(), (open==true)?ImagePaths.OPENED_DOOR:ImagePaths.CLOSED_DOOR,
+					DoorInfos.DOOR_SIZE.getX(), DoorInfos.DOOR_SIZE.getY(), -90);
+		
+		else if(coordonnees==DoorInfos.WEAST)
+			StdDraw.picture(DoorInfos.POSITION_DOOR_WEAST.getX(), DoorInfos.POSITION_DOOR_WEAST.getY(), (open==true)?ImagePaths.OPENED_DOOR:ImagePaths.CLOSED_DOOR,
+				DoorInfos.DOOR_SIZE.getX(), DoorInfos.DOOR_SIZE.getY(), 90);			
+		
 		else
-			StdDraw.picture(getCoordonnees().getX(), getCoordonnees().getY(), (open==true)?ImagePaths.OPENED_DOOR:ImagePaths.CLOSED_DOOR,
-				DoorInfos.DOOR_SIZE.getX(), DoorInfos.DOOR_SIZE.getY());
+			StdDraw.picture(DoorInfos.POSITION_DOOR_SOUTH.getX(), DoorInfos.POSITION_DOOR_SOUTH.getY(), (open==true)?ImagePaths.OPENED_DOOR:ImagePaths.CLOSED_DOOR,
+				DoorInfos.DOOR_SIZE.getX(), DoorInfos.DOOR_SIZE.getY(), 180);
 		
 	}
 	

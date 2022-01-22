@@ -1,5 +1,9 @@
 package resources;
 
+import java.util.LinkedList;
+
+import gameobjects.stuff.Item;
+
 public class Random {
 
 	/**
@@ -46,5 +50,48 @@ public class Random {
 		//Formula
 		return random*luck*0.1+pickupPercent;
 		
+	}
+
+	/**
+	 * pick An Item From A specific Pool
+	 * @param pool
+	 * @return item choosed randomly
+	 */
+	public static Item getRewardPool(String pool) {
+		
+		Item reward = ItemInfos.HP_UP; //base item
+		
+		if(pool == ItemInfos.STRING_BOSS_POOL) {
+			int randomNb = pickRandomlyIntoAList(ItemInfos.BOSS_POOL);
+			reward = ItemInfos.BOSS_POOL.get(randomNb);
+		}
+		
+		else if(pool == ItemInfos.STRING_DEVIL_POOL){
+			int randomNb = pickRandomlyIntoAList(ItemInfos.DEVIL_POOL);
+			reward = ItemInfos.DEVIL_POOL.get(randomNb);
+		}
+		
+		else if(pool == ItemInfos.STRING_ITEM_POOL){
+			int randomNb = pickRandomlyIntoAList(ItemInfos.ITEM_POOL);
+			reward = ItemInfos.ITEM_POOL.get(randomNb);
+		}
+		
+		else {
+			int randomNb = pickRandomlyIntoAList(ItemInfos.HP_UP_POOL);
+			reward = ItemInfos.HP_UP_POOL.get(randomNb); //TODO : when no more item left make it like there is no doublon except HpUp
+		}
+		
+		
+		return reward;
+	}
+	
+	/**
+	 * 
+	 * @param list
+	 * @return a random number between 0 and 
+	 */
+	public static int pickRandomlyIntoAList(LinkedList<Item> list) {
+		int random = (int)Math.random()*(list.size()-1); //TODO carefull about empty list
+		return random;
 	}
 }

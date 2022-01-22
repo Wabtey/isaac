@@ -7,16 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 import gameobjects.Door;
-import gameobjects.Item;
 import gameobjects.moving_entity.Hero;
 import gameobjects.moving_entity.Projectile;
-import gameobjects.moving_entity.monsters.Fly;
-import gameobjects.moving_entity.monsters.Monsters;
-import gameobjects.moving_entity.monsters.Moter;
-import gameobjects.moving_entity.monsters.Spider;
+import gameobjects.moving_entity.monsters.*;
 import gameobjects.obstacles.Obstacle;
 import gameobjects.pickup.*;
-
+import gameobjects.stuff.Item;
 import libraries.StdDraw;
 import libraries.Vector2;
 
@@ -67,6 +63,8 @@ public abstract class Room
 		this.items = new LinkedList<Item>();
 		
 		this.isClear = false;
+		
+		System.out.println(Random.getRewardPool(ItemInfos.STRING_ITEM_POOL));
 	}
 	
 	public abstract void initialise();
@@ -82,8 +80,6 @@ public abstract class Room
 		makeMonstersPlay();
 		updateProjectile();
 		checkCollision();
-	
-
 	}
 
 //--HERO--------------------------------------------------------
@@ -162,8 +158,8 @@ public abstract class Room
 		//--REWARD--
 		for (PickUp pickUp : rewards) {
 			// TODO shrink hero collision to his feet about pick up the reward
-			if (collision(getHero().getPosition(), getHero().getSize(), pickUp.getPosition(),
-					pickUp.getSize())) {
+			if (collision(getHero().getPosition(), getHero().getSize(),
+						  pickUp.getPosition(), pickUp.getSize())) {
 				PickUp contactPickup = pickUp;
 				if (getHero().hasPickedUp(contactPickup)) {
 					rewards.remove(contactPickup);
@@ -173,8 +169,8 @@ public abstract class Room
 		
 		//--ITEM--
 		for (Item item : items) {
-			if (collision(getHero().getPosition(), getHero().getSize(), item.getPosition(),
-					item.getSize())) {
+			if (collision(getHero().getPosition(), getHero().getSize(),
+						  item.getPosition(), item.getSize())) {
 				Item contactItem = item;
 				if (getHero().takeItem(contactItem)) {
 					items.remove(contactItem);
@@ -222,7 +218,7 @@ public abstract class Room
 	/**
 	 * @param Hero's coordonates
 	 * @param Hero's size
-	 * @return Monster which is in collision with the Hero //TODO no it doesn't
+	 * @return true if the two objects are in collision, false otherwise
 	 */
 	private boolean collision(Vector2 coordonnees, Vector2 size, Vector2 coordonnees2, Vector2 size2) {
 		double posX0 = coordonnees.getX() - (size.getX() / 2);
@@ -290,6 +286,9 @@ public abstract class Room
 	public void removeAllPickUp() {
 		setRewards(null);
 	}
+	public void addItems(Item stuff) {
+		getItems().add(stuff);
+	}
 	
 	/**
 	 * give a position to every single item which need to spawn
@@ -344,13 +343,17 @@ public abstract class Room
 		if (monsters.isEmpty()) {
 			for (Door door : doors) {
 				door.openDoor();
-				if(!isClear()) {
-					PickUp RoomPickUp = generateReward();
-					if(RoomPickUp!=null)
-						getRewards().add(RoomPickUp);
-					setIsClear(true);
-				}
+				generateRoomReward();
 			}
+		}
+	}
+	
+	private void generateRoomReward() {
+		if(!isClear()) {
+			PickUp RoomPickUp = generateReward();
+			if(RoomPickUp!=null)
+				getRewards().add(RoomPickUp);
+			setIsClear(true);
 		}
 	}
 
@@ -391,6 +394,10 @@ public abstract class Room
 			door.drawGameObject();
 		}
 		
+		for (Obstacle obstacle: obstacles) {
+			obstacle.drawGameObject();
+		}
+		
 		for(PickUp pickup: rewards) {
 			pickup.drawGameObject();
 		}
@@ -401,6 +408,8 @@ public abstract class Room
 		}
 		
 		//--ENTITY--
+		
+		hero.drawGameObject();
 		
 		//TODO make the pewpew stayed even if the shooter is dead
 		for (Monsters monster : monsters) {
@@ -414,24 +423,13 @@ public abstract class Room
 			monster.drawGameObject();
 		}
 		
-		hero.drawGameObject();
+
 		
 		ArrayList<Projectile> tears = hero.getProjectile();
 		for(Projectile tear:tears) {
 			tear.drawGameObject();
 		}
 		
-//		//--HITBOX DREW---------------------
-//		double posX0 = this.getHero().getPosition().getX() - (this.getHero().getSize().getX() / 2); //TODO a supp
-//		double posX1 = this.getHero().getPosition().getX() + (this.getHero().getSize().getX() / 2);
-//		double posY0 = this.getHero().getPosition().getY() - (this.getHero().getSize().getY() / 2);
-//		double posY1 = this.getHero().getPosition().getY() + (this.getHero().getSize().getY() / 2);
-//		StdDraw.setPenColor(StdDraw.BLUE);
-//		StdDraw.filledCircle(posX1, posY0, 0.01);
-//		StdDraw.filledCircle(posX1, posY1, 0.01);
-//		StdDraw.filledCircle(posX0, posY0, 0.01);
-//		StdDraw.filledCircle(posX0, posY1, 0.01);
-//		StdDraw.filledCircle(0.5, 0.5, 0.02);
 	}
 	
 	/**
@@ -464,6 +462,15 @@ public abstract class Room
 	
 	public LinkedList<Monsters> getMonsters(){
 		return monsters;
+	}
+	
+	public Boss getBoss() {
+		for(Monsters monster :getMonsters()) {
+			if(monster instanceof Boss) {
+				return (Boss)monster; //TODO verify (Boss) cast (same on PickUp)
+			}
+		}
+		return null;
 	}
 	
 	//--PICKUPs--

@@ -2,9 +2,9 @@ package resources;
 
 import java.util.LinkedList;
 
-import gameobjects.Item;
 import gameobjects.moving_entity.Hero;
 import gameobjects.moving_entity.monsters.Spider;
+import gameobjects.stuff.Item;
 import libraries.Vector2;
 
 
@@ -36,7 +36,7 @@ public class CreaturesInfos
 
 	//--CHEATING STATS------------
 	public static final double BROKEN_DAMAGE = 100;
-	public static final double BROKEN_SPEED = 0.03*DisplaySettings.SCALE; //TODO verify the placement of scale multiplier
+	public static final double BROKEN_SPEED = 0.05*DisplaySettings.SCALE; //TODO verify the placement of scale multiplier
 	public static final double BROKEN_TEAR_RATE = 10;
 	public static final double BROKEN_RANGE = 1*DisplaySettings.SCALE;
 

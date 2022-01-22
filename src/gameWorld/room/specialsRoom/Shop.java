@@ -5,10 +5,14 @@ import java.util.List;
 import gameWorld.room.Room;
 import gameobjects.Door;
 import gameobjects.moving_entity.Hero;
+import gameobjects.obstacles.Machine;
 import gameobjects.pickup.PickUp;
 
 public class Shop extends Room {
 
+	private int level;
+	private Machine machine;
+	
 	public Shop(Hero hero, List<Door> doors) {
 		super(hero, doors);
 		// TODO Auto-generated constructor stub

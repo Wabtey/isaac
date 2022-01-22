@@ -59,7 +59,7 @@ public class Spider extends Monsters{
 	private boolean inRange(Vector2 cible) {
 		return (((Math.abs(getPosition().getX())-Math.abs(cible.getX()))<(CreaturesInfos.SPIDER_VISION.getX()))&&
 		((Math.abs(getPosition().getY())-Math.abs(cible.getY()))<(CreaturesInfos.SPIDER_VISION.getY())));
-	}//TODO valeur magique ^^
+	}
 
 	// TODO better animation
 	@Override

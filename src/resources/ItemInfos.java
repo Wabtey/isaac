@@ -2,7 +2,7 @@ package resources;
 
 import java.util.LinkedList;
 
-import gameobjects.Item;
+import gameobjects.stuff.Item;
 import libraries.Vector2;
 
 public class ItemInfos {
@@ -38,32 +38,69 @@ public class ItemInfos {
 	public static final Vector2 ITEM_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.35 * DisplaySettings.SCALE);
 	public static final int STATS_A_LENGTH = 16;
 	
-	//--NORMAL POOL-------------------------
-	public static LinkedList<Item> generateNormalPool(){
-		
-		LinkedList<Item> NORMAL_POOL = new LinkedList<Item>();
-		NORMAL_POOL.add(PENTAGRAM);
-		NORMAL_POOL.add(MAGIC_MUSHROOM);
-		NORMAL_POOL.add(STIGMATA);
-		NORMAL_POOL.add(LUNCH);
-		NORMAL_POOL.add(HP_UP);
-		
-		return NORMAL_POOL;
-	}
+	//--POOL----------------------------------
 	
-	public static final LinkedList<Item> NORMAL_POOL = generateNormalPool();
+	public static final String STRING_ITEM_POOL = "ItemPool";
+	public static final String STRING_DEVIL_POOL = "DevilPool";
+	public static final String STRING_BOSS_POOL = "BossPool";
+
 	
-	//--DEVIL POOL--------------------------
+	public static final LinkedList<Item> ITEM_POOL = generateNormalPool();
+	public static final LinkedList<Item> DEVIL_POOL = generateDevilPool();
+	public static final LinkedList<Item> BOSS_POOL = generateBossPool();
+	public static final LinkedList<Item> HP_UP_POOL = generateHPupPool();
+
+
+	
+	//--GENERATE POOL--------------------------
 
 	public static LinkedList<Item> generateDevilPool(){
 		
-		LinkedList<Item> DEVIL_POOL = new LinkedList<Item>();
-		DEVIL_POOL.add(PENTAGRAM);
+		LinkedList<Item> devilPool = new LinkedList<Item>();
+		devilPool.add(PENTAGRAM);
 		
-		return DEVIL_POOL;
+		return devilPool;
 	}
 	
-	public static final LinkedList<Item> DEVIL_POOL = generateDevilPool();
+	public static LinkedList<Item> generateNormalPool(){
+		
+		LinkedList<Item> normalPool = new LinkedList<Item>();
+		//bossPool.addList(HP_UP_POOL); //TODO create this List adder
+		normalPool.add(PENTAGRAM);
+		normalPool.add(MAGIC_MUSHROOM);
+		normalPool.add(STIGMATA);
+		normalPool.add(LUNCH);
+		normalPool.add(HP_UP);
+		
+		return normalPool;
+	}
+	
+	public static LinkedList<Item> generateBossPool(){
+		
+		LinkedList<Item> bossPool = new LinkedList<Item>();
+		//bossPool.addList(NORMAL_POOL); //TODO create this List adder
+		bossPool.add(PENTAGRAM);
+		bossPool.add(MAGIC_MUSHROOM);
+		bossPool.add(STIGMATA);
+		bossPool.add(LUNCH);
+		bossPool.add(HP_UP);
+
+		
+		return bossPool;
+	}
+	
+	/**
+	 * simple hpUP pool
+	 * @return
+	 */
+	public static LinkedList<Item> generateHPupPool()
+	{
+		LinkedList<Item> hpUPPool = new LinkedList<Item>();
+		hpUPPool.add(LUNCH);
+		hpUPPool.add(HP_UP);
+
+		return hpUPPool;
+	}
 	
 //--DAMAGE----------------------
 	// --PENTAGRAM--

@@ -31,8 +31,9 @@ public class RoomC2 extends Room {
 		super.updateRoom();
 	}
 
+	//TODO magical number
 	public void createObstacles() {
-		ArrayList<Obstacle> obstacle = new ArrayList<Obstacle>();// TODO a scaletiser
+		ArrayList<Obstacle> obstacle = new ArrayList<Obstacle>();
 		obstacle.add(new Rock(new Vector2(0.25, 0.35), 0.16, 0.16));
 		obstacle.add(new Rock(new Vector2(0.6, 0.25), 0.04, 0.08));
 		obstacle.add(new Rock(new Vector2(0.85, 0.3), 0.1, 0.1));
@@ -55,10 +56,7 @@ public class RoomC2 extends Room {
 
 	public void drawRoom() {
 		super.drawRoom();
-		ArrayList<Obstacle> obstacles = getObstacles();
-		for (Obstacle obstacle : obstacles) {
-			obstacle.drawGameObject();
-		}
+
 	}
 
 }
