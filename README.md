@@ -15,7 +15,7 @@ Go Deeper into the cave, flee your Mother and all the monstrosity hiding in thos
 You will spawn in a Room where all begin. `//TODO make the Spawn's floor different from the other`  
 Choose your way; Cross a door.  
 
-If you certainly falling into a agressive Room ! `//TODO recreate obstacle position by creating a grid from RoomInfos to simplefy this creation`  
+If you certainly falling into a agressive Room ! `//TODO recreate obstacle position by creating a grid from RoomInfos to simplefy its creation`  
 Full of Astrocity ! Fly, Moter of Fly and even the spider want you dead !  
 Kill them... with what ? Yours tears ! Press the arrow on you keyboard to cry on your ennemy !  
 
