@@ -46,7 +46,7 @@ public class GameWorld
 
 	public boolean gameOver()
 	{
-		if(hero.getRedHeart()==0) {
+		if(hero.getRedHeart()<=0 && hero.getblueHeart()<=0) { //<= and not == cause of -1dmg when having only one half heart
 			return true;
 		}else 
 			return false;
