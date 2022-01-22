@@ -71,7 +71,7 @@ public class BossRoom extends Room {
 				new Vector2(position.getX(), position.getY() + 0.1)));
 		getMonsters().add(new Fly(new Vector2(position.getX(), position.getY() - 0.1),
 				new Vector2(position.getX(), position.getY() - 0.1)));
-	//	getMonsters().addAll(flyes);
+	    //getMonsters().addAll(flies);
 	}
 
 	@Override

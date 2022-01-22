@@ -102,6 +102,7 @@ public abstract class Room
 	private void updateMonstersProjectiles() {
 		ArrayList<Projectile> projectile_delete = new ArrayList<Projectile>(projectile.size());
 		for (Monsters monster : monsters) {
+			//TODO dead monsters' projectiles : make it stay
 			ArrayList<Projectile> projectiles = monster.getProjectile();
 			for (Projectile mp : projectiles) {
 				if (inAnObstacle(mp.getProjPosition())) {
@@ -231,12 +232,31 @@ public abstract class Room
 	}
 
 	private void checkMonstersHP() {
+		boolean spawnBabies = false;
+		Fly Baby1 = null;
+		Fly Baby2 = null;
 		ArrayList<Monsters> toDelete = new ArrayList<Monsters>(monsters.size());
 		for (Monsters monster : monsters) {
-			if (monster.getRedHeart() == 0)
+			if (monster.getRedHeart() == 0) {
 				toDelete.add(monster);
+				if (monster instanceof Moter) {
+					// monster.spawnBabies();
+					Baby1 = new Fly(new Vector2(monster.getPosition().getX() + 0.1, monster.getPosition().getY()),
+							new Vector2(monster.getPosition().getX() + 0.1, monster.getPosition().getY()));
+					Baby2 = new Fly(new Vector2(monster.getPosition().getX() - 0.1, monster.getPosition().getY()),
+							new Vector2(monster.getPosition().getX() - 0.1, monster.getPosition().getY()));
+					spawnBabies = true;
+				}
+			}
 		}
+		if(spawnBabies && Baby1!=null && Baby2!=null) {
+			getMonsters().add(Baby1);
+			getMonsters().add(Baby2);
+
+		}
+		
 		monsters.removeAll(toDelete);
+		
 	}
 	
 //--REWARD-----------------------------------------------------

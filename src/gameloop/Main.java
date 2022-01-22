@@ -14,7 +14,7 @@ public class Main
 {
 	public static void main(String[] args)
 	{
-		// Hero, world and display initialization.
+		// Hero, world and display initialisation.
 		Hero isaac = CreaturesInfos.ISAAC;
 		Dungeon monde = new Dungeon(isaac, 8);
 		monde.initalise();
