@@ -20,10 +20,14 @@ import gameobjects.stuff.Item;
 public class BossRoom extends Room {
 
 	private boolean isDefeat;
+	private Boss boss;
+	
+	//TODO learn why sometimes the bossRoom don't spawn 
 	
 	public BossRoom(Hero hero, List<Door> doors) {
 		super(hero, doors);
 		this.isDefeat = false;
+		boss = new Boss();
 	}
 
 	public void updateRoom() {		
@@ -47,15 +51,17 @@ public class BossRoom extends Room {
 	}
 
 	public void createMonsters() {
-		getMonsters().add(new Boss());
+		getMonsters().add(boss);
 	}
 
 	public void checkPhase() {
-		LinkedList<Monsters> monsters = getMonsters();
-		for (Monsters monster : monsters) {
-			if (monster instanceof Boss && monster.isANewPhase())
-				makeFly(monster.getPosition());
-		}
+//		LinkedList<Monsters> monsters = getMonsters();
+//		for (Monsters monster : monsters) {
+//			if (monster instanceof Boss && monster.isANewPhase())
+//				makeFly(monster.getPosition());
+//		}
+		 if(boss.isANewPhase()) //TODO trun it into a getBoss()
+			 makeFly(boss.getPosition());
 	}
 
 	private void makeFly(Vector2 position) {
@@ -82,8 +88,9 @@ public class BossRoom extends Room {
 	}
 	
 	public Item generateItem() {
-		Item reward = Random.getRewardPool(ItemInfos.STRING_BOSS_POOL);
-		addItems(reward);
+		//Item reward = Random.getRewardPool(ItemInfos.STRING_BOSS_POOL);
+		Item reward = ItemInfos.HP_UP;
+		spawnItem(reward);
 		return reward;
 	}
 	
