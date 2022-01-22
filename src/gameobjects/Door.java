@@ -1,7 +1,6 @@
 package gameobjects;
 
 import gameWorld.GameWorld;
-import gameWorld.room.Room;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.DoorInfos;

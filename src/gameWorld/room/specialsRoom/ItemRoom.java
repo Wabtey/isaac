@@ -5,8 +5,8 @@ import java.util.List;
 import gameWorld.room.Room;
 import gameobjects.Door;
 import gameobjects.moving_entity.Hero;
-import gameobjects.pickup.PickUp;
 import gameobjects.stuff.Item;
+import gameobjects.stuff.pickup.PickUp;
 import resources.ItemInfos;
 
 public class ItemRoom extends Room{

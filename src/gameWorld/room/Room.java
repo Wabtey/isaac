@@ -1,18 +1,15 @@
 package gameWorld.room;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-
 import gameobjects.Door;
 import gameobjects.moving_entity.Hero;
 import gameobjects.moving_entity.Projectile;
 import gameobjects.moving_entity.monsters.*;
 import gameobjects.obstacles.Obstacle;
-import gameobjects.pickup.*;
-import gameobjects.stuff.Item;
+import gameobjects.stuff.*;
+import gameobjects.stuff.pickup.*;
 import libraries.StdDraw;
 import libraries.Vector2;
 
@@ -21,7 +18,6 @@ import resources.DisplaySettings;
 import resources.DoorInfos;
 import resources.ImagePaths;
 import resources.ItemInfos;
-import resources.PickUpInfos;
 import resources.Random;
 import resources.RoomInfos;
 

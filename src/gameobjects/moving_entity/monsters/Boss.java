@@ -1,8 +1,5 @@
 package gameobjects.moving_entity.monsters;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-
 import gameobjects.moving_entity.Hero;
 import libraries.StdDraw;
 import libraries.Vector2;
@@ -15,13 +12,14 @@ public class Boss extends Monsters {
 	private int phase_max;
 	private boolean newPhase;
 	
-	public Boss() {
-		super(RoomInfos.POSITION_CENTER_OF_ROOM, CreaturesInfos.BOSS_SIZE, RoomInfos.POSITION_CENTER_OF_ROOM, CreaturesInfos.BOSS_HEALTH,
-				CreaturesInfos.BOSS_SPEED, CreaturesInfos.BOSS_TEARRATE, CreaturesInfos.BOSS_DAMAGE,
-				CreaturesInfos.BOSS_RANGE,  CreaturesInfos.BOSS_SHOOTSPEED, ImagePaths.BOSS);
-		if(getRedHeart()>=10) {
+	public Boss(Vector2 position, Vector2 size, Vector2 destination,
+			double hp, double speed, double tearRate, double damage, double range, double shootSpeed,
+			String imagePath) {
+		super(position, size, destination,
+				hp, speed, tearRate, damage, range, shootSpeed,
+				imagePath);
+		if(getRedHeart()>=10) { //
 			this.phase = this.phase_max = (int) CreaturesInfos.BOSS_HEALTH/10;
-			
 		}
 	}
 

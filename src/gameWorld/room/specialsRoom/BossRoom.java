@@ -1,7 +1,5 @@
 package gameWorld.room.specialsRoom;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import gameWorld.room.Room;
@@ -9,25 +7,23 @@ import gameobjects.Door;
 import gameobjects.moving_entity.Hero;
 import gameobjects.moving_entity.monsters.Boss;
 import gameobjects.moving_entity.monsters.Fly;
-import gameobjects.moving_entity.monsters.Monsters;
-import gameobjects.obstacles.Obstacle;
 import libraries.Vector2;
+import resources.CreaturesInfos;
 import resources.ItemInfos;
-import resources.Random;
-import gameobjects.pickup.PickUp;
 import gameobjects.stuff.Item;
+import gameobjects.stuff.pickup.PickUp;
 
 public class BossRoom extends Room {
 
-	private boolean isDefeat;
+	//private boolean isDefeat;
 	private Boss boss;
 	
 	//TODO learn why sometimes the bossRoom don't spawn 
 	
 	public BossRoom(Hero hero, List<Door> doors) {
 		super(hero, doors);
-		this.isDefeat = false;
-		boss = new Boss();
+		//this.isDefeat = false;
+		boss = CreaturesInfos.SWARMER;
 	}
 
 	public void updateRoom() {		
@@ -60,12 +56,13 @@ public class BossRoom extends Room {
 //			if (monster instanceof Boss && monster.isANewPhase())
 //				makeFly(monster.getPosition());
 //		}
-		 if(boss.isANewPhase()) //TODO trun it into a getBoss()
+		 if(boss.isANewPhase()) //TODO turn it into a getBoss()
 			 makeFly(boss.getPosition());
 	}
 
+	//TODO fix SOFTLOCK when invoke close to a wall flies can be stuck
 	private void makeFly(Vector2 position) {
-		LinkedList<Monsters> flyes = new LinkedList<Monsters>();
+		//LinkedList<Monsters> flies = new LinkedList<Monsters>();
 		getMonsters().add(new Fly(new Vector2(position.getX() + 0.1, position.getY()),
 				new Vector2(position.getX() + 0.1, position.getY())));
 		getMonsters().add(new Fly(new Vector2(position.getX() - 0.1, position.getY()),

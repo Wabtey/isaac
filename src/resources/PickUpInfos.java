@@ -1,6 +1,7 @@
 package resources;
 
-import gameobjects.pickup.*;
+import gameobjects.stuff.pickup.Coin;
+import gameobjects.stuff.pickup.Heart;
 import libraries.Vector2;
 
 public class PickUpInfos {

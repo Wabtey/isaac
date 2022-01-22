@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ItemInfos;
-import resources.RoomInfos;
 
 public class Item {
 

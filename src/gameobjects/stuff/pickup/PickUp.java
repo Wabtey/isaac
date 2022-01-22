@@ -1,6 +1,5 @@
-package gameobjects.pickup;
+package gameobjects.stuff.pickup;
 
-import libraries.StdDraw;
 import libraries.Vector2;
 import resources.PickUpInfos;
 

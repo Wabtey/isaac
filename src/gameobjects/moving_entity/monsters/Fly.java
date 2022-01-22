@@ -4,7 +4,6 @@ import gameobjects.moving_entity.Hero;
 import gameobjects.moving_entity.Projectile;
 import libraries.StdDraw;
 import libraries.Vector2;
-import libraries.Keybinding.SpecialKeys;
 import resources.CreaturesInfos;
 import resources.ImagePaths;
 

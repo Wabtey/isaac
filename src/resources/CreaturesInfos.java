@@ -3,6 +3,7 @@ package resources;
 import java.util.LinkedList;
 
 import gameobjects.moving_entity.Hero;
+import gameobjects.moving_entity.monsters.Boss;
 import gameobjects.moving_entity.monsters.Spider;
 import gameobjects.stuff.Item;
 import libraries.Vector2;
@@ -80,13 +81,15 @@ public class CreaturesInfos
 		public static final int BOSS_SRITE_SHEET_SIZE = 26; //each cell is 26px long, 11px high
 		public static final int BOSS_CELLS_NB = 4;
 		public static final double BOSS_HEALTH = 50;
-		public static final double BOSS_SPEED = 0.008;
+		public static final double BOSS_SPEED = 0.006; //was 0.008 but the flies were stuck on his bodyhaving the same speed
 		public static final double BOSS_TEARRATE = 0;
 		public static final double BOSS_DAMAGE = 0.5;
 		public static final double BOSS_RANGE = 0;
 		public static final double BOSS_SHOOTSPEED = 0;
 
-	
+	public static final Boss SWARMER = new Boss(RoomInfos.POSITION_CENTER_OF_ROOM, CreaturesInfos.BOSS_SIZE, RoomInfos.POSITION_CENTER_OF_ROOM, CreaturesInfos.BOSS_HEALTH,
+				CreaturesInfos.BOSS_SPEED, CreaturesInfos.BOSS_TEARRATE, CreaturesInfos.BOSS_DAMAGE,
+				CreaturesInfos.BOSS_RANGE,  CreaturesInfos.BOSS_SHOOTSPEED, ImagePaths.BOSS);
 	//public static Monsters SPIDER = new Spider(new Vector2(0.3,0.3), hero.getPosition());
 	
 	/**

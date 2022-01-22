@@ -1,14 +1,12 @@
 package gameobjects.moving_entity;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
-import gameobjects.pickup.*;
-import gameobjects.stuff.Item;
+import gameobjects.stuff.*;
+import gameobjects.stuff.pickup.*;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.CreaturesInfos;
-import resources.DisplaySettings;
 import resources.ImagePaths;
 
 public class Hero extends Living_Creature

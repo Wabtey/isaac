@@ -6,7 +6,7 @@ import gameWorld.room.Room;
 import gameobjects.Door;
 import gameobjects.moving_entity.Hero;
 import gameobjects.obstacles.Machine;
-import gameobjects.pickup.PickUp;
+import gameobjects.stuff.pickup.PickUp;
 
 public class Shop extends Room {
 

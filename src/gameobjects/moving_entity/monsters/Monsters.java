@@ -4,7 +4,6 @@ import java.util.LinkedList;
 
 import gameobjects.moving_entity.Hero;
 import gameobjects.moving_entity.Living_Creature;
-import gameobjects.obstacles.Obstacle;
 import libraries.StdDraw;
 import libraries.Vector2;
 

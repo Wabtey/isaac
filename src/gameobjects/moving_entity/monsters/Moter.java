@@ -1,16 +1,10 @@
 package gameobjects.moving_entity.monsters;
 
-import java.awt.image.BufferedImage;
-
 import gameobjects.moving_entity.Hero;
 import libraries.StdDraw;
 import libraries.Vector2;
-import libraries.animation.Animation;
-import libraries.animation.Sprite;
 import resources.CreaturesInfos;
 import resources.ImagePaths;
-
-import libraries.animation.Sprite;
 
 public class Moter extends Monsters{
 	

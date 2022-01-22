@@ -5,7 +5,7 @@ import java.util.List;
 import gameWorld.room.Room;
 import gameobjects.Door;
 import gameobjects.moving_entity.Hero;
-import gameobjects.pickup.PickUp;
+import gameobjects.stuff.pickup.PickUp;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.DoorInfos;
