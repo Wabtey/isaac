@@ -144,23 +144,23 @@ public class GameWorld
 			hero.shoot(SpecialKeys.RIGHT);
 		
 		if(StdDraw.isKeyPressed(Controls.hud)) {
-			if(this.tempo==0) {
+			if(getTempo()==0) {
 				hero.changeHUD();
-				this.tempo=5;
+				setTempo(5);
 			}
 		}
 		
 		if(StdDraw.isKeyPressed(Controls.beInvincible)) {
-			if(this.tempo==0) {
+			if(getTempo()==0) {
 				hero.changeInvincibility();
-				this.tempo=5;
+				setTempo(5);
 			}
 		}
 	
 		if(StdDraw.isKeyPressed(Controls.beSuperFast)) {
-			if(this.tempo==0) {
+			if(getTempo()==0) {
 				hero.changeUltraSpeed();
-				this.tempo=5;
+				setTempo(5);
 			}
 			
 		}
@@ -169,28 +169,28 @@ public class GameWorld
 			currentRoom.getMonsters().removeAll(currentRoom.getMonsters());
 		
 		if(StdDraw.isKeyPressed(Controls.bePowerfull)) {
-			if(this.tempo==0) {
+			if(getTempo()==0) {
 				hero.changePowerful();
-				this.tempo=5;
+				setTempo(5);
 			}
 		}
 		
 		if(StdDraw.isKeyPressed(Controls.beRich))
 			hero.setGold(hero.getGold()+10);
 		
-		if(StdDraw.isKeyPressed(Controls.switchHero)) { //Press 'c'
-			if(currentRoom instanceof Spawn && !leftSpawn) {
-				if(hero.getImagePath() == ImagePaths.ISAAC) {
-					Vector2 currentPosition = hero.getPosition();
-					hero = CreaturesInfos.MAGDALENE;
-					hero.setPosition(currentPosition); //cause CreaturesInfos.MAGDALENE spawn Magdalene in the center of the room
-				}else if(hero.getImagePath() == ImagePaths.MAGDALENE) {
-					Vector2 currentPosition = hero.getPosition();
-					hero = CreaturesInfos.ISAAC;
-					hero.setPosition(currentPosition);
-				}
-			}
-		}
+//		if(StdDraw.isKeyPressed(Controls.switchHero)) { //Press 'c'
+//			if(getTempo()==0 && currentRoom instanceof Spawn && !leftSpawn) {
+//				if(hero.getImagePath() == ImagePaths.ISAAC) {
+//					Vector2 currentPosition = hero.getPosition();
+//					setHero(CreaturesInfos.MAGDALENE);
+//					hero.setPosition(currentPosition); //cause CreaturesInfos.MAGDALENE spawn Magdalene in the center of the room
+//				}else if(hero.getImagePath() == ImagePaths.MAGDALENE) {
+//					Vector2 currentPosition = hero.getPosition();
+//					hero = CreaturesInfos.ISAAC;
+//					hero.setPosition(currentPosition);
+//				}
+//			}
+//		}
 		
 	}
 	
@@ -219,6 +219,14 @@ public class GameWorld
 		}
 		return temp;
 	}
+	public Hero getHero() {
+		return hero;
+	}
+
+	public void setHero(Hero hero) {
+		this.hero = hero;
+	}
+
 	public void setCurrentRoom(Room room) {
 		this.currentRoom = room;
 	}
@@ -238,6 +246,14 @@ public class GameWorld
 	
 	public Room getCurrentRoom() {
 		return this.currentRoom;
+	}
+
+	public int getTempo() {
+		return tempo;
+	}
+
+	public void setTempo(int tempo) {
+		this.tempo = tempo;
 	}
 	
 }
