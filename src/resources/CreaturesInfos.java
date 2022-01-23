@@ -15,8 +15,10 @@ public class CreaturesInfos
 //--TEAR--------------------------
 	public static final Vector2 TEAR_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.35*DisplaySettings.SCALE);
 
-//--ISAAC-------------------------
+//--INVINCIBILITY FRAME-----------
 	public static final int HERO_INVINCIBILITY = 20; //can change with a trinket (supp final when implementing)
+
+//--ISAAC-------------------------
 	
 	//--STARTER-------------------
 	public static Vector2 ISAAC_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.7*DisplaySettings.SCALE);
@@ -35,6 +37,24 @@ public class CreaturesInfos
 										ISAAC_TEARRATE, ISAAC_DAMAGE, ISAAC_RANGE, ISAAC_SHOTSPEED,
 		    							ISAAC_STARTER, ImagePaths.ISAAC);
 
+//--MAGDALENE-------------------------
+	
+	//--STARTER-------------------
+	public static Vector2 MAGDALENE_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.7*DisplaySettings.SCALE);
+	public static final double MAGDALENE_REDHEART = 5;
+	public static final double MAGDALENE_BLUEHEART = 0;
+	public static final double MAGDALENE_SPEED = 0.01*DisplaySettings.SCALE;
+	public static final double MAGDALENE_TEARRATE = 3.5*DisplaySettings.SCALE;
+	public static final double MAGDALENE_DAMAGE = 4;
+	public static final double MAGDALENE_RANGE = 0.5*DisplaySettings.SCALE; //depend the room's width //TODO MAKE IT WORK
+	public static final double MAGDALENE_SHOTSPEED = 0.03*DisplaySettings.SCALE;
+		
+	public static final LinkedList<Item> MAGDALENE_STARTER = new LinkedList<Item>(); //activable heal
+		
+	public static Hero MAGDALENE = new Hero(RoomInfos.POSITION_CENTER_OF_ROOM, MAGDALENE_SIZE,
+											MAGDALENE_REDHEART, MAGDALENE_BLUEHEART, MAGDALENE_SPEED,
+											MAGDALENE_TEARRATE, MAGDALENE_DAMAGE, MAGDALENE_RANGE, MAGDALENE_SHOTSPEED,
+			    							MAGDALENE_STARTER, ImagePaths.MAGDALENE);
 	//--CHEATING STATS------------
 	public static final double BROKEN_DAMAGE = 100;
 	public static final double BROKEN_SPEED = 0.05*DisplaySettings.SCALE; //TODO verify the placement of scale multiplier

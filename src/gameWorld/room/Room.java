@@ -41,7 +41,7 @@ public abstract class Room
 		this.hero = hero;
 		this.doors = new ArrayList<Door>(4);
 		this.obstacles = new ArrayList<Obstacle>();
-		this.projectile = new ArrayList<Projectile>(10);//valeur random
+		this.projectile = new ArrayList<Projectile>();
 		
 		this.monsters = new LinkedList<Monsters>();
 		

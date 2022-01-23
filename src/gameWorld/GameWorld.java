@@ -178,14 +178,23 @@ public class GameWorld
 		if(StdDraw.isKeyPressed(Controls.beRich))
 			hero.setGold(hero.getGold()+10);
 		
-		if(StdDraw.isKeyPressed(Controls.switchHero)) {
+		if(StdDraw.isKeyPressed(Controls.switchHero)) { //Press 'c'
 			if(currentRoom instanceof Spawn && !leftSpawn) {
-				//TODO create switch character
+				if(hero.getImagePath() == ImagePaths.ISAAC) {
+					Vector2 currentPosition = hero.getPosition();
+					hero = CreaturesInfos.MAGDALENE;
+					hero.setPosition(currentPosition); //cause CreaturesInfos.MAGDALENE spawn Magdalene in the center of the room
+				}else if(hero.getImagePath() == ImagePaths.MAGDALENE) {
+					Vector2 currentPosition = hero.getPosition();
+					hero = CreaturesInfos.ISAAC;
+					hero.setPosition(currentPosition);
+				}
 			}
 		}
 		
 	}
 	
+	//TODO remove all hero projectiles when switching room 
 	public Vector2 repositionHero(Vector2 door) {
 		Vector2 temp = new Vector2(RoomInfos.POSITION_CENTER_OF_ROOM);
 		if (door.equals(DoorInfos.NORTH)) {

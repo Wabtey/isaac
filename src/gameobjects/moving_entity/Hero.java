@@ -47,6 +47,8 @@ public class Hero extends Living_Creature
 		this.heartContainer = (int)redHeart;
 		this.blueHeart = blueHeart;
 		
+		this.showHUD = true;
+		
 		items = starterItems;
 	}
 	
