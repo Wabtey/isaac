@@ -14,6 +14,8 @@ public class RoomInfos
 	public static final Vector2 POSITION_CENTER_OF_ROOM = new Vector2(0.5*DisplaySettings.SCALE, 0.5*DisplaySettings.SCALE);
 	public static final Vector2 POSITION_START_OF_ROOM  = new Vector2(0*DisplaySettings.SCALE, 0*DisplaySettings.SCALE);
 	public static final Vector2 POSITION_END_OF_ROOM    = new Vector2(1*DisplaySettings.SCALE, 1*DisplaySettings.SCALE);
+	
+	public static final Vector2 POSTION_LEFT_BOTTOM_OF_ROOM = new Vector2(0.15, 0.216);
 
 									  			   //= new Vector2(width, heigth);
 	public static final Vector2 SIZE_WALL_UP         = new Vector2(1*DisplaySettings.SCALE, 0.21*DisplaySettings.SCALE);

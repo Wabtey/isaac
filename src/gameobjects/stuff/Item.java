@@ -17,6 +17,8 @@ public class Item {
 	private double redHeart; //Full heal
 	private double blueHeart;
 	
+	private double damage_multiplier;
+	
 	private double speed;
 	private double tearRate;
 	private double damage;
@@ -61,11 +63,13 @@ public class Item {
 	 * @param heroSize
 	 * @param imagePath
 	 */
-	public Item(int HC, double RH, double BH, double speed, double tearRate, double damage, double range, double shootSpeed,
+	public Item(int HC, double RH, double BH, double dmgMultiplier, double speed, double tearRate, double damage, double range, double shootSpeed,
 			   double luck, double devilDeal, double angelRoom, int gold, int bomb, int key, double heroSize, Vector2 position, Vector2 size, String imagePath) {
 		this.heartContainer = HC;
 		this.redHeart = RH + HC;
 		this.blueHeart = BH;
+		
+		this.damage_multiplier = dmgMultiplier;
 		
 		this.speed = speed;
 		this.tearRate = tearRate;
@@ -123,6 +127,8 @@ public class Item {
 		this.redHeart = 0;
 		this.blueHeart = 0;
 		
+		this.damage_multiplier = 0;
+		
 		this.speed = 0;
 		this.tearRate = 0;
 		this.damage = 0;
@@ -150,6 +156,7 @@ public class Item {
 		this.imagePath = imagePath;
 		
 		//--AVOID adding null statistic to hero--
+		this.damage_multiplier = 0;
 		
 		this.speed = 0;
 		this.tearRate = 0;
@@ -180,8 +187,9 @@ public class Item {
 	 * @param luck
 	 * @param imagePath
 	 */
-	public Item(double speed, double tearRate, double damage, double range, double shootSpeed,
+	public Item(double dmgMultiplier, double speed, double tearRate, double damage, double range, double shootSpeed,
 			   double luck, Vector2 position, Vector2 size, String imagePath) {
+		this.damage_multiplier = dmgMultiplier;
 		
 		this.speed = speed;
 		this.tearRate = tearRate;
@@ -343,7 +351,15 @@ public class Item {
 		this.blueHeart = blueHeart;
 	}
 
-//--STATS-------------------------------------------
+public double getDamage_multiplier() {
+		return damage_multiplier;
+	}
+
+	public void setDamage_multiplier(double damage_multiplier) {
+		this.damage_multiplier = damage_multiplier;
+	}
+
+	//--STATS-------------------------------------------
 	public double getSpeed() {
 		return speed;
 	}

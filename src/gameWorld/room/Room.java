@@ -60,10 +60,12 @@ public abstract class Room
 		
 		this.isClear = false;
 		
-		System.out.println(Random.getRewardPool(ItemInfos.STRING_ITEM_POOL));
+		//spawnItem(generateItem(STRING_ITEM_POOL));
+		
+		//System.out.println(Random.getRewardPool(ItemInfos.STRING_ITEM_POOL));
 	}
 	
-	public abstract void initialise();
+	public abstract void initialise(); //in the methods initialiseGameWorlds() in Dungeon
 	
 	/*
 	 * Make every entity that compose a room process one step
@@ -126,7 +128,7 @@ public abstract class Room
 
 //--COMBAT CODE-------------------------------------------------
 
-	private void makeMonstersPlay() {
+	protected void makeMonstersPlay() {
 		for (Monsters monster : monsters) {
 			Vector2 lastPosition = monster.getPosition();
 			monster.updateGameObject(hero); // DO NOT MOVE you monster
@@ -135,7 +137,7 @@ public abstract class Room
 		}
 	}
 
-	private void checkCollision() {
+	protected void checkCollision() {
 		checkRangeCollisionWithHero();
 		checkRangeCollisionWithMonster();
 		checkCloseCollision();
@@ -166,7 +168,7 @@ public abstract class Room
 		
 		//--ITEM--
 		for (Item item : items) {
-			if (collision(getHero().getPosition(), getHero().getSize(),
+			if (item != null && collision(getHero().getPosition(), getHero().getSize(),
 						  item.getPosition(), item.getSize())) {
 				Item contactItem = item;
 				if (getHero().takeItem(contactItem)) {
@@ -231,7 +233,7 @@ public abstract class Room
 		return false;
 	}
 
-	private void checkMonstersHP() {
+	protected void checkMonstersHP() {
 		boolean spawnBabies = false;
 		Fly Baby1 = null;
 		Fly Baby2 = null;
@@ -294,27 +296,27 @@ public abstract class Room
 
 	}
 	
-	/**
-	 * Make all pickUp in the Room disappear
-	 * Careful about this methods
-	 */
-	@Deprecated
-	public void removeAllPickUp() {
-		setRewards(null);
-	}
-	
 	public void addItems(Item stuff) {
 		getItems().add(stuff);
+		System.out.println("addItems param :"+stuff);
 	}
+	
+	//example of spawning a item in the room (gift) : spawnItem(generateItem(STRING_SHOP_POOL)); Shop cause of chest
 	
 	/**
 	 * give a position to every single item which need to spawn
 	 */
 	public void spawnItem(Item coolStuff) {
 		//TODO spawn item method
-		coolStuff.setPosition(new Vector2(0.3, 0.3));
-		items.add(coolStuff);
-
+		if(coolStuff != null) {
+			coolStuff.setPosition(RoomInfos.POSITION_CENTER_OF_ROOM);
+			addItems(coolStuff);
+		}
+	}
+	
+	public Item generateItem(String pool) {
+		Item reward = Random.getRewardPool(pool); //if pool wrong spelled -> HP_UP_POOL
+		return reward;
 	}
 
 //--OBSTACLES--------------------------------------------------
@@ -410,6 +412,10 @@ public abstract class Room
 		for(Door door: doors) {
 			door.drawGameObject();
 		}
+		
+		//TODO grid build
+		StdDraw.picture(0.15, 0.216, "images/grid_40x40.png");
+		StdDraw.picture(0.15, 0.216, ImagePaths.BLOOD_OF_THE_MARTYR);
 		
 		for (Obstacle obstacle: obstacles) {
 			obstacle.drawGameObject();

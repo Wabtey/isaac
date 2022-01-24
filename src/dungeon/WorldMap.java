@@ -106,6 +106,7 @@ public class WorldMap {
 		return false;
 	}
 	
+	//TODO make it not close to the spawn
 	private void addBossFrame() {
 		Vector2 beforeBoss = choseAFrameBeforeBoss();
 		Vector2 bossFrame = beforeBoss.addVector(randomDirection());
@@ -149,7 +150,10 @@ public class WorldMap {
 		return (tabframe != 0 && canICreateARoomHere((int)frame.getX(),(int)frame.getY()));
 	}
 	
-	//renvoie une direction aleatoire dans le plan soit (0,1)(0,-1)(1,0)(-1,0)
+	/**
+	 * renvoie une direction aleatoire dans le plan soit (0,1)(0,-1)(1,0)(-1,0)
+	 * @return
+	 */
 	private Vector2 randomDirection() {
 		double randomValue = Math.round(Math.random()*3);
 		if (randomValue==0)
@@ -162,7 +166,7 @@ public class WorldMap {
 			return new Vector2(-1,0);
 	}
 	
-	//-> cet horreur fonctionne
+	//TODO -> cet horreur fonctionne
 	private boolean checkNeighborhood(Vector2 frame, Vector2 officialNeighbor) {
 		Integer X = (int) frame.getX();
 		Integer Y = (int) frame.getY();

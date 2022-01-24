@@ -9,8 +9,12 @@ import gameobjects.moving_entity.Hero;
 import gameobjects.obstacles.Machine;
 import gameobjects.stuff.Item;
 import gameobjects.stuff.pickup.PickUp;
+import libraries.StdDraw;
+import resources.ImagePaths;
+import resources.ItemInfos;
 import resources.MachineInfos;
 import resources.Random;
+import resources.RoomInfos;
 
 public class Shop extends Room {
 
@@ -31,16 +35,32 @@ public class Shop extends Room {
 	
 	public Shop(Hero hero, List<Door> doors) {
 		super(hero, doors);
+		
 		this.level = 1;
+		this.placementOne = new LinkedList<PickUp>();
+		this.placementTwo = new LinkedList<Item>();
+		this.placementThree = new LinkedList<PickUp>();
+		
+		this.placementFour = new LinkedList<PickUp>();
+		this.placementFive = new LinkedList<Item>();
+		this.placementSix = new LinkedList<PickUp>();
+		
+		initialise(); //Meant to be called in setSpecialRooms() (Dungeon) into changeTypeOfRoom(String type) (GameWorld)
 	}
 	
 	public void initialise() {
 		generateShop();
+		System.out.println("shop initialised"); //TODO test to remove
 	}
+	
+//	public void updateRoom() {
+//		super.updateRoom();
+//	}
 
 	public void drawRoom() {
-		drawGameObject();
+		//drawGameObject();
 		super.drawRoom();
+		StdDraw.picture(RoomInfos.POSITION_CENTER_OF_ROOM.getX()+0.2, RoomInfos.POSITION_CENTER_OF_ROOM.getY()+0.2, ImagePaths.JESUS_JUICE);
 	  //getShopKeeper.drawGameObject();
 	}
 	
@@ -61,9 +81,13 @@ public class Shop extends Room {
 		return null;
 	}
 	
+	
 	private void generatePlacement() {
 		if(getLevel()==1) {
-			
+			placementOne.add(super.generateReward()); //create a semi random pickup for the first element of this placement
+			placementTwo.add(generateItem(ItemInfos.STRING_SHOP_POOL));
+			if(placementTwo!=null)
+				addItems(placementTwo.remove()); //placementTwo.get(0)
 		}
 		
 	}
@@ -75,10 +99,10 @@ public class Shop extends Room {
 	
 //--DRAW ITERFACE----------------------------
 	
-	public void drawGameObject() {
-		addItems(placementTwo.get(0));
-		placementTwo.remove(); //remove the head
-	}
+//	public void drawGameObject() {
+//		if(placementTwo!=null)
+//			addItems(placementTwo.remove()); //placementTwo.get(0)
+//	}
 	
 
 	

@@ -15,6 +15,7 @@ public class Fly extends Monsters {
 		super(position, CreaturesInfos.FLY_SIZE, destination, CreaturesInfos.FLY_HEALTH,
 				CreaturesInfos.FLY_SPEED, CreaturesInfos.FLY_TEARRATE, CreaturesInfos.FLY_DAMAGE,
 				CreaturesInfos.FLY_RANGE,  CreaturesInfos.FLY_SHOOTSPEED, ImagePaths.FLY);
+		setReloadTime(CreaturesInfos.SPIDERT_RELOADTIME);
 	}
 	
 	public void updateGameObject(Hero hero)
@@ -30,6 +31,7 @@ public class Fly extends Monsters {
 			state=0;
 		}
 	
+	//TODO fix ISSUE : sometime tears just stopped in place 
 		private void shootHero(Vector2 hero) {
 			int heroX = (int) Math.round(hero.getX() * 100) / 10;
 			int heroY = (int) Math.round(hero.getY() * 100) / 10;

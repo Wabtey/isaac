@@ -60,27 +60,29 @@ public class Random {
 	public static Item getRewardPool(String pool) {
 		
 		Item reward = ItemInfos.HP_UP; //base item
+		System.out.println(reward.getImagePath());
 		
 		if(pool == ItemInfos.STRING_BOSS_POOL) {
-			int randomNb = pickRandomlyIntoAList(ItemInfos.BOSS_POOL);
-			reward = ItemInfos.BOSS_POOL.get(randomNb);
+			//int randomNb = pickRandomlyIntoAList(ItemInfos.BOSS_POOL);
+			reward = ItemInfos.BOSS_POOL.remove(); //the suffle is done in the itemInfos
 		}
 		
 		else if(pool == ItemInfos.STRING_DEVIL_POOL){
-			int randomNb = pickRandomlyIntoAList(ItemInfos.DEVIL_POOL);
-			reward = ItemInfos.DEVIL_POOL.get(randomNb);
+			//int randomNb = pickRandomlyIntoAList(ItemInfos.DEVIL_POOL);
+			reward = ItemInfos.DEVIL_POOL.remove();
 		}
 		
 		else if(pool == ItemInfos.STRING_ITEM_POOL){
-			int randomNb = pickRandomlyIntoAList(ItemInfos.ITEM_POOL);
-			reward = ItemInfos.ITEM_POOL.get(randomNb);
-		}
+			//int randomNb = pickRandomlyIntoAList(ItemInfos.ITEM_POOL);
+			reward = ItemInfos.ITEM_POOL.remove();
+		}else if(pool == ItemInfos.STRING_SHOP_POOL){
+			reward = ItemInfos.SHOP_POOL.remove();
+		}else {
 		
-		else {
-			int randomNb = pickRandomlyIntoAList(ItemInfos.HP_UP_POOL);
-			reward = ItemInfos.HP_UP_POOL.get(randomNb); //TODO : when no more item left make it like there is no doublon except HpUp
+			//int randomNb = pickRandomlyIntoAList(ItemInfos.HP_UP_POOL);
+			reward = ItemInfos.HP_UP_POOL.remove(); //TODO : when no more item left make it like there is no doublon except HpUp
 		}
-		
+		System.out.println("getRewardPool() return :"+ reward); //TODO test to remove
 		
 		return reward;
 	}
@@ -92,6 +94,7 @@ public class Random {
 	 */
 	public static int pickRandomlyIntoAList(LinkedList<Item> list) {
 		int random = (int)Math.random()*(list.size()-1); //TODO carefull about empty list
+		System.out.println("pickRandomlyIntoAList() :"+random); //TODO test to remove
 		return random;
 	}
 }

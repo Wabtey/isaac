@@ -3,6 +3,7 @@ package gameWorld;
 import java.util.LinkedList;
 import java.util.List;
 
+import dungeon.Dungeon;
 import gameWorld.room.Room;
 import gameWorld.room.roomPattern.*;
 import gameWorld.room.specialsRoom.*;
@@ -23,7 +24,7 @@ public class GameWorld
 	
 	private int tempo;
 	
-	private boolean leftSpawn; //allow the player to switch character if he's still in the spawn
+	private boolean leftSpawn; //TODO allow the player to switch character if he's still in the spawn
 
 	// A world needs a hero
 	public GameWorld(Hero hero)
@@ -37,6 +38,7 @@ public class GameWorld
 	public void initalise() {
 		createDoors();
 		createRoom();
+		currentRoom.initialise();
 	}
 
 	public void processUserInput()
@@ -91,19 +93,20 @@ public class GameWorld
 	private void createRoom() {
 		int whichRoom = (int) Math.round((Math.random()*2)*10)/10;
 		switch (whichRoom){
-		case 0:this.currentRoom = new RoomC1(hero,doors);break;
-		case 1: this.currentRoom = new RoomC2(hero,doors); break;
-		case 2: this.currentRoom = new RoomC1(hero,doors); break;
+		case 0: setCurrentRoom(new RoomC1(hero,doors));break;
+		case 1: setCurrentRoom(new RoomC2(hero,doors)); break;
+		case 2: setCurrentRoom(new RoomC1(hero,doors)); break;
 		}
-		currentRoom.initialise();
+
 	}
 	
 	public void changeTypeOfRoom(String type) {
 		switch (type) {
-		case "spawn" : currentRoom = new Spawn(hero, doors);break;
-		case "boss" : currentRoom = new BossRoom(hero, doors);break;
-		case "shop" : currentRoom = new Shop(hero, doors);break;
-		default : currentRoom = new RoomC1(hero,doors);
+		case "spawn" :setCurrentRoom(new Spawn(hero, doors));break;
+		case "boss" : setCurrentRoom(new BossRoom(hero, doors));break;
+		case "shop" : setCurrentRoom(new Shop(hero, doors));break;
+		case "itemRoom" : setCurrentRoom(new ItemRoom(hero, doors)); break;
+		default : setCurrentRoom(new RoomC1(hero,doors));
 		}
 	}
 
@@ -182,7 +185,7 @@ public class GameWorld
 //			if(getTempo()==0 && currentRoom instanceof Spawn && !leftSpawn) {
 //				if(hero.getImagePath() == ImagePaths.ISAAC) {
 //					Vector2 currentPosition = hero.getPosition();
-//					setHero(CreaturesInfos.MAGDALENE);
+//					setHero(CreaturesInfos.MAGDALENE); //->don't set hero everywhere
 //					hero.setPosition(currentPosition); //cause CreaturesInfos.MAGDALENE spawn Magdalene in the center of the room
 //				}else if(hero.getImagePath() == ImagePaths.MAGDALENE) {
 //					Vector2 currentPosition = hero.getPosition();
@@ -223,9 +226,6 @@ public class GameWorld
 		return hero;
 	}
 
-	public void setHero(Hero hero) {
-		this.hero = hero;
-	}
 
 	public void setCurrentRoom(Room room) {
 		this.currentRoom = room;

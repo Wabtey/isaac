@@ -14,24 +14,19 @@ public class ItemRoom extends Room{
 	public ItemRoom(Hero hero, List<Door> doors) {
 		super(hero, doors);
 		
-		spawnItem(ItemInfos.PENTAGRAM);
-		spawnItem(generateItem());
+		initialise(); //Meant to be called in setSpecialRooms() (Dungeon) into changeTypeOfRoom(String type) (GameWorld)
+
 	}
 
 	@Override
 	public void initialise() {
-		// TODO Auto-generated method stub
+		spawnItem(generateItem(ItemInfos.STRING_ITEM_POOL));
 		
 	}
 	
 	//Keep the specials room without reward
 	@Override
 	public PickUp generateReward() {
-		return null;
-	}
-	
-	public Item generateItem() {
-		
 		return null;
 	}
 	

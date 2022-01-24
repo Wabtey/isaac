@@ -12,6 +12,9 @@ import resources.ImagePaths;
 public class Hero extends Living_Creature
 {
 	private int heartContainer;
+	
+	private double damage_multiplier;
+	
 	private double blueHeart;
 	private double luck;
 	private double devilDeal;	//chance to spawn a extra room after defeting the boss
@@ -344,7 +347,6 @@ public class Hero extends Living_Creature
 			return super.getDamage();
 	}
 
-
 	public double getRange() {
 		if(isPowerful())
 			return CreaturesInfos.BROKEN_RANGE;
@@ -357,6 +359,15 @@ public class Hero extends Living_Creature
 	public int getheartContainer() {
 		return heartContainer;
 	}
+	
+	public double getDamage_multiplier() {
+		return damage_multiplier;
+	}
+
+	public void setDamage_multiplier(double damage_multiplier) {
+		this.damage_multiplier = damage_multiplier;
+	}
+	
 	public void setheartContainer(int heartContainer) {
 		this.heartContainer = heartContainer;
 	}

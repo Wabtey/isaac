@@ -7,6 +7,7 @@ import libraries.StdDraw;
 import libraries.Timer;
 import resources.DisplaySettings;
 import resources.ImagePaths;
+import resources.ItemInfos;
 import resources.CreaturesInfos;
 import resources.RoomInfos;
 
@@ -19,6 +20,7 @@ public class Main
 		Dungeon monde = new Dungeon(isaac, 8);
 		monde.initalise();
 		initializeDisplay();
+		ItemInfos.generatePool(); //TODO find a good place to put it
 
 		// Main loop of the game
 		while (!monde.gameOver())

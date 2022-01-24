@@ -10,6 +10,7 @@ import gameobjects.moving_entity.monsters.Fly;
 import libraries.Vector2;
 import resources.CreaturesInfos;
 import resources.ItemInfos;
+import resources.Random;
 import gameobjects.stuff.Item;
 import gameobjects.stuff.pickup.PickUp;
 
@@ -25,23 +26,44 @@ public class BossRoom extends Room {
 		//this.isDefeat = false;
 		boss = CreaturesInfos.SWARMER;
 	}
+	
+//--GESTION OF THE ROOM--
+	
+	@Override
+	public void initialise() {
+		createMonsters();
+	}
 
 	public void updateRoom() {		
-		super.updateRoom();
-		checkPhase();
+		checkMonstersHP();
+		checkDoorState(); //BossRoom method
+		makeHeroPlay();
+		makeMonstersPlay();
+		updateProjectile();
+		checkCollision();
+		
+		checkPhase(); //BossRoom method
 //		if(isDefeat && getBoss().getRedHeart()<=0) { //if dead
 //			generateItem()
 //		}
 	}
 	
+	//TODO find a another solution rather this duplicated methods to spawn a reward after boss death
+	private void checkDoorState() {
+		if (getMonsters().isEmpty()) {
+			for (Door door : getDoors()) {
+				door.openDoor();
+				generateRoomReward(); //here a item
+			}
+		}
+	}
+	
 //--CLEAR THE ROOM---------
 
 	
-	public void generateRoomReward() {
+	private void generateRoomReward() {
 		if(!isClear()) {
-			//generateItem(); //Item reward = 
-//			if(reward!=null)
-//				getItems().add(reward);
+			spawnItem(generateItem(ItemInfos.STRING_DEVIL_POOL));
 			setIsClear(true);
 		}
 	}
@@ -74,22 +96,14 @@ public class BossRoom extends Room {
 	    //getMonsters().addAll(flies);
 	}
 
-	@Override
-	public void initialise() {
-		createMonsters();
-	}
+
 
 	@Override
-	public PickUp generateReward() {
+	public PickUp generateReward() { // no need we import the checkDoorState() method down there
 		return null;
 	}
 	
-	public Item generateItem() {
-		//Item reward = Random.getRewardPool(ItemInfos.STRING_BOSS_POOL);
-		Item reward = ItemInfos.HP_UP;
-		spawnItem(reward);
-		return reward;
-	}
+	
 	
 	
 

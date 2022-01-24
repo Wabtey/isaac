@@ -41,6 +41,7 @@ public class Dungeon {
 		initialiseWorldBoss();
 		affichage();
 		setSpecialRooms();
+		initialiseSpecialRoom(); //TODO initialise the special room
 	}
 
 	public void refreshDungeon() {
@@ -131,7 +132,7 @@ public class Dungeon {
 		for (int i = 0; i <= dungeonSize - 1; i++) {
 			for (int j = 0; j <= dungeonSize - 1; j++) {
 				if (worldMap.getWorldMap().get(i).get(j) == 2) {
-					gameWorlds.get(i).get(j).initalise();
+					//gameWorlds.get(i).get(j).initalise(); -> already initialise by initialiseGameWorlds()
 					gameWorlds.get(i).get(j).changeTypeOfRoom("boss");
 					gameWorlds.get(i).get(j).getCurrentRoom().initialise();
 				}
@@ -139,9 +140,14 @@ public class Dungeon {
 		}
 	}
 	
+	private void initialiseSpecialRoom() {
+		
+	}
+	
 	private void setSpecialRooms() {
 		setGameWorldRoom("spawn");
 		setGameWorldRoom("shop");
+		setGameWorldRoom("itemRoom");
 	}
 	
 	/**
@@ -156,7 +162,12 @@ public class Dungeon {
 					gameWorlds.get(i).get(j).changeTypeOfRoom(type);
 					if (type == "spawn") {
 						currentGameWorld = gameWorlds.get(i).get(j);
+						//currentGameWorld.initalise(); convert the first room into shop
+						System.out.println("spawn :" + gameWorlds.get(i).get(j));
+
 					}
+//					else if (type == "itemRoom")
+//						currentGameWorld = gameWorlds.get(i).get(j);
 					return;
 				}
 			}
@@ -165,5 +176,9 @@ public class Dungeon {
 
 	public ArrayList<List<GameWorld>> getGameWorld() {
 		return gameWorlds;
+	}
+
+	public void setHero(Hero hero) {
+		this.hero = hero;
 	}
 }
