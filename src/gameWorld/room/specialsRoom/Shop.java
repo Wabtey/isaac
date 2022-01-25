@@ -49,7 +49,8 @@ public class Shop extends Room {
 	}
 	
 	public void initialise() {
-		generateShop();
+
+		//generateShop();
 		System.out.println("shop initialised"); //TODO test to remove
 	}
 	

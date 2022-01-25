@@ -60,6 +60,8 @@ public abstract class Room
 		
 		this.isClear = false;
 		
+		spawnItem(ItemInfos.PENTAGRAM); //that prove that's the list fault (mine dw)
+		
 		//spawnItem(generateItem(STRING_ITEM_POOL));
 		
 		//System.out.println(Random.getRewardPool(ItemInfos.STRING_ITEM_POOL));

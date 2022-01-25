@@ -93,10 +93,12 @@ public class ItemInfos {
 		//bossPool.addList(HP_UP_POOL); //TODO create this List adder
 		normalPool.add(JESUS_JUICE);
 		normalPool.add(CRICKETS_HEAD);
+		System.out.println("size : "+ normalPool.size());
 		normalPool.add(MAGIC_MUSHROOM);
 		normalPool.add(STIGMATA);
 		normalPool.add(LUNCH);
 		normalPool.add(HP_UP);
+		System.out.println(normalPool.get(0));
 		
 		//Collections.shuffle(normalPool);
 		
