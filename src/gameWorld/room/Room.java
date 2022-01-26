@@ -298,9 +298,9 @@ public abstract class Room
 
 	}
 	
-	public void addItems(Item stuff) {
+	private void addItems(Item stuff) {
 		getItems().add(stuff);
-		System.out.println("addItems param :"+stuff);
+		//System.out.println("addItems param :"+stuff);
 	}
 	
 	//example of spawning a item in the room (gift) : spawnItem(generateItem(STRING_SHOP_POOL)); Shop cause of chest
@@ -393,22 +393,29 @@ public abstract class Room
 
 //--INTERFACE-GRAPHIQUE------------------------------------------------------
 
+	public void drawItems() {
+		for(Item item: items) {
+			//item.setPosition(new Vector2(0.5, 0.4)); replace it by spawnItem() method
+			item.drawGameObject();
+		}
+	}
+	
 	/*
 	 * Drawing
 	 */
 	public void drawRoom() {
 		// For every tile, set background color.
-		StdDraw.setPenColor(StdDraw.BLUE);
+		//StdDraw.setPenColor(StdDraw.BLUE);
 		//double scaling = DisplaySettings.SCALE;
 
-		Vector2 position = RoomInfos.POSITION_CENTER_OF_ROOM;
+		Vector2 center = RoomInfos.POSITION_CENTER_OF_ROOM;
 		//Make a room rectangular
 //		StdDraw.picture(position.getX(), position.getY(), ImagePaths.FLOOR);
 //		StdDraw.picture(position.getX(), position.getY(), ImagePaths.WALL);
 		
 		//TODO removing the display of wall and floor make the game faster: learn why
-		StdDraw.picture(position.getX(), position.getY(), ImagePaths.FLOOR, DisplaySettings.SCALE, DisplaySettings.SCALE);
-		StdDraw.picture(position.getX(), position.getY(), ImagePaths.WALL, DisplaySettings.SCALE, DisplaySettings.SCALE);
+		StdDraw.picture(center.getX(), center.getY(), ImagePaths.FLOOR, DisplaySettings.SCALE, DisplaySettings.SCALE);
+		StdDraw.picture(center.getX(), center.getY(), ImagePaths.WALL, DisplaySettings.SCALE, DisplaySettings.SCALE);
 
 
 		for(Door door: doors) {
@@ -416,6 +423,9 @@ public abstract class Room
 		}
 		
 		//TODO grid build
+		
+		Vector2 position2 = RoomInfos.POSTION_LEFT_BOTTOM_OF_ROOM;
+		StdDraw.picture(position2.getX()*2, position2.getY()*2, "images/grid_40x40.png");
 		StdDraw.picture(0.15, 0.216, "images/grid_40x40.png");
 		StdDraw.picture(0.15, 0.216, ImagePaths.BLOOD_OF_THE_MARTYR);
 		
@@ -427,10 +437,7 @@ public abstract class Room
 			pickup.drawGameObject();
 		}
 		
-		for(Item item: items) {
-			//item.setPosition(new Vector2(0.5, 0.4)); replace it by spawnItem() method
-			item.drawGameObject();
-		}
+		drawItems();
 		
 		//--ENTITY--
 		

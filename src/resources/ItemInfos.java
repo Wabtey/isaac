@@ -39,115 +39,6 @@ public class ItemInfos {
 	public static final Vector2 ITEM_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.35 * DisplaySettings.SCALE);
 	public static final int STATS_A_LENGTH = 16;
 	
-	//--POOL----------------------------------
-	
-	public static final String STRING_ITEM_POOL = "ItemPool";
-	public static final String STRING_DEVIL_POOL = "DevilPool";
-	public static final String STRING_BOSS_POOL = "BossPool";
-	public static final String STRING_SHOP_POOL = "ShopPool";
-
-	
-	public static final LinkedList<Item> ITEM_POOL = generateNormalPool();
-	public static final LinkedList<Item> DEVIL_POOL = generateDevilPool();
-	public static final LinkedList<Item> BOSS_POOL = generateBossPool();
-	public static final LinkedList<Item> SHOP_POOL = generateShopPool();
-	public static final LinkedList<Item> HP_UP_POOL = generateHPupPool();
-
-
-	
-	//--GENERATE POOL--------------------------
-	
-	/**
-	 * suffle all the final Item Pool list
-	 * The suffle is done one time (when called) to not perturb,
-	 * at each time a item spawned, the order of the list (like the actual game) 
-	 */
-	public static final void generatePool() { 
-		Collections.shuffle(ITEM_POOL);
-		Collections.shuffle(DEVIL_POOL);
-		Collections.shuffle(BOSS_POOL);
-		Collections.shuffle(SHOP_POOL);
-		Collections.shuffle(HP_UP_POOL);
-
-//		generateDevilPool();
-//		generateNormalPool();
-//		generateShopPool();
-//		generateBossPool();
-//		generateHPupPool();
-	}
-
-	public static final LinkedList<Item> generateDevilPool(){
-		
-		LinkedList<Item> devilPool = new LinkedList<Item>();
-		devilPool.add(PENTAGRAM);
-		devilPool.add(BLOOD_OF_THE_MARTYR);
-		
-		//Collections.shuffle(devilPool);
-		
-		return devilPool;
-	}
-	
-	public static final LinkedList<Item> generateNormalPool(){
-		
-		LinkedList<Item> normalPool = new LinkedList<Item>();
-		//bossPool.addList(HP_UP_POOL); //TODO create this List adder
-		normalPool.add(JESUS_JUICE);
-		normalPool.add(CRICKETS_HEAD);
-		System.out.println("size : "+ normalPool.size());
-		normalPool.add(MAGIC_MUSHROOM);
-		normalPool.add(STIGMATA);
-		normalPool.add(LUNCH);
-		normalPool.add(HP_UP);
-		System.out.println(normalPool.get(0));
-		
-		//Collections.shuffle(normalPool);
-		
-		return normalPool;
-	}
-	
-	public static final LinkedList<Item> generateShopPool(){
-		
-		LinkedList<Item> shopPool = ITEM_POOL;
-		
-		//Collections.shuffle(shopPool);
-		
-		return shopPool;
-	}
-	
-	public static final LinkedList<Item> generateBossPool(){
-		
-		LinkedList<Item> bossPool = new LinkedList<Item>();
-		//bossPool.addList(NORMAL_POOL); //TODO create this List adder
-		bossPool.add(JESUS_JUICE);
-		bossPool.add(PENTAGRAM);
-		bossPool.add(BLOOD_OF_THE_MARTYR);
-		bossPool.add(MAGIC_MUSHROOM);
-		bossPool.add(CRICKETS_HEAD);
-		bossPool.add(STIGMATA);
-		bossPool.add(LUNCH);
-		bossPool.add(HP_UP);
-
-		//Collections.shuffle(bossPool);
-		
-		return bossPool;
-	}
-	
-	/**
-	 * simple hpUP pool
-	 * @return
-	 */
-	public static final LinkedList<Item> generateHPupPool()
-	{
-		LinkedList<Item> hpUPPool = new LinkedList<Item>();
-		hpUPPool.add(STIGMATA);
-		hpUPPool.add(LUNCH);
-		hpUPPool.add(HP_UP);
-		
-		//Collections.shuffle(hpUPPool);
-
-		return hpUPPool;
-	}
-	
 //--DAMAGE----------------------
 	// --PENTAGRAM--
 	
@@ -280,4 +171,115 @@ public class ItemInfos {
 		
 	public static final Item HP_UP = new Item(HP_UP_HEART_CONTAINER, HP_UP_RED_HEART, 0, RoomInfos.POSITION_CENTER_OF_ROOM, ITEM_SIZE,
 				ImagePaths.HP_UP);
+	
+	
+	//--GENERATE POOL--------------------------
+	
+		/**
+		 * suffle all the final Item Pool list
+		 * The suffle is done one time (when called) to not perturb,
+		 * at each time a item spawned, the order of the list (like the actual game) 
+		 */
+		public static final void generatePool() { 
+			Collections.shuffle(ITEM_POOL);
+			Collections.shuffle(DEVIL_POOL);
+			Collections.shuffle(BOSS_POOL);
+			Collections.shuffle(SHOP_POOL);
+			Collections.shuffle(HP_UP_POOL);
+
+//			generateDevilPool();
+//			generateNormalPool();
+//			generateShopPool();
+//			generateBossPool();
+//			generateHPupPool();
+		}
+
+		public static final LinkedList<Item> generateDevilPool(){
+			
+			LinkedList<Item> devilPool = new LinkedList<Item>();
+			devilPool.add(PENTAGRAM);
+			devilPool.add(BLOOD_OF_THE_MARTYR);
+			
+			//Collections.shuffle(devilPool);
+			
+			return devilPool;
+		}
+		
+		public static final LinkedList<Item> generateNormalPool(){
+			
+			LinkedList<Item> normalPool = new LinkedList<Item>();
+			//bossPool.addList(HP_UP_POOL); //TODO create this List adder
+			normalPool.add(JESUS_JUICE);
+			normalPool.add(CRICKETS_HEAD);
+			System.out.println(normalPool);
+			System.out.println("size : "+ normalPool.size());
+			normalPool.add(MAGIC_MUSHROOM);
+			normalPool.add(STIGMATA);
+			normalPool.add(LUNCH);
+			normalPool.add(HP_UP);
+			System.out.println(normalPool.get(0));
+			
+			//Collections.shuffle(normalPool);
+			
+			return normalPool;
+		}
+		
+		public static final LinkedList<Item> generateShopPool(){
+			
+			LinkedList<Item> shopPool = ITEM_POOL;
+			
+			//Collections.shuffle(shopPool);
+			
+			return shopPool;
+		}
+		
+		public static final LinkedList<Item> generateBossPool(){
+			
+			LinkedList<Item> bossPool = new LinkedList<Item>();
+			//bossPool.addList(NORMAL_POOL); //TODO create this List adder
+			bossPool.add(JESUS_JUICE);
+			bossPool.add(PENTAGRAM);
+			bossPool.add(BLOOD_OF_THE_MARTYR);
+			bossPool.add(MAGIC_MUSHROOM);
+			bossPool.add(CRICKETS_HEAD);
+			bossPool.add(STIGMATA);
+			bossPool.add(LUNCH);
+			bossPool.add(HP_UP);
+
+			//Collections.shuffle(bossPool);
+			
+			return bossPool;
+		}
+		
+		/**
+		 * simple hpUP pool
+		 * @return
+		 */
+		public static final LinkedList<Item> generateHPupPool()
+		{
+			LinkedList<Item> hpUPPool = new LinkedList<Item>();
+			hpUPPool.add(STIGMATA);
+			hpUPPool.add(LUNCH);
+			hpUPPool.add(HP_UP);
+			
+			//Collections.shuffle(hpUPPool);
+
+			return hpUPPool;
+		}
+		
+		//--POOL---------------------------------- 
+		
+		public static final String STRING_ITEM_POOL = "ItemPool";
+		public static final String STRING_DEVIL_POOL = "DevilPool";
+		public static final String STRING_BOSS_POOL = "BossPool";
+		public static final String STRING_SHOP_POOL = "ShopPool";
+
+		
+		public static LinkedList<Item> ITEM_POOL = generateNormalPool();
+		public static LinkedList<Item> DEVIL_POOL = generateDevilPool();
+		public static LinkedList<Item> BOSS_POOL = generateBossPool();
+		public static LinkedList<Item> SHOP_POOL = generateShopPool();
+		public static LinkedList<Item> HP_UP_POOL = generateHPupPool();
+
+
 }

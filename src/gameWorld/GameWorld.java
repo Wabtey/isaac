@@ -178,8 +178,14 @@ public class GameWorld
 			}
 		}
 		
-		if(StdDraw.isKeyPressed(Controls.beRich))
-			hero.setGold(hero.getGold()+10);
+		if(StdDraw.isKeyPressed(Controls.beRich)) {
+			if(getTempo()==0) {
+				hero.setGold(hero.getGold() + 10);
+				System.out.println("coin : " + hero.getGold() + "\n" + "bomb: " + hero.getBomb() + "\n" + "key: "
+						+ hero.getKey() + "\n");
+				setTempo(3);
+			}
+		}
 		
 //		if(StdDraw.isKeyPressed(Controls.switchHero)) { //Press 'c'
 //			if(getTempo()==0 && currentRoom instanceof Spawn && !leftSpawn) {
