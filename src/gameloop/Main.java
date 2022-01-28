@@ -16,11 +16,12 @@ public class Main
 	public static void main(String[] args)
 	{
 		// Hero, world and display initialisation.
+		ItemInfos.generatePool(); //TODO find a good place to put it
 		Hero isaac = CreaturesInfos.ISAAC;
 		Dungeon monde = new Dungeon(isaac, 8);
 		monde.initalise();
 		initializeDisplay();
-		ItemInfos.generatePool(); //TODO find a good place to put it
+		
 
 		// Main loop of the game
 		while (!monde.gameOver())

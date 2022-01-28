@@ -60,11 +60,15 @@ public class ImagePaths
 	//--DOOR--
 	public static final String CLOSED_DOOR = "images/closed_door.png";
 	public static final String OPENED_DOOR = "images/opened_door.png";
+	public static final String CLOSE_TRAP = "images/Close_Trap.png";
+	public static final String OPEN_TRAP = "images/Open_Trap.png";
+
 	
 	//--ROOM--
 	public static final String WALL = "images/wallSecrete.png";
 	public static final String FLOOR = "images/floorSecrete.png";
 	public static final String SHOP_WALL = "images/shop_Wall_1.png"; //or "images/shop_Wall_2.png"
+	
 	public static final String SPAWN_HELP = "images/tuto_1.png";
 	public static final String POST_IT = "images/post_it_cheat_50.png";
 

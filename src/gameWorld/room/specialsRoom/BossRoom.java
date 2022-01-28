@@ -11,6 +11,7 @@ import libraries.Vector2;
 import resources.CreaturesInfos;
 import resources.ItemInfos;
 import resources.Random;
+import resources.RoomInfos;
 import gameobjects.stuff.Item;
 import gameobjects.stuff.pickup.PickUp;
 
@@ -18,9 +19,9 @@ public class BossRoom extends Room {
 
 	//private boolean isDefeat;
 	private Boss boss;
+
 	
-	//TODO learn why sometimes the bossRoom don't spawn 
-	
+	//TODO learn why sometimes the bossRoom don't spawn!!
 	public BossRoom(Hero hero, List<Door> doors) {
 		super(hero, doors);
 		//this.isDefeat = false;
@@ -35,12 +36,13 @@ public class BossRoom extends Room {
 	}
 
 	public void updateRoom() {		
-		checkMonstersHP();
-		checkDoorState(); //BossRoom method
-		makeHeroPlay();
-		makeMonstersPlay();
-		updateProjectile();
-		checkCollision();
+//		checkMonstersHP();
+//		checkDoorState(); //BossRoom method
+//		makeHeroPlay();
+//		makeMonstersPlay();
+//		updateProjectile();
+//		checkCollision();
+		super.updateRoom();
 		
 		checkPhase(); //BossRoom method
 //		if(isDefeat && getBoss().getRedHeart()<=0) { //if dead
@@ -48,23 +50,25 @@ public class BossRoom extends Room {
 //		}
 	}
 	
-	//TODO find a another solution rather this duplicated methods to spawn a reward after boss death
-	private void checkDoorState() {
-		if (getMonsters().isEmpty()) {
-			for (Door door : getDoors()) {
-				door.openDoor();
-				generateRoomReward(); //here a item
-			}
-		}
-	}
+//	//TODO find a another solution rather this duplicated methods to spawn a reward after boss death
+//	private void checkDoorState() {
+//		if (getMonsters().isEmpty()) {
+//			for (Door door : getDoors()) {
+//				door.openDoor();
+//				generateRoomReward(); //here a item
+//			}
+//		}
+//	}
 	
 //--CLEAR THE ROOM---------
 
 	
-	private void generateRoomReward() {
+	
+	public void generateRoomReward() {
 		if(!isClear()) {
-			spawnItem(generateItem(ItemInfos.STRING_DEVIL_POOL));
+			spawnItem(generateItem(ItemInfos.STRING_BOSS_POOL));
 			setIsClear(true);
+			spawnTrap();
 		}
 	}
 
@@ -101,10 +105,6 @@ public class BossRoom extends Room {
 	@Override
 	public PickUp generateReward() { // no need we import the checkDoorState() method down there
 		return null;
-	}
-	
-	
-	
-	
+	}	
 
 }

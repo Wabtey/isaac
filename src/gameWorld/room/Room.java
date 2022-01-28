@@ -8,8 +8,10 @@ import gameobjects.moving_entity.Hero;
 import gameobjects.moving_entity.Projectile;
 import gameobjects.moving_entity.monsters.*;
 import gameobjects.obstacles.Obstacle;
+import gameobjects.obstacles.collisionable.Trap;
 import gameobjects.stuff.*;
 import gameobjects.stuff.pickup.*;
+import libraries.Physics;
 import libraries.StdDraw;
 import libraries.Vector2;
 
@@ -25,6 +27,7 @@ public abstract class Room
 {
 	private Hero hero;
 	private ArrayList<Door> doors ;
+	private ArrayList<Trap> trapDoors;
 	private ArrayList<Obstacle> obstacles;
 	private ArrayList<Projectile> projectile;
 	private LinkedList<Monsters> monsters;
@@ -36,10 +39,13 @@ public abstract class Room
 	
 	private Vector2 freePosition; //TODO set the freePosition (@see in RoomC1 and RoomC2 with Tiles position methods)
 	
+	private boolean victory;
+	
 	public Room(Hero hero, List<Door> doors)
 	{
 		this.hero = hero;
 		this.doors = new ArrayList<Door>(4);
+		this.trapDoors = new ArrayList<Trap>();
 		this.obstacles = new ArrayList<Obstacle>();
 		this.projectile = new ArrayList<Projectile>();
 		
@@ -74,10 +80,12 @@ public abstract class Room
 	{
 		checkMonstersHP();
 		checkDoorState();
+		checkTrap();
 		makeHeroPlay();
 		makeMonstersPlay();
 		updateProjectile();
 		checkCollision();
+
 	}
 
 //--HERO--------------------------------------------------------
@@ -359,15 +367,15 @@ public abstract class Room
 	}
 
 	private void checkDoorState() {
-		if (monsters.isEmpty()) {
-			for (Door door : doors) {
+		if (getMonsters().isEmpty()) {
+			for (Door door : getDoors()) {
 				door.openDoor();
 				generateRoomReward();
 			}
 		}
 	}
 	
-	private void generateRoomReward() {
+	public void generateRoomReward() {
 		if(!isClear()) {
 			PickUp RoomPickUp = generateReward();
 			if(RoomPickUp!=null)
@@ -388,6 +396,28 @@ public abstract class Room
 		}
 		return null;
 	}
+	
+	private boolean checkTrap() {
+		boolean inTheTrap = false;
+		for(Trap trap : getTrapDoors()) {
+			boolean collision = Physics.rectangleCollision(hero.getPosition(), hero.getSize(), trap.getPosition(), trap.getSize());
+			//System.out.println(hero.getPosition() +"|"+ hero.getSize() +"|"+ trap.getPosition() +"|"+ trap.getSize());
+			if(collision) {
+				inTheTrap = collision;
+				//TODO dont make it the end too soon
+				setVictory(true);
+				break;
+			}
+			
+		}
+		return inTheTrap;
+	}
+	
+	protected void spawnTrap() {
+		if(isClear()) {
+			getTrapDoors().add(new Trap(new Vector2(RoomInfos.POSITION_CENTER_OF_ROOM.getX(), RoomInfos.POSITION_DIAG_6.getY())));
+		}
+	}
 
 //--INTERFACE-GRAPHIQUE------------------------------------------------------
 
@@ -405,6 +435,7 @@ public abstract class Room
 		//buildGrid();
 		
 		drawDoors();
+		drawTraps();
 		drawObstacles();
 
 		drawItems();
@@ -429,6 +460,17 @@ public abstract class Room
 			tear.drawGameObject();
 		}
 		
+		drawVICTORY();
+		
+	}
+	
+	public void drawVICTORY() {
+		//TODO the end.
+		if(isVictory())
+			StdDraw.picture(RoomInfos.POSITION_CENTER_OF_ROOM.getX(),
+				RoomInfos.POSITION_CENTER_OF_ROOM.getY(),
+				ImagePaths.WIN_SCREEN,
+				1.32, 1);
 	}
 	
 	public void drawWallnFloor() {
@@ -444,6 +486,12 @@ public abstract class Room
 	private void drawDoors() {
 		for(Door door: doors) {
 			door.drawGameObject();
+		}
+	}
+	
+	private void drawTraps() {
+		for(Trap trap : trapDoors) {
+			trap.drawGameObject();
 		}
 	}
 	
@@ -564,6 +612,26 @@ public abstract class Room
 
 	public void setFreePosition(Vector2 freePosition) {
 		this.freePosition = freePosition;
+	}
+	
+	/**
+	 * what a name
+	 * @return the current trap
+	 */
+	public ArrayList<Trap> getTrapDoors() {
+		return trapDoors;
+	}
+
+	public void setTrap(ArrayList<Trap> traps) {
+		this.trapDoors = traps;
+	}
+
+	public boolean isVictory() {
+		return victory;
+	}
+
+	public void setVictory(boolean victory) {
+		this.victory = victory;
 	}
 	
 	
