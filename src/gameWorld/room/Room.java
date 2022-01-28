@@ -60,10 +60,8 @@ public abstract class Room
 		
 		this.isClear = false;
 		
-		spawnItem(ItemInfos.PENTAGRAM); //that prove that's the list fault (mine dw)
-		
+		//spawnItem(ItemInfos.PENTAGRAM);
 		//spawnItem(generateItem(STRING_ITEM_POOL));
-		
 		//System.out.println(Random.getRewardPool(ItemInfos.STRING_ITEM_POOL));
 	}
 	
@@ -258,7 +256,7 @@ public abstract class Room
 			getMonsters().add(Baby2);
 
 		}
-		
+		//TODO spawnExplosion();
 		monsters.removeAll(toDelete);
 		
 	}
@@ -393,12 +391,7 @@ public abstract class Room
 
 //--INTERFACE-GRAPHIQUE------------------------------------------------------
 
-	public void drawItems() {
-		for(Item item: items) {
-			//item.setPosition(new Vector2(0.5, 0.4)); replace it by spawnItem() method
-			item.drawGameObject();
-		}
-	}
+
 	
 	/*
 	 * Drawing
@@ -408,60 +401,91 @@ public abstract class Room
 		//StdDraw.setPenColor(StdDraw.BLUE);
 		//double scaling = DisplaySettings.SCALE;
 
-		Vector2 center = RoomInfos.POSITION_CENTER_OF_ROOM;
-		//Make a room rectangular
-//		StdDraw.picture(position.getX(), position.getY(), ImagePaths.FLOOR);
-//		StdDraw.picture(position.getX(), position.getY(), ImagePaths.WALL);
+		drawWallnFloor();
+		//buildGrid();
 		
-		//TODO removing the display of wall and floor make the game faster: learn why
-		StdDraw.picture(center.getX(), center.getY(), ImagePaths.FLOOR, DisplaySettings.SCALE, DisplaySettings.SCALE);
-		StdDraw.picture(center.getX(), center.getY(), ImagePaths.WALL, DisplaySettings.SCALE, DisplaySettings.SCALE);
+		drawDoors();
+		drawObstacles();
 
-
-		for(Door door: doors) {
-			door.drawGameObject();
-		}
-		
-		//TODO grid build
-		
-		Vector2 position2 = RoomInfos.POSTION_LEFT_BOTTOM_OF_ROOM;
-		StdDraw.picture(position2.getX()*2, position2.getY()*2, "images/grid_40x40.png");
-		StdDraw.picture(0.15, 0.216, "images/grid_40x40.png");
-		StdDraw.picture(0.15, 0.216, ImagePaths.BLOOD_OF_THE_MARTYR);
-		
-		for (Obstacle obstacle: obstacles) {
-			obstacle.drawGameObject();
-		}
-		
-		for(PickUp pickup: rewards) {
-			pickup.drawGameObject();
-		}
-		
 		drawItems();
-		
+		drawPickUp();
+
 		//--ENTITY--
-		
 		hero.drawGameObject();
 		
 		//TODO make the pewpew stayed even if the shooter is dead
 		for (Monsters monster : monsters) {
+			monster.drawGameObject();
 			ArrayList<Projectile> pewpew = monster.getProjectile();
 			for (Projectile pew : pewpew) {
 				pew.drawGameObject();
 			}
 		}
-		
-		for (Monsters monster : monsters) {
-			monster.drawGameObject();
-		}
-		
-
-		
+//		for (Monsters monster : monsters) {
+//			monster.drawGameObject();
+//		}
 		ArrayList<Projectile> tears = hero.getProjectile();
 		for(Projectile tear:tears) {
 			tear.drawGameObject();
 		}
 		
+	}
+	
+	public void drawWallnFloor() {
+		Vector2 center = RoomInfos.POSITION_CENTER_OF_ROOM;
+		//Make a room rectangular
+//		StdDraw.picture(position.getX(), position.getY(), ImagePaths.FLOOR);
+//		StdDraw.picture(position.getX(), position.getY(), ImagePaths.WALL);
+		//TODO removing the display of wall and floor make the game faster: learn why
+		StdDraw.picture(center.getX(), center.getY(), ImagePaths.FLOOR, DisplaySettings.SCALE, DisplaySettings.SCALE);
+		StdDraw.picture(center.getX(), center.getY(), ImagePaths.WALL, DisplaySettings.SCALE, DisplaySettings.SCALE);
+	}
+	
+	private void drawDoors() {
+		for(Door door: doors) {
+			door.drawGameObject();
+		}
+	}
+	
+	private void drawObstacles() {
+		for (Obstacle obstacle: obstacles) {
+			obstacle.drawGameObject();
+		}
+	}
+	
+	private void drawItems() {
+		for(Item item: items) {
+			//item.setPosition(new Vector2(0.5, 0.4)); replace it by spawnItem() method
+			item.drawGameObject();
+		}
+	}
+	
+	private void drawPickUp() {
+		for(PickUp pickup: rewards) {
+			pickup.drawGameObject();
+		}
+	}
+	
+	private void buildGrid() {
+		// TODO grid build
+
+		Vector2 position2 = RoomInfos.POSITION_LEFT_BOTTOM_OF_ROOM;
+		StdDraw.picture(position2.getX(), position2.getY(), "images/grid_40x40.png");
+		//StdDraw.picture(0.15, 0.216, ImagePaths.BLOOD_OF_THE_MARTYR);
+		StdDraw.picture(RoomInfos.POSITION_DIAG_2.getX(), RoomInfos.POSITION_DIAG_2.getY(), "images/grid_40x40.png");
+		StdDraw.picture(RoomInfos.POSITION_DIAG_3.getX(), RoomInfos.POSITION_DIAG_3.getY(), "images/grid_40x40.png");
+		StdDraw.picture(RoomInfos.POSITION_DIAG_4.getX(), RoomInfos.POSITION_DIAG_4.getY(), "images/grid_40x40.png");
+		StdDraw.picture(RoomInfos.POSITION_DIAG_5.getX(), RoomInfos.POSITION_DIAG_5.getY(), "images/grid_40x40.png");
+		StdDraw.picture(RoomInfos.POSITION_DIAG_6.getX(), RoomInfos.POSITION_DIAG_6.getY(), "images/grid_40x40.png");
+
+		StdDraw.picture(RoomInfos.POSITION_DIAG_7.getX(), RoomInfos.POSITION_DIAG_7.getY(), "images/grid_40x40.png");
+		StdDraw.picture(RoomInfos.POSITION_DIAG_8.getX(), RoomInfos.POSITION_DIAG_8.getY(), "images/grid_40x40.png");
+		StdDraw.picture(RoomInfos.POSITION_DIAG_9.getX(), RoomInfos.POSITION_DIAG_9.getY(), "images/grid_40x40.png");
+		StdDraw.picture(RoomInfos.POSITION_DIAG_10.getX(), RoomInfos.POSITION_DIAG_10.getY(), "images/grid_40x40.png");
+		StdDraw.picture(RoomInfos.POSITION_DIAG_11.getX(), RoomInfos.POSITION_DIAG_10.getY(), "images/grid_40x40.png");
+
+		StdDraw.picture(RoomInfos.POSITION_DIAG_12.getX(), RoomInfos.POSITION_DIAG_10.getY(), "images/grid_40x40.png");
+
 	}
 	
 	/**

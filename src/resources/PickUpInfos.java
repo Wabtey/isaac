@@ -19,7 +19,7 @@ public class PickUpInfos {
 	public static final int BLUE_HEART_DROP = 30; //percenatge
 	public static final int HALF_HEART_DROP = 25; //whatever its color
 	
-	public static final Vector2 SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.4*DisplaySettings.SCALE);
+	public static final Vector2 SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.3*DisplaySettings.SCALE);
 	
 	//TODO have to set the position after using this final unless the position is still in the center of the room
 	public static final Heart HALF_RED_HEART  = new Heart(RoomInfos.POSITION_CENTER_OF_ROOM, RED_HEART_COLOR,

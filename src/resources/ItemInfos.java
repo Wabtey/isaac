@@ -174,25 +174,6 @@ public class ItemInfos {
 	
 	
 	//--GENERATE POOL--------------------------
-	
-		/**
-		 * suffle all the final Item Pool list
-		 * The suffle is done one time (when called) to not perturb,
-		 * at each time a item spawned, the order of the list (like the actual game) 
-		 */
-		public static final void generatePool() { 
-			Collections.shuffle(ITEM_POOL);
-			Collections.shuffle(DEVIL_POOL);
-			Collections.shuffle(BOSS_POOL);
-			Collections.shuffle(SHOP_POOL);
-			Collections.shuffle(HP_UP_POOL);
-
-//			generateDevilPool();
-//			generateNormalPool();
-//			generateShopPool();
-//			generateBossPool();
-//			generateHPupPool();
-		}
 
 		public static final LinkedList<Item> generateDevilPool(){
 			
@@ -211,13 +192,13 @@ public class ItemInfos {
 			//bossPool.addList(HP_UP_POOL); //TODO create this List adder
 			normalPool.add(JESUS_JUICE);
 			normalPool.add(CRICKETS_HEAD);
-			System.out.println(normalPool);
-			System.out.println("size : "+ normalPool.size());
+			//System.out.println(normalPool);
+			//System.out.println("size : "+ normalPool.size());
 			normalPool.add(MAGIC_MUSHROOM);
 			normalPool.add(STIGMATA);
 			normalPool.add(LUNCH);
 			normalPool.add(HP_UP);
-			System.out.println(normalPool.get(0));
+			//System.out.println(normalPool.get(0));
 			
 			//Collections.shuffle(normalPool);
 			
@@ -227,6 +208,10 @@ public class ItemInfos {
 		public static final LinkedList<Item> generateShopPool(){
 			
 			LinkedList<Item> shopPool = ITEM_POOL;
+			shopPool.add(JESUS_JUICE);
+			shopPool.add(STIGMATA);
+			shopPool.add(LUNCH);
+			shopPool.add(HP_UP);
 			
 			//Collections.shuffle(shopPool);
 			
@@ -281,5 +266,24 @@ public class ItemInfos {
 		public static LinkedList<Item> SHOP_POOL = generateShopPool();
 		public static LinkedList<Item> HP_UP_POOL = generateHPupPool();
 
+		
+		/**
+		 * suffle all the final Item Pool list
+		 * The suffle is done one time (when called) to not perturb,
+		 * at each time a item spawned, the order of the list (like the actual game) 
+		 */
+		public static final void generatePool() { 
+			Collections.shuffle(ITEM_POOL);
+			Collections.shuffle(DEVIL_POOL);
+			Collections.shuffle(BOSS_POOL);
+			Collections.shuffle(SHOP_POOL);
+			Collections.shuffle(HP_UP_POOL);
+
+//			generateDevilPool();
+//			generateNormalPool();
+//			generateShopPool();
+//			generateBossPool();
+//			generateHPupPool();
+		}
 
 }

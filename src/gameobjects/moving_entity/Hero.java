@@ -28,6 +28,7 @@ public class Hero extends Living_Creature
 									//(situation : remove one of them + one of them was a damage multiplier)
 	
 	private boolean showHUD;
+//	private boolean help;
 	
 	//TRICHE
 	private boolean cheating;
@@ -222,9 +223,9 @@ public class Hero extends Living_Creature
 				success = true;
 			}
 		}
-		System.out.println("coin : "+getGold()+"\n"
-						  +"bomb: "+getBomb()+"\n"
-						  +"key: "+getKey()+"\n");
+//		System.out.println("coin : "+getGold()+"\n"
+//						  +"bomb: "+getBomb()+"\n"
+//						  +"key: "+getKey()+"\n");
 		return success;
 	}
 	
@@ -255,6 +256,13 @@ public class Hero extends Living_Creature
 
 //--DRAW HERO and HUD----------------------------------
 	
+//	public void printStats() {
+//		System.out.println("coin : "+getGold()+"\n"
+//				  +"bomb: "+getBomb()+"\n"
+//				  +"key: "+getKey()+"\n");
+//		System.out.println();
+//	}
+	
 	public void drawGameObject()
 	{
 		//ISAAC Spite
@@ -268,7 +276,9 @@ public class Hero extends Living_Creature
 	private void drawHUD()
 	{
 		drawHealhMeter();	
-		drawStatsFlex();	
+		drawStatsFlex();
+//		if(help)
+//			StdDraw.picture(0.5, 0.5, "images/post_it_cheat.png");
 	}
 	
 	private void drawHealhMeter()
@@ -309,12 +319,29 @@ public class Hero extends Living_Creature
 
 		}
 	}
+	
 	/**
 	 * HUD addition that appears on the left side of the screen that gives numerical values to the player's current stats
 	 */
 	private void drawStatsFlex()
 	{
 		StdDraw.picture(0.05, 0.5, ImagePaths.FOUND_HUD, 0.08, 0.691764, 0); //TODO magical number
+	    StdDraw.setPenColor(StdDraw.WHITE);
+		StdDraw.text(0.1, 0.82, ""+getGold());
+		StdDraw.text(0.1, 0.77, ""+getBomb());
+		StdDraw.text(0.1, 0.72, ""+getKey());
+		
+		StdDraw.text(0.12, 0.60, ""+getSpeed());
+		StdDraw.text(0.12, 0.54, ""+getTearRate());
+		StdDraw.text(0.12, 0.48, ""+getDamage());
+		StdDraw.text(0.12, 0.42, ""+getRange()); //TODO set range for good (tear drops for a certain distance travelled
+		StdDraw.text(0.12, 0.36, ""+getShootSpeed());
+		StdDraw.text(0.12, 0.30, ""+getLuck());
+		StdDraw.text(0.12, 0.24, ""+getDevilDeal());
+		StdDraw.text(0.12, 0.18, ""+getAngelRoom());
+		
+//		StdDraw.setPenColor(StdDraw.WHITE);
+//		StdDraw.text(0.8, 0.9, "press y for help");
 	}
 
 //--GETTER/SETTER-----------------------------------------
@@ -484,6 +511,11 @@ public class Hero extends Living_Creature
 	public void changePowerful() {
 		this.Powerful=!Powerful;
 	}
+
+
+//	public void changeHelp() {
+//		this.help = !help;
+//	}
 
 	
 	

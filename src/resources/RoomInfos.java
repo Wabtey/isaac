@@ -15,7 +15,26 @@ public class RoomInfos
 	public static final Vector2 POSITION_START_OF_ROOM  = new Vector2(0*DisplaySettings.SCALE, 0*DisplaySettings.SCALE);
 	public static final Vector2 POSITION_END_OF_ROOM    = new Vector2(1*DisplaySettings.SCALE, 1*DisplaySettings.SCALE);
 	
-	public static final Vector2 POSTION_LEFT_BOTTOM_OF_ROOM = new Vector2(0.15, 0.216);
+	public static final Vector2 POSITION_LEFT_BOTTOM_OF_ROOM = new Vector2(0.15, 0.216);
+	public static final Vector2 POSITION_DIAG_1 = POSITION_LEFT_BOTTOM_OF_ROOM;
+	public static final Vector2 POSITION_DIAG_2 = new Vector2(0.2165, 0.282);
+	public static final Vector2 POSITION_DIAG_3 = new Vector2(0.283, 0.348); //0.0665, 0.066
+	public static final Vector2 POSITION_DIAG_4 = new Vector2(0.35, 0.415); //0.067, 0.067
+	public static final Vector2 POSITION_DIAG_5 = new Vector2(0.417, 0.482); //0.067, 0.067
+	public static final Vector2 POSITION_DIAG_6 = new Vector2(0.484, 0.549); //0.067, 0.067
+	public static final Vector2 POSITION_DIAG_7 = new Vector2(0.551, 0.616); //0.067, 0.067
+	public static final Vector2 POSITION_DIAG_8 = new Vector2(0.617, 0.682); //0.066, 0.066
+	public static final Vector2 POSITION_DIAG_9 = new Vector2(0.684, 0.749); //0.067, 0.066
+	public static final Vector2 POSITION_DIAG_10 = new Vector2(0.751, 0.816); //0.067, 0.067
+	public static final Vector2 POSITION_DIAG_11 = new Vector2(0.818, 0.883); //0.067, 0.067
+	public static final Vector2 POSITION_DIAG_12 = new Vector2(0.885, 0.95); //0.067, 0.067
+
+
+
+
+
+
+
 
 									  			   //= new Vector2(width, heigth);
 	public static final Vector2 SIZE_WALL_UP         = new Vector2(1*DisplaySettings.SCALE, 0.21*DisplaySettings.SCALE);

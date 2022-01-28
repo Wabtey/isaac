@@ -60,7 +60,7 @@ public class Random {
 	public static Item getRewardPool(String pool) {
 		
 		Item reward = ItemInfos.HP_UP; //base item
-		System.out.println(reward.getImagePath());
+		//System.out.println(reward.getImagePath());
 		
 		if(pool == ItemInfos.STRING_BOSS_POOL) {
 			//int randomNb = pickRandomlyIntoAList(ItemInfos.BOSS_POOL);
@@ -82,7 +82,7 @@ public class Random {
 			//int randomNb = pickRandomlyIntoAList(ItemInfos.HP_UP_POOL);
 			reward = ItemInfos.HP_UP_POOL.remove(); //TODO : when no more item left make it like there is no doublon except HpUp
 		}
-		System.out.println("getRewardPool() return :"+ reward); //TODO test to remove
+		//System.out.println("getRewardPool() return :"+ reward); //TODO test to remove
 		
 		return reward;
 	}
